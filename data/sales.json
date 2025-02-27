@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2025-02-26 18:42:55",
+    "items": [
+      {
+        "item_id": "123",
+        "name": "Hammer",
+        "quantity": 1,
+        "total": 9.99
+      }
+    ],
+    "total": 9.99
+  }
+]

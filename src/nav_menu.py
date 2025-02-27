@@ -2,10 +2,11 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from src.inventory import get_inventory
-from src.sales import add_item_to_sale
+from src.sales import add_item_to_sale, save_sale
 
 app = typer.Typer()
 console = Console()
+cart = []  # Global cart to track items before sale
 
 def display_menu():
     """Display the main navigation menu."""
@@ -23,9 +24,28 @@ def display_menu():
     console.print("\n[bold yellow]Select an option (0-3):[/bold yellow] ", end="")
 
 def process_sale():
-    """Placeholder for processing a full sale."""
-    console.print("[yellow]Sale processing not fully implemented yet.[/yellow]")
-    console.print("Enter items via 'Add Item to Sale' first, then finalize here in the future.")
+    """Process the current cart and save the sale."""
+    if not cart:
+        console.print("[yellow]Cart is empty![/yellow]")
+    else:
+        table = Table(title="Sale Summary", style="bold green")
+        table.add_column("Item", style="cyan")
+        table.add_column("Quantity", style="magenta")
+        table.add_column("Total", style="yellow")
+        
+        total = 0
+        for item in cart:
+            table.add_row(item["name"], str(item["quantity"]), f"${item['total']:.2f}")
+            total += item["total"]
+        
+        console.clear()
+        console.print(table)
+        console.print(f"[bold green]Grand Total: ${total:.2f}[/bold green]")
+        
+        # Save sale to sales.json
+        save_sale(cart, total)
+        cart.clear()
+        console.print("[green]Sale completed and saved![/green]")
     console.input("[dim]Press Enter to return...[/dim]")
 
 def view_inventory():
@@ -45,7 +65,7 @@ def view_inventory():
     console.input("[dim]Press Enter to return...[/dim]")
 
 def add_item_interactive():
-    """Interactively add an item to a sale."""
+    """Interactively add an item to the cart."""
     item_id = console.input("[bold cyan]Enter Item ID: [/bold cyan]")
     try:
         quantity = int(console.input("[bold cyan]Enter Quantity: [/bold cyan]"))
@@ -53,7 +73,8 @@ def add_item_interactive():
         if "error" in result:
             console.print(f"[red]Error: {result['error']}[/red]")
         else:
-            console.print(f"[green]Added {quantity} x {result['name']} - ${result['total']:.2f}[/green]")
+            cart.append({"item_id": item_id, "name": result["name"], "quantity": quantity, "total": result["total"]})
+            console.print(f"[green]Added {quantity} x {result['name']} to cart - ${result['total']:.2f}[/green]")
     except ValueError:
         console.print("[red]Error: Quantity must be a number![/red]")
     console.input("[dim]Press Enter to return...[/dim]")

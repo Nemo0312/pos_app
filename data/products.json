@@ -1,0 +1,4 @@
+{
+    "123": {"name": "Hammer", "price": 9.99, "stock": 50},
+    "456": {"name": "Nails", "price": 0.50, "stock": 200}
+  }
