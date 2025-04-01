@@ -1,7 +1,7 @@
 import typer
 from rich.console import Console
 from rich.table import Table
-from src.inventory import get_inventory
+from src.inventory import *
 from src.sales import add_item_to_sale, save_sale
 
 app = typer.Typer()
@@ -47,22 +47,57 @@ def process_sale():
         cart.clear()
         console.print("[green]Sale completed and saved![/green]")
     console.input("[dim]Press Enter to return...[/dim]")
+    
+def displayInventoryOnce():
+    console.clear()
+    console.print(generate_inventory()) # transferred code to inventory.py
 
 def view_inventory():
     """Display the current inventory."""
-    inventory = get_inventory()
-    table = Table(title="Current Inventory", style="bold green")
-    table.add_column("ID", style="cyan")
-    table.add_column("Name", style="green")
-    table.add_column("Price", style="yellow")
-    table.add_column("Stock", style="magenta")
+
+    displayInventoryOnce()
+    m = "\n[blue]Search by name, category, ID \nPress Enter to return to System Menu \nPress 2 for full inventory: [/blue]"
+ 
+    while True:
+        user_in = console.input(m).strip().lower()
+              
+        if not user_in: # User presses Enter without input
+            break
+        
+        if user_in == "2":
+            console.clear()
+            displayInventoryOnce()
+            continue
+        
+        inventory = get_inventory()
+        filtered_search = {}
+        
+        try: #check if user input is numeric (search by ID)
+            user_in_int = int(user_in)
+            if user_in_int == 2:
+                console.clear()
+                displayInventoryOnce()
+                continue
+            
+            filtered_search = {
+                item_id:item
+                for item_id,item in inventory.items()
+                if user_in_int == int(item_id) #matching json key
+            }
+        except ValueError: #if user input is string (search by name or category)
+            filtered_search = {
+                item_id: item
+                for item_id, item in inventory.items()
+                if user_in in item["name"].lower() or user_in in item["category"].lower()
+            }
+        
+        if not filtered_search:
+            console.print("[red]No items found![/red]")
+            console.input(m)
+            continue
+        console.clear()
+        console.print(filtered_inventory(filtered_search))
     
-    for item_id, item in inventory.items():
-        table.add_row(item_id, item["name"], f"${item['price']:.2f}", str(item["stock"]))
-    
-    console.clear()
-    console.print(table)
-    console.input("[dim]Press Enter to return...[/dim]")
 
 def add_item_interactive():
     """Interactively add an item to the cart."""

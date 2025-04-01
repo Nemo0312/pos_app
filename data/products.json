@@ -1,4 +1,17 @@
 {
-    "123": {"name": "Hammer", "price": 9.99, "stock": 50},
-    "456": {"name": "Nails", "price": 0.50, "stock": 200}
+    "1001": {
+      "category": "Hardware",
+      "name": "Hammer", 
+      "price": 9.99, 
+      "stock": 50,
+      "next_ship": "2025-04-10",
+      "next_ship_qty": 20
+    },
+    "1002": {"category":"Hardware",
+    "name": "Nails",
+    "price": 0.50,
+    "stock": 200,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 700
+    }
   }
