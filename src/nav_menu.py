@@ -54,49 +54,92 @@ def displayInventoryOnce():
 
 def view_inventory():
     """Display the current inventory."""
-
-    displayInventoryOnce()
-    m = "\n[blue]Search by name, category, ID \nPress Enter to return to System Menu \nPress 2 for full inventory: [/blue]"
+    inventory = get_inventory()
+    # displayInventoryOnce()
+    m = "\n[blue]Search by name, category, ID \nPress 'p' for page number navigation \nPress Enter to return to System Menu \nPress 2 for full inventory: [/blue]"
+    # mm="\n[blue]'right arrow' for next, 'left arrow' for prev, 's' to search, or Enter to return: [/blue]"
+    page=1
+    pageSize=10
+    # console.clear()
+    # table, status = paginated_inventory(inventory,page, pageSize)
+    # console.print(table)
+    # console.print(f"[yellow]{status}[/yellow]")
  
     while True:
+        console.clear()
+        table, status = paginated_inventory(inventory,page, pageSize)
+        if table:
+            console.print(table)
+            console.print(f"[yellow]{status}[/yellow]")
+        else:
+            console.print(f"[purple]{status}![/purple]")
+
+
         user_in = console.input(m).strip().lower()
-              
         if not user_in: # User presses Enter without input
             break
-        
-        if user_in == "2":
+        elif user_in == "2":
             console.clear()
             displayInventoryOnce()
+            console.input(f"[dim]Press Enter to return to paginated view[/dim]\n[blue]{m}[/blue]")
+            # if user_in == "2":
             continue
-        
-        inventory = get_inventory()
-        filtered_search = {}
-        
-        try: #check if user input is numeric (search by ID)
-            user_in_int = int(user_in)
-            if user_in_int == 2:
+        elif user_in =="-" and page>1:
+            page-=1
+        elif user_in =="+":
+            pageCount= (len(inventory) + pageSize-1) // pageSize
+            if page<pageCount:
+                page+=1
+        elif user_in == "p":  # Page selection mode
+            while True:
                 console.clear()
-                displayInventoryOnce()
-                continue
-            
-            filtered_search = {
-                item_id:item
-                for item_id,item in inventory.items()
-                if user_in_int == int(item_id) #matching json key
-            }
-        except ValueError: #if user input is string (search by name or category)
-            filtered_search = {
-                item_id: item
-                for item_id, item in inventory.items()
-                if user_in in item["name"].lower() or user_in in item["category"].lower()
-            }
+                console.print(table)  # Redisplay current page
+                console.print(f"[yellow]{status}[/yellow]")
+                page_in = console.input("[blue]Enter page number (or Enter to exit page mode): [/blue]").strip()
+                if not page_in:  # Exit page mode
+                    break
+                try:
+                    new_page = int(page_in)
+                    pageCount = (len(inventory) + pageSize - 1) // pageSize
+                    if 1 <= new_page <= pageCount:
+                        page = new_page
+                        break
+                    else:
+                        console.print(f"[red]Page must be between 1 and {pageCount}![/red]")
+                        console.input("[dim]Press Enter to try again...[/dim]")
+                except ValueError:
+                    console.print("[red]Invalid page number![/red]")
+                    console.input("[dim]Press Enter to try again...[/dim]")
+        else:  # Search by ID, name, or category        
         
-        if not filtered_search:
-            console.print("[red]No items found![/red]")
-            console.input(m)
-            continue
-        console.clear()
-        console.print(filtered_inventory(filtered_search))
+            filtered_search = {}
+        
+            try: #check if user input is numeric (search by ID)
+                user_in_int = int(user_in)
+                # if user_in_int == 2:
+                #     console.clear()
+                #     displayInventoryOnce()
+                #     continue
+                
+                filtered_search = {
+                    item_id:item
+                    for item_id,item in inventory.items()
+                    if user_in_int == int(item_id) #matching json key
+                }
+            except ValueError: #if user input is string (search by name or category)
+                filtered_search = {
+                    item_id: item
+                    for item_id, item in inventory.items()
+                    if user_in in item["name"].lower() or user_in in item["category"].lower()
+                }
+            
+            if not filtered_search:
+                console.print("[red]No items found![/red]")
+                console.input(m)
+                # continue
+            console.clear()
+            console.print(filtered_inventory(filtered_search))
+            console.input("[dim]Press Enter to return...[/dim]")
     
 
 def add_item_interactive():
