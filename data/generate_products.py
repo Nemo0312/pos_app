@@ -45,16 +45,23 @@ def random_date():
 
 # Function to distribute total_items randomly across categories
 def distribute_items(total_items, num_categories=7):
-    # Ensure at least 1 item per category
     base_count = 1
     remaining_items = total_items - num_categories * base_count
     counts = [base_count] * num_categories
-    
-    # Distribute remaining items randomly
     for _ in range(remaining_items):
         counts[random.randint(0, num_categories - 1)] += 1
-    
     return counts
+
+# Function to generate a unique name
+def get_unique_name(base_name, category, used_names):
+    if f"{category}:{base_name}" not in used_names:
+        return base_name
+    version = 2
+    while True:
+        new_name = f"{base_name} (v{version})"
+        if f"{category}:{new_name}" not in used_names:
+            return new_name
+        version += 1
 
 # Load existing data and find last ID per category
 try:
@@ -63,15 +70,17 @@ try:
 except FileNotFoundError:
     existing_data = {}
 
-# Find the last ID for each category
+# Find the last ID for each category and track used names
 last_ids = {prefix: 0 for prefix in id_category_map.keys()}
-for item_id in existing_data:
-    prefix = item_id[0]  # First digit
+used_names = set()  # Format: "category:name"
+for item_id, item in existing_data.items():
+    prefix = item_id[0]
     if prefix in id_category_map:
         last_ids[prefix] = max(last_ids[prefix], int(item_id))
+        used_names.add(f"{item['category']}:{item['name']}")
 
 # User-specified total number of new items
-total_items = 70  # Change this to your desired total
+total_items = 215  # Change this to your desired total
 
 # Generate random distribution
 category_counts = distribute_items(total_items)
@@ -85,7 +94,9 @@ for category_prefix, count in zip(id_category_map.keys(), category_counts):
     for _ in range(count):
         current_id += 1
         item_id = str(current_id)
-        name = random.choice(item_names[category])
+        base_name = random.choice(item_names[category])
+        name = get_unique_name(base_name, category, used_names)
+        used_names.add(f"{category}:{name}")
         price_min, price_max = price_ranges[category]
         price = round(random.uniform(price_min, price_max), 2)
         stock = random.randint(10, 300)
