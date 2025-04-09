@@ -158,23 +158,35 @@ class SalesScreen(Screen):
         self.table = DataTable(id="cart-table")
         self.table.add_columns("SKU", "Item Name", "Quantity", "Sale Type", "Price")
 
-        self.inputs = {
-            "sku": Input(placeholder="SKU", id="sku"),
-            "qty": Input(placeholder="QUANTITY", id="qty"),
-            "type": Input(placeholder="SALE TYPE (P/D)", id="type"),
-            "discount": Input(placeholder="DISCOUNT (%)", id="discount")
-        }
+        self.input_sku = Input(placeholder="SKU", id="sku")
+        self.input_qty = Input(placeholder="QUANTITY", id="qty")
+        self.input_type = Input(placeholder="SALE TYPE (P/D)", id="type")
+        self.input_discount = Input(placeholder="DISCOUNT (%)", id="discount")
 
         return [
             Vertical(
-                Static(f"[b yellow]Sales Screen[/b yellow] - Logged in as: [bold]User[/bold] | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", classes="header"),
-                Static("[dim]Use E to edit, X to remove[/dim]", classes="tip"),
-                self.table,
-                Horizontal(*self.inputs.values(), id="item-inputs"),
+                Static(f"[b yellow]NEWOLDPOS SALES TERMINAL[/b yellow]   [green]User: JohnDoe[/green]   [cyan]{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}[/cyan]", classes="header"),
+                Static("[dim]Use Arrow Keys to navigate. Press [b]E[/b] to edit, [b]X[/b] to remove. Press [b]F12[/b] to continue.[/dim]", classes="tip"),
                 Horizontal(
-                    Button("F1 for Help", id="help"),
-                    Button("F3 for Back", id="back"),
-                    Button("F12 to Continue", id="finish"),
+                    Vertical(
+                        Static("[bold]Action:[/bold]", classes="label"),
+                        Static("[b]E[/b] - Edit", classes="shortcut"),
+                        Static("[b]X[/b] - Remove", classes="shortcut")
+                    ),
+                    self.table,
+                    id="cart-section"
+                ),
+                Horizontal(
+                    self.input_sku,
+                    self.input_qty,
+                    self.input_type,
+                    self.input_discount,
+                    id="item-inputs"
+                ),
+                Horizontal(
+                    Button("F1 Help", id="help"),
+                    Button("F3 Back", id="back"),
+                    Button("F12 Continue", id="finish"),
                     id="nav-buttons"
                 ),
                 self.total_display,
@@ -192,15 +204,15 @@ class SalesScreen(Screen):
             self.app.pop_screen()
 
     def add_item(self, sku=None, qty=None, mode=None, discount="0"):
-        sku = sku or self.inputs["sku"].value.strip()
+        sku = sku or self.input_sku.value.strip()
         try:
-            quantity = int(qty or self.inputs["qty"].value.strip())
-            discount = float(self.inputs["discount"].value.strip() or 0)
+            quantity = int(qty or self.input_qty.value.strip())
+            discount = float(self.input_discount.value.strip() or 0)
         except ValueError:
             self.msg_display.update("Invalid quantity or discount!")
             return
 
-        sale_type = (mode or self.inputs["type"].value.strip().upper()) or "P"
+        sale_type = (mode or self.input_type.value.strip().upper()) or "P"
         inventory = load_inventory()
         if sku in inventory:
             item = inventory[sku]
@@ -225,10 +237,10 @@ class SalesScreen(Screen):
     def action_edit_item(self):
         if self.table.cursor_row is not None:
             item = self.cart[self.table.cursor_row]
-            self.inputs["sku"].value = item["item_id"]
-            self.inputs["qty"].value = str(item["quantity"])
-            self.inputs["type"].value = item.get("mode", "P")
-            self.inputs["discount"].value = ""
+            self.input_sku.value = item["item_id"]
+            self.input_qty.value = str(item["quantity"])
+            self.input_type.value = item.get("mode", "P")
+            self.input_discount.value = ""
             self.cart.pop(self.table.cursor_row)
             self.table.remove_row(self.table.cursor_row)
 
@@ -253,6 +265,8 @@ class SalesScreen(Screen):
 
     def action_help(self):
         self.app.push_screen(HelpScreen())
+
+
 class HelpScreen(Screen):
     def compose(self) -> ComposeResult:
         help_text = Static(
