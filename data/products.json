@@ -1,4 +1,3962 @@
 {
-    "123": {"name": "Hammer", "price": 9.99, "stock": 50},
-    "456": {"name": "Nails", "price": 0.50, "stock": 200}
+  "1011": {
+    "category": "Electrical",
+    "name": "Surge Protector",
+    "price": 19.95,
+    "stock": 85,
+    "next_ship": "2025-07-12",
+    "next_ship_qty": 150
+  },
+  "1012": {
+    "category": "Electrical",
+    "name": "Cable Ties (Pack of 100)",
+    "price": 4.5,
+    "stock": 200,
+    "next_ship": "2025-05-20",
+    "next_ship_qty": 300
+  },
+  "1013": {
+    "category": "Electrical",
+    "name": "Grounding Rod",
+    "price": 12.75,
+    "stock": 45,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1014": {
+    "category": "Electrical",
+    "name": "LED Strip (10ft)",
+    "price": 25.99,
+    "stock": 110,
+    "next_ship": "2025-08-05",
+    "next_ship_qty": 200
+  },
+  "1015": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50)",
+    "price": 3.25,
+    "stock": 250,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 400
+  },
+  "1016": {
+    "category": "Electrical",
+    "name": "Fuse (20A)",
+    "price": 2.99,
+    "stock": 180,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 350
+  },
+  "1017": {
+    "category": "Electrical",
+    "name": "Battery Backup",
+    "price": 45.0,
+    "stock": 30,
+    "next_ship": "2025-09-10",
+    "next_ship_qty": 50
+  },
+  "1018": {
+    "category": "Electrical",
+    "name": "Conduit Pipe (5ft)",
+    "price": 8.89,
+    "stock": 95,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1019": {
+    "category": "Electrical",
+    "name": "Outlet Tester",
+    "price": 9.75,
+    "stock": 130,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 250
+  },
+  "1020": {
+    "category": "Electrical",
+    "name": "Solar Panel Connector",
+    "price": 15.5,
+    "stock": 60,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 100
+  },
+  "1021": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50) (v2)",
+    "price": 46.91,
+    "stock": 254,
+    "next_ship": "2025-08-28",
+    "next_ship_qty": 146
+  },
+  "1022": {
+    "category": "Electrical",
+    "name": "Solar Panel Connector (v2)",
+    "price": 39.42,
+    "stock": 76,
+    "next_ship": "2025-07-30",
+    "next_ship_qty": 2
+  },
+  "1023": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v2)",
+    "price": 32.95,
+    "stock": 270,
+    "next_ship": "2025-08-05",
+    "next_ship_qty": 74
+  },
+  "1024": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v3)",
+    "price": 31.28,
+    "stock": 264,
+    "next_ship": "2025-05-06",
+    "next_ship_qty": 175
+  },
+  "1025": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v2)",
+    "price": 24.5,
+    "stock": 165,
+    "next_ship": "2025-05-22",
+    "next_ship_qty": 396
+  },
+  "1026": {
+    "category": "Electrical",
+    "name": "Surge Protector (v2)",
+    "price": 3.25,
+    "stock": 76,
+    "next_ship": "2025-05-06",
+    "next_ship_qty": 458
+  },
+  "1027": {
+    "category": "Electrical",
+    "name": "Solar Panel Connector (v3)",
+    "price": 19.24,
+    "stock": 24,
+    "next_ship": "2025-06-03",
+    "next_ship_qty": 123
+  },
+  "1028": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50) (v3)",
+    "price": 8.02,
+    "stock": 138,
+    "next_ship": "2025-06-29",
+    "next_ship_qty": 399
+  },
+  "1029": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v4)",
+    "price": 28.49,
+    "stock": 187,
+    "next_ship": "2025-09-04",
+    "next_ship_qty": 412
+  },
+  "1030": {
+    "category": "Electrical",
+    "name": "Battery Backup (v2)",
+    "price": 44.78,
+    "stock": 202,
+    "next_ship": "2025-09-29",
+    "next_ship_qty": 58
+  },
+  "1031": {
+    "category": "Electrical",
+    "name": "LED Strip (10ft) (v2)",
+    "price": 28.85,
+    "stock": 118,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1032": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50) (v4)",
+    "price": 48.86,
+    "stock": 58,
+    "next_ship": "2025-07-02",
+    "next_ship_qty": 497
+  },
+  "1033": {
+    "category": "Electrical",
+    "name": "Fuse (20A) (v2)",
+    "price": 23.66,
+    "stock": 106,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 497
+  },
+  "1034": {
+    "category": "Electrical",
+    "name": "Surge Protector (v3)",
+    "price": 12.2,
+    "stock": 115,
+    "next_ship": "2025-07-16",
+    "next_ship_qty": 369
+  },
+  "1035": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v5)",
+    "price": 29.22,
+    "stock": 115,
+    "next_ship": "2025-08-14",
+    "next_ship_qty": 227
+  },
+  "1036": {
+    "category": "Electrical",
+    "name": "Solar Panel Connector (v4)",
+    "price": 31.39,
+    "stock": 133,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1037": {
+    "category": "Electrical",
+    "name": "Battery Backup (v3)",
+    "price": 7.82,
+    "stock": 258,
+    "next_ship": "2025-08-13",
+    "next_ship_qty": 483
+  },
+  "1038": {
+    "category": "Electrical",
+    "name": "Conduit Pipe (5ft) (v2)",
+    "price": 33.8,
+    "stock": 63,
+    "next_ship": "2025-06-08",
+    "next_ship_qty": 96
+  },
+  "1039": {
+    "category": "Electrical",
+    "name": "Surge Protector (v4)",
+    "price": 17.2,
+    "stock": 104,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1040": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50) (v5)",
+    "price": 46.66,
+    "stock": 179,
+    "next_ship": "2025-05-16",
+    "next_ship_qty": 321
+  },
+  "1041": {
+    "category": "Electrical",
+    "name": "Surge Protector (v5)",
+    "price": 15.61,
+    "stock": 37,
+    "next_ship": "2025-09-30",
+    "next_ship_qty": 35
+  },
+  "1042": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v6)",
+    "price": 33.0,
+    "stock": 84,
+    "next_ship": "2025-06-15",
+    "next_ship_qty": 447
+  },
+  "1043": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v3)",
+    "price": 34.39,
+    "stock": 265,
+    "next_ship": "2025-06-10",
+    "next_ship_qty": 121
+  },
+  "1044": {
+    "category": "Electrical",
+    "name": "Surge Protector (v6)",
+    "price": 11.34,
+    "stock": 188,
+    "next_ship": "2025-09-21",
+    "next_ship_qty": 7
+  },
+  "1045": {
+    "category": "Electrical",
+    "name": "Battery Backup (v4)",
+    "price": 12.38,
+    "stock": 52,
+    "next_ship": "2025-09-18",
+    "next_ship_qty": 355
+  },
+  "1046": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v7)",
+    "price": 23.43,
+    "stock": 250,
+    "next_ship": "2025-04-05",
+    "next_ship_qty": 159
+  },
+  "1047": {
+    "category": "Electrical",
+    "name": "Solar Panel Connector (v5)",
+    "price": 13.49,
+    "stock": 209,
+    "next_ship": "2025-04-10",
+    "next_ship_qty": 99
+  },
+  "1048": {
+    "category": "Electrical",
+    "name": "Cable Ties (Pack of 100) (v2)",
+    "price": 4.02,
+    "stock": 195,
+    "next_ship": "2025-09-08",
+    "next_ship_qty": 25
+  },
+  "1049": {
+    "category": "Electrical",
+    "name": "Conduit Pipe (5ft) (v3)",
+    "price": 13.68,
+    "stock": 294,
+    "next_ship": "2025-07-17",
+    "next_ship_qty": 265
+  },
+  "1050": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v4)",
+    "price": 23.49,
+    "stock": 122,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 264
+  },
+  "1051": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v8)",
+    "price": 37.13,
+    "stock": 96,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1052": {
+    "category": "Electrical",
+    "name": "Wire Nuts (Pack of 50) (v6)",
+    "price": 34.41,
+    "stock": 58,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1053": {
+    "category": "Electrical",
+    "name": "LED Strip (10ft) (v3)",
+    "price": 9.01,
+    "stock": 299,
+    "next_ship": "2025-08-15",
+    "next_ship_qty": 288
+  },
+  "1054": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v9)",
+    "price": 11.97,
+    "stock": 69,
+    "next_ship": "2025-04-27",
+    "next_ship_qty": 340
+  },
+  "1055": {
+    "category": "Electrical",
+    "name": "Grounding Rod (v10)",
+    "price": 34.23,
+    "stock": 25,
+    "next_ship": "2025-04-03",
+    "next_ship_qty": 288
+  },
+  "1056": {
+    "category": "Electrical",
+    "name": "Surge Protector (v7)",
+    "price": 44.93,
+    "stock": 176,
+    "next_ship": "2025-09-15",
+    "next_ship_qty": 294
+  },
+  "1057": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v5)",
+    "price": 49.05,
+    "stock": 125,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 229
+  },
+  "1058": {
+    "category": "Electrical",
+    "name": "Surge Protector (v8)",
+    "price": 11.48,
+    "stock": 96,
+    "next_ship": "2025-08-03",
+    "next_ship_qty": 425
+  },
+  "1059": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v6)",
+    "price": 13.23,
+    "stock": 234,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1060": {
+    "category": "Electrical",
+    "name": "Battery Backup (v5)",
+    "price": 14.84,
+    "stock": 37,
+    "next_ship": "2025-06-23",
+    "next_ship_qty": 286
+  },
+  "1061": {
+    "category": "Electrical",
+    "name": "Fuse (20A) (v3)",
+    "price": 2.24,
+    "stock": 37,
+    "next_ship": "2025-04-28",
+    "next_ship_qty": 25
+  },
+  "1062": {
+    "category": "Electrical",
+    "name": "Surge Protector (v9)",
+    "price": 21.86,
+    "stock": 252,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1063": {
+    "category": "Electrical",
+    "name": "Fuse (20A) (v4)",
+    "price": 2.52,
+    "stock": 30,
+    "next_ship": "2025-08-07",
+    "next_ship_qty": 497
+  },
+  "1064": {
+    "category": "Electrical",
+    "name": "Outlet Tester (v7)",
+    "price": 4.56,
+    "stock": 194,
+    "next_ship": "2025-09-05",
+    "next_ship_qty": 410
+  },
+  "1065": {
+    "category": "Electrical",
+    "name": "Battery Backup (v6)",
+    "price": 7.77,
+    "stock": 11,
+    "next_ship": "2025-09-10",
+    "next_ship_qty": 115
+  },
+  "1066": {
+    "category": "Electrical",
+    "name": "Cable Ties (Pack of 100) (v3)",
+    "price": 49.77,
+    "stock": 115,
+    "next_ship": "2025-08-22",
+    "next_ship_qty": 430
+  },
+  "1067": {
+    "category": "Electrical",
+    "name": "Battery Backup (v7)",
+    "price": 3.92,
+    "stock": 220,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "1068": {
+    "category": "Electrical",
+    "name": "Cable Ties (Pack of 100) (v4)",
+    "price": 34.29,
+    "stock": 23,
+    "next_ship": "2025-06-11",
+    "next_ship_qty": 449
+  },
+  "2011": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in)",
+    "price": 2.99,
+    "stock": 150,
+    "next_ship": "2025-06-15",
+    "next_ship_qty": 300
+  },
+  "2012": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz)",
+    "price": 4.25,
+    "stock": 90,
+    "next_ship": "2025-04-22",
+    "next_ship_qty": 200
+  },
+  "2013": {
+    "category": "Woodworking",
+    "name": "Router Bit",
+    "price": 19.95,
+    "stock": 35,
+    "next_ship": "2025-08-20",
+    "next_ship_qty": 80
+  },
+  "2014": {
+    "category": "Woodworking",
+    "name": "Clamping Square",
+    "price": 12.5,
+    "stock": 70,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2015": {
+    "category": "Woodworking",
+    "name": "Miter Gauge",
+    "price": 25.75,
+    "stock": 50,
+    "next_ship": "2025-05-30",
+    "next_ship_qty": 120
+  },
+  "2016": {
+    "category": "Woodworking",
+    "name": "Birch Veneer",
+    "price": 15.99,
+    "stock": 110,
+    "next_ship": "2025-07-25",
+    "next_ship_qty": 150
+  },
+  "2017": {
+    "category": "Woodworking",
+    "name": "Wood Putty",
+    "price": 3.75,
+    "stock": 200,
+    "next_ship": "2025-04-10",
+    "next_ship_qty": 400
+  },
+  "2018": {
+    "category": "Woodworking",
+    "name": "Drill Guide",
+    "price": 18.25,
+    "stock": 45,
+    "next_ship": "2025-09-01",
+    "next_ship_qty": 90
+  },
+  "2019": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in)",
+    "price": 29.99,
+    "stock": 25,
+    "next_ship": "2025-06-05",
+    "next_ship_qty": 60
+  },
+  "2020": {
+    "category": "Woodworking",
+    "name": "Finishing Wax",
+    "price": 9.89,
+    "stock": 130,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2021": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz) (v2)",
+    "price": 45.5,
+    "stock": 184,
+    "next_ship": "2025-09-13",
+    "next_ship_qty": 11
+  },
+  "2022": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v2)",
+    "price": 46.72,
+    "stock": 279,
+    "next_ship": "2025-09-15",
+    "next_ship_qty": 358
+  },
+  "2023": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v2)",
+    "price": 35.07,
+    "stock": 227,
+    "next_ship": "2025-04-05",
+    "next_ship_qty": 153
+  },
+  "2024": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v3)",
+    "price": 9.74,
+    "stock": 155,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2025": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v2)",
+    "price": 37.52,
+    "stock": 183,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 56
+  },
+  "2026": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v2)",
+    "price": 29.79,
+    "stock": 82,
+    "next_ship": "2025-08-02",
+    "next_ship_qty": 175
+  },
+  "2027": {
+    "category": "Woodworking",
+    "name": "Birch Veneer (v2)",
+    "price": 47.63,
+    "stock": 142,
+    "next_ship": "2025-06-27",
+    "next_ship_qty": 150
+  },
+  "2028": {
+    "category": "Woodworking",
+    "name": "Miter Gauge (v2)",
+    "price": 40.89,
+    "stock": 184,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2029": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v4)",
+    "price": 48.71,
+    "stock": 236,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2030": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz) (v3)",
+    "price": 27.55,
+    "stock": 260,
+    "next_ship": "2025-04-16",
+    "next_ship_qty": 194
+  },
+  "2031": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v5)",
+    "price": 44.55,
+    "stock": 185,
+    "next_ship": "2025-08-20",
+    "next_ship_qty": 377
+  },
+  "2032": {
+    "category": "Woodworking",
+    "name": "Miter Gauge (v3)",
+    "price": 25.07,
+    "stock": 49,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2033": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v3)",
+    "price": 48.33,
+    "stock": 11,
+    "next_ship": "2025-04-23",
+    "next_ship_qty": 331
+  },
+  "2034": {
+    "category": "Woodworking",
+    "name": "Router Bit (v2)",
+    "price": 11.24,
+    "stock": 74,
+    "next_ship": "2025-05-03",
+    "next_ship_qty": 232
+  },
+  "2035": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v4)",
+    "price": 29.8,
+    "stock": 85,
+    "next_ship": "2025-06-03",
+    "next_ship_qty": 304
+  },
+  "2036": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v3)",
+    "price": 12.53,
+    "stock": 26,
+    "next_ship": "2025-06-23",
+    "next_ship_qty": 493
+  },
+  "2037": {
+    "category": "Woodworking",
+    "name": "Miter Gauge (v4)",
+    "price": 35.19,
+    "stock": 233,
+    "next_ship": "2025-08-19",
+    "next_ship_qty": 125
+  },
+  "2038": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v6)",
+    "price": 42.61,
+    "stock": 69,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2039": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in) (v2)",
+    "price": 9.07,
+    "stock": 138,
+    "next_ship": "2025-04-03",
+    "next_ship_qty": 233
+  },
+  "2040": {
+    "category": "Woodworking",
+    "name": "Router Bit (v3)",
+    "price": 26.12,
+    "stock": 280,
+    "next_ship": "2025-04-22",
+    "next_ship_qty": 409
+  },
+  "2041": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v2)",
+    "price": 9.94,
+    "stock": 87,
+    "next_ship": "2025-04-11",
+    "next_ship_qty": 7
+  },
+  "2042": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v4)",
+    "price": 47.72,
+    "stock": 33,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2043": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v3)",
+    "price": 19.65,
+    "stock": 277,
+    "next_ship": "2025-06-26",
+    "next_ship_qty": 389
+  },
+  "2044": {
+    "category": "Woodworking",
+    "name": "Birch Veneer (v3)",
+    "price": 13.54,
+    "stock": 103,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2045": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v5)",
+    "price": 5.9,
+    "stock": 76,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2046": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v3)",
+    "price": 6.73,
+    "stock": 172,
+    "next_ship": "2025-08-20",
+    "next_ship_qty": 148
+  },
+  "2047": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v7)",
+    "price": 6.06,
+    "stock": 130,
+    "next_ship": "2025-07-18",
+    "next_ship_qty": 125
+  },
+  "2048": {
+    "category": "Woodworking",
+    "name": "Birch Veneer (v4)",
+    "price": 47.51,
+    "stock": 235,
+    "next_ship": "2025-04-12",
+    "next_ship_qty": 28
+  },
+  "2049": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v6)",
+    "price": 8.04,
+    "stock": 160,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2050": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz) (v4)",
+    "price": 33.05,
+    "stock": 207,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2051": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v4)",
+    "price": 44.6,
+    "stock": 186,
+    "next_ship": "2025-08-22",
+    "next_ship_qty": 165
+  },
+  "2052": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in) (v3)",
+    "price": 8.32,
+    "stock": 105,
+    "next_ship": "2025-09-23",
+    "next_ship_qty": 356
+  },
+  "2053": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz) (v5)",
+    "price": 29.8,
+    "stock": 221,
+    "next_ship": "2025-06-13",
+    "next_ship_qty": 484
+  },
+  "2054": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v4)",
+    "price": 6.89,
+    "stock": 204,
+    "next_ship": "2025-05-28",
+    "next_ship_qty": 149
+  },
+  "2055": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v7)",
+    "price": 18.58,
+    "stock": 230,
+    "next_ship": "2025-04-24",
+    "next_ship_qty": 127
+  },
+  "2056": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v5)",
+    "price": 47.16,
+    "stock": 30,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 451
+  },
+  "2057": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v5)",
+    "price": 6.6,
+    "stock": 142,
+    "next_ship": "2025-08-31",
+    "next_ship_qty": 415
+  },
+  "2058": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v6)",
+    "price": 21.48,
+    "stock": 125,
+    "next_ship": "2025-04-05",
+    "next_ship_qty": 310
+  },
+  "2059": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v5)",
+    "price": 39.19,
+    "stock": 213,
+    "next_ship": "2025-05-30",
+    "next_ship_qty": 377
+  },
+  "2060": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v6)",
+    "price": 38.18,
+    "stock": 293,
+    "next_ship": "2025-04-25",
+    "next_ship_qty": 119
+  },
+  "2061": {
+    "category": "Woodworking",
+    "name": "Router Bit (v4)",
+    "price": 44.41,
+    "stock": 219,
+    "next_ship": "2025-07-07",
+    "next_ship_qty": 224
+  },
+  "2062": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v7)",
+    "price": 39.36,
+    "stock": 202,
+    "next_ship": "2025-06-28",
+    "next_ship_qty": 225
+  },
+  "2063": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v8)",
+    "price": 13.7,
+    "stock": 174,
+    "next_ship": "2025-09-10",
+    "next_ship_qty": 296
+  },
+  "2064": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in) (v4)",
+    "price": 28.12,
+    "stock": 203,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2065": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v6)",
+    "price": 27.82,
+    "stock": 237,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2066": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in) (v5)",
+    "price": 27.47,
+    "stock": 117,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2067": {
+    "category": "Woodworking",
+    "name": "Birch Veneer (v5)",
+    "price": 12.71,
+    "stock": 92,
+    "next_ship": "2025-05-22",
+    "next_ship_qty": 295
+  },
+  "2068": {
+    "category": "Woodworking",
+    "name": "Wood Filler (4oz) (v6)",
+    "price": 45.53,
+    "stock": 28,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2069": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v9)",
+    "price": 29.22,
+    "stock": 48,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2070": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v8)",
+    "price": 43.35,
+    "stock": 270,
+    "next_ship": "2025-09-09",
+    "next_ship_qty": 116
+  },
+  "2071": {
+    "category": "Woodworking",
+    "name": "Miter Gauge (v5)",
+    "price": 19.85,
+    "stock": 162,
+    "next_ship": "2025-05-09",
+    "next_ship_qty": 340
+  },
+  "2072": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v9)",
+    "price": 26.39,
+    "stock": 118,
+    "next_ship": "2025-04-17",
+    "next_ship_qty": 171
+  },
+  "2073": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v7)",
+    "price": 1.6,
+    "stock": 181,
+    "next_ship": "2025-05-06",
+    "next_ship_qty": 341
+  },
+  "2074": {
+    "category": "Woodworking",
+    "name": "Wood Putty (v7)",
+    "price": 13.37,
+    "stock": 158,
+    "next_ship": "2025-04-16",
+    "next_ship_qty": 189
+  },
+  "2075": {
+    "category": "Woodworking",
+    "name": "Finishing Wax (v8)",
+    "price": 38.37,
+    "stock": 263,
+    "next_ship": "2025-06-11",
+    "next_ship_qty": 499
+  },
+  "2076": {
+    "category": "Woodworking",
+    "name": "Drill Guide (v10)",
+    "price": 41.8,
+    "stock": 272,
+    "next_ship": "2025-04-21",
+    "next_ship_qty": 366
+  },
+  "2077": {
+    "category": "Woodworking",
+    "name": "Oak Dowel (1in) (v8)",
+    "price": 33.27,
+    "stock": 284,
+    "next_ship": "2025-05-01",
+    "next_ship_qty": 9
+  },
+  "2078": {
+    "category": "Woodworking",
+    "name": "Saw Blade (10in) (v6)",
+    "price": 11.47,
+    "stock": 122,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "2079": {
+    "category": "Woodworking",
+    "name": "Clamping Square (v10)",
+    "price": 27.69,
+    "stock": 257,
+    "next_ship": "2025-09-11",
+    "next_ship_qty": 232
+  },
+  "3011": {
+    "category": "Hand Tools",
+    "name": "Mallet",
+    "price": 11.5,
+    "stock": 75,
+    "next_ship": "2025-05-12",
+    "next_ship_qty": 150
+  },
+  "3012": {
+    "category": "Hand Tools",
+    "name": "Wire Stripper",
+    "price": 8.99,
+    "stock": 100,
+    "next_ship": "2025-07-15",
+    "next_ship_qty": 200
+  },
+  "3013": {
+    "category": "Hand Tools",
+    "name": "Bolt Cutter",
+    "price": 19.75,
+    "stock": 40,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 80
+  },
+  "3014": {
+    "category": "Hand Tools",
+    "name": "Chalk Line",
+    "price": 5.25,
+    "stock": 160,
+    "next_ship": "2025-09-20",
+    "next_ship_qty": 300
+  },
+  "3015": {
+    "category": "Hand Tools",
+    "name": "Stud Finder",
+    "price": 12.99,
+    "stock": 85,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3016": {
+    "category": "Hand Tools",
+    "name": "Crowbar",
+    "price": 15.5,
+    "stock": 55,
+    "next_ship": "2025-06-10",
+    "next_ship_qty": 100
+  },
+  "3017": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter",
+    "price": 17.25,
+    "stock": 70,
+    "next_ship": "2025-08-05",
+    "next_ship_qty": 120
+  },
+  "3018": {
+    "category": "Hand Tools",
+    "name": "Rasp File",
+    "price": 6.75,
+    "stock": 130,
+    "next_ship": "2025-04-25",
+    "next_ship_qty": 250
+  },
+  "3019": {
+    "category": "Hand Tools",
+    "name": "Tin Snips",
+    "price": 9.99,
+    "stock": 95,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 180
+  },
+  "3020": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench",
+    "price": 14.25,
+    "stock": 60,
+    "next_ship": "2025-05-20",
+    "next_ship_qty": 140
+  },
+  "3021": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v2)",
+    "price": 8.98,
+    "stock": 291,
+    "next_ship": "2025-06-23",
+    "next_ship_qty": 483
+  },
+  "3022": {
+    "category": "Hand Tools",
+    "name": "Crowbar (v2)",
+    "price": 8.99,
+    "stock": 91,
+    "next_ship": "2025-04-21",
+    "next_ship_qty": 59
+  },
+  "3023": {
+    "category": "Hand Tools",
+    "name": "Mallet (v2)",
+    "price": 19.27,
+    "stock": 190,
+    "next_ship": "2025-07-20",
+    "next_ship_qty": 169
+  },
+  "3024": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v2)",
+    "price": 21.33,
+    "stock": 10,
+    "next_ship": "2025-04-30",
+    "next_ship_qty": 471
+  },
+  "3025": {
+    "category": "Hand Tools",
+    "name": "Bolt Cutter (v2)",
+    "price": 19.17,
+    "stock": 27,
+    "next_ship": "2025-07-27",
+    "next_ship_qty": 227
+  },
+  "3026": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v3)",
+    "price": 9.0,
+    "stock": 267,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3027": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter (v2)",
+    "price": 8.88,
+    "stock": 256,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3028": {
+    "category": "Hand Tools",
+    "name": "Crowbar (v3)",
+    "price": 21.66,
+    "stock": 283,
+    "next_ship": "2025-05-03",
+    "next_ship_qty": 19
+  },
+  "3029": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v2)",
+    "price": 19.84,
+    "stock": 46,
+    "next_ship": "2025-08-27",
+    "next_ship_qty": 407
+  },
+  "3030": {
+    "category": "Hand Tools",
+    "name": "Mallet (v3)",
+    "price": 4.06,
+    "stock": 237,
+    "next_ship": "2025-08-05",
+    "next_ship_qty": 116
+  },
+  "3031": {
+    "category": "Hand Tools",
+    "name": "Mallet (v4)",
+    "price": 15.36,
+    "stock": 167,
+    "next_ship": "2025-04-14",
+    "next_ship_qty": 407
+  },
+  "3032": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v3)",
+    "price": 18.59,
+    "stock": 90,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 60
+  },
+  "3033": {
+    "category": "Hand Tools",
+    "name": "Crowbar (v4)",
+    "price": 17.99,
+    "stock": 85,
+    "next_ship": "2025-05-07",
+    "next_ship_qty": 141
+  },
+  "3034": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v2)",
+    "price": 11.74,
+    "stock": 157,
+    "next_ship": "2025-08-23",
+    "next_ship_qty": 239
+  },
+  "3035": {
+    "category": "Hand Tools",
+    "name": "Crowbar (v5)",
+    "price": 22.28,
+    "stock": 230,
+    "next_ship": "2025-09-09",
+    "next_ship_qty": 342
+  },
+  "3036": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v3)",
+    "price": 17.84,
+    "stock": 69,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 210
+  },
+  "3037": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v4)",
+    "price": 9.32,
+    "stock": 73,
+    "next_ship": "2025-06-06",
+    "next_ship_qty": 79
+  },
+  "3038": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter (v3)",
+    "price": 13.54,
+    "stock": 156,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3039": {
+    "category": "Hand Tools",
+    "name": "Wire Stripper (v2)",
+    "price": 14.77,
+    "stock": 179,
+    "next_ship": "2025-05-09",
+    "next_ship_qty": 12
+  },
+  "3040": {
+    "category": "Hand Tools",
+    "name": "Wire Stripper (v3)",
+    "price": 21.25,
+    "stock": 53,
+    "next_ship": "2025-06-17",
+    "next_ship_qty": 205
+  },
+  "3041": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v4)",
+    "price": 9.58,
+    "stock": 208,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3042": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v4)",
+    "price": 6.38,
+    "stock": 107,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3043": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v5)",
+    "price": 12.12,
+    "stock": 265,
+    "next_ship": "2025-08-11",
+    "next_ship_qty": 365
+  },
+  "3044": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v5)",
+    "price": 10.13,
+    "stock": 91,
+    "next_ship": "2025-07-12",
+    "next_ship_qty": 435
+  },
+  "3045": {
+    "category": "Hand Tools",
+    "name": "Rasp File (v2)",
+    "price": 8.06,
+    "stock": 227,
+    "next_ship": "2025-09-20",
+    "next_ship_qty": 28
+  },
+  "3046": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v6)",
+    "price": 21.37,
+    "stock": 88,
+    "next_ship": "2025-06-06",
+    "next_ship_qty": 313
+  },
+  "3047": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v3)",
+    "price": 3.64,
+    "stock": 257,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3048": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v4)",
+    "price": 16.06,
+    "stock": 244,
+    "next_ship": "2025-04-05",
+    "next_ship_qty": 317
+  },
+  "3049": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter (v4)",
+    "price": 16.12,
+    "stock": 149,
+    "next_ship": "2025-09-01",
+    "next_ship_qty": 344
+  },
+  "3050": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v7)",
+    "price": 11.45,
+    "stock": 47,
+    "next_ship": "2025-06-08",
+    "next_ship_qty": 37
+  },
+  "3051": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v5)",
+    "price": 6.54,
+    "stock": 200,
+    "next_ship": "2025-07-11",
+    "next_ship_qty": 197
+  },
+  "3052": {
+    "category": "Hand Tools",
+    "name": "Rasp File (v3)",
+    "price": 11.88,
+    "stock": 113,
+    "next_ship": "2025-07-07",
+    "next_ship_qty": 163
+  },
+  "3053": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v8)",
+    "price": 19.65,
+    "stock": 69,
+    "next_ship": "2025-07-22",
+    "next_ship_qty": 310
+  },
+  "3054": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v6)",
+    "price": 13.28,
+    "stock": 88,
+    "next_ship": "2025-04-04",
+    "next_ship_qty": 44
+  },
+  "3055": {
+    "category": "Hand Tools",
+    "name": "Mallet (v5)",
+    "price": 5.66,
+    "stock": 42,
+    "next_ship": "2025-05-10",
+    "next_ship_qty": 327
+  },
+  "3056": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v5)",
+    "price": 6.97,
+    "stock": 43,
+    "next_ship": "2025-08-02",
+    "next_ship_qty": 48
+  },
+  "3057": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v7)",
+    "price": 20.47,
+    "stock": 105,
+    "next_ship": "2025-04-08",
+    "next_ship_qty": 217
+  },
+  "3058": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v9)",
+    "price": 11.77,
+    "stock": 28,
+    "next_ship": "2025-09-02",
+    "next_ship_qty": 259
+  },
+  "3059": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v8)",
+    "price": 6.9,
+    "stock": 32,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 288
+  },
+  "3060": {
+    "category": "Hand Tools",
+    "name": "Mallet (v6)",
+    "price": 21.28,
+    "stock": 21,
+    "next_ship": "2025-04-02",
+    "next_ship_qty": 224
+  },
+  "3061": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter (v5)",
+    "price": 19.56,
+    "stock": 26,
+    "next_ship": "2025-08-02",
+    "next_ship_qty": 24
+  },
+  "3062": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v6)",
+    "price": 6.59,
+    "stock": 300,
+    "next_ship": "2025-04-17",
+    "next_ship_qty": 377
+  },
+  "3063": {
+    "category": "Hand Tools",
+    "name": "Socket Wrench (v9)",
+    "price": 5.14,
+    "stock": 86,
+    "next_ship": "2025-09-25",
+    "next_ship_qty": 369
+  },
+  "3064": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v6)",
+    "price": 19.68,
+    "stock": 116,
+    "next_ship": "2025-05-07",
+    "next_ship_qty": 291
+  },
+  "3065": {
+    "category": "Hand Tools",
+    "name": "Pipe Cutter (v6)",
+    "price": 10.73,
+    "stock": 88,
+    "next_ship": "2025-09-15",
+    "next_ship_qty": 434
+  },
+  "3066": {
+    "category": "Hand Tools",
+    "name": "Rasp File (v4)",
+    "price": 13.64,
+    "stock": 186,
+    "next_ship": "2025-04-06",
+    "next_ship_qty": 492
+  },
+  "3067": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v10)",
+    "price": 11.38,
+    "stock": 273,
+    "next_ship": "2025-08-18",
+    "next_ship_qty": 43
+  },
+  "3068": {
+    "category": "Hand Tools",
+    "name": "Rasp File (v5)",
+    "price": 16.95,
+    "stock": 261,
+    "next_ship": "2025-08-06",
+    "next_ship_qty": 281
+  },
+  "3069": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v7)",
+    "price": 6.17,
+    "stock": 180,
+    "next_ship": "2025-05-25",
+    "next_ship_qty": 475
+  },
+  "3070": {
+    "category": "Hand Tools",
+    "name": "Mallet (v7)",
+    "price": 23.84,
+    "stock": 275,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3071": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v7)",
+    "price": 17.25,
+    "stock": 31,
+    "next_ship": "2025-07-19",
+    "next_ship_qty": 339
+  },
+  "3072": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v8)",
+    "price": 11.97,
+    "stock": 28,
+    "next_ship": "2025-07-15",
+    "next_ship_qty": 47
+  },
+  "3073": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v8)",
+    "price": 4.36,
+    "stock": 72,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "3074": {
+    "category": "Hand Tools",
+    "name": "Chalk Line (v9)",
+    "price": 5.84,
+    "stock": 225,
+    "next_ship": "2025-09-02",
+    "next_ship_qty": 130
+  },
+  "3075": {
+    "category": "Hand Tools",
+    "name": "Mallet (v8)",
+    "price": 14.25,
+    "stock": 26,
+    "next_ship": "2025-08-09",
+    "next_ship_qty": 19
+  },
+  "3076": {
+    "category": "Hand Tools",
+    "name": "Mallet (v9)",
+    "price": 9.61,
+    "stock": 132,
+    "next_ship": "2025-09-05",
+    "next_ship_qty": 490
+  },
+  "3077": {
+    "category": "Hand Tools",
+    "name": "Mallet (v10)",
+    "price": 3.9,
+    "stock": 281,
+    "next_ship": "2025-04-02",
+    "next_ship_qty": 153
+  },
+  "3078": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v9)",
+    "price": 6.87,
+    "stock": 277,
+    "next_ship": "2025-07-02",
+    "next_ship_qty": 413
+  },
+  "3079": {
+    "category": "Hand Tools",
+    "name": "Stud Finder (v11)",
+    "price": 5.52,
+    "stock": 25,
+    "next_ship": "2025-06-01",
+    "next_ship_qty": 181
+  },
+  "3080": {
+    "category": "Hand Tools",
+    "name": "Bolt Cutter (v3)",
+    "price": 21.61,
+    "stock": 27,
+    "next_ship": "2025-05-23",
+    "next_ship_qty": 93
+  },
+  "3081": {
+    "category": "Hand Tools",
+    "name": "Tin Snips (v10)",
+    "price": 8.58,
+    "stock": 260,
+    "next_ship": "2025-08-15",
+    "next_ship_qty": 438
+  },
+  "4011": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set",
+    "price": 29.95,
+    "stock": 50,
+    "next_ship": "2025-06-15",
+    "next_ship_qty": 100
+  },
+  "4012": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool",
+    "price": 65.5,
+    "stock": 25,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 40
+  },
+  "4013": {
+    "category": "Power Tools",
+    "name": "Laser Level",
+    "price": 45.75,
+    "stock": 35,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4014": {
+    "category": "Power Tools",
+    "name": "Chain Saw",
+    "price": 89.99,
+    "stock": 20,
+    "next_ship": "2025-04-30",
+    "next_ship_qty": 30
+  },
+  "4015": {
+    "category": "Power Tools",
+    "name": "Heat Gun",
+    "price": 35.25,
+    "stock": 45,
+    "next_ship": "2025-07-20",
+    "next_ship_qty": 60
+  },
+  "4016": {
+    "category": "Power Tools",
+    "name": "Impact Wrench",
+    "price": 79.5,
+    "stock": 30,
+    "next_ship": "2025-05-15",
+    "next_ship_qty": 50
+  },
+  "4017": {
+    "category": "Power Tools",
+    "name": "Tile Cutter",
+    "price": 55.0,
+    "stock": 40,
+    "next_ship": "2025-09-05",
+    "next_ship_qty": 70
+  },
+  "4018": {
+    "category": "Power Tools",
+    "name": "Bench Grinder",
+    "price": 69.75,
+    "stock": 15,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 25
+  },
+  "4019": {
+    "category": "Power Tools",
+    "name": "Cordless Sander",
+    "price": 49.99,
+    "stock": 55,
+    "next_ship": "2025-04-12",
+    "next_ship_qty": 80
+  },
+  "4020": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer",
+    "price": 95.25,
+    "stock": 10,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4021": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v2)",
+    "price": 41.01,
+    "stock": 130,
+    "next_ship": "2025-06-19",
+    "next_ship_qty": 301
+  },
+  "4022": {
+    "category": "Power Tools",
+    "name": "Laser Level (v2)",
+    "price": 79.54,
+    "stock": 242,
+    "next_ship": "2025-06-14",
+    "next_ship_qty": 238
+  },
+  "4023": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v2)",
+    "price": 51.93,
+    "stock": 44,
+    "next_ship": "2025-07-22",
+    "next_ship_qty": 382
+  },
+  "4024": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v2)",
+    "price": 80.89,
+    "stock": 12,
+    "next_ship": "2025-05-10",
+    "next_ship_qty": 90
+  },
+  "4025": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v3)",
+    "price": 62.08,
+    "stock": 148,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4026": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v2)",
+    "price": 35.12,
+    "stock": 275,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4027": {
+    "category": "Power Tools",
+    "name": "Heat Gun (v2)",
+    "price": 58.79,
+    "stock": 173,
+    "next_ship": "2025-08-11",
+    "next_ship_qty": 417
+  },
+  "4028": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v2)",
+    "price": 27.88,
+    "stock": 259,
+    "next_ship": "2025-09-29",
+    "next_ship_qty": 119
+  },
+  "4029": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v2)",
+    "price": 86.82,
+    "stock": 99,
+    "next_ship": "2025-05-18",
+    "next_ship_qty": 92
+  },
+  "4030": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v3)",
+    "price": 90.36,
+    "stock": 132,
+    "next_ship": "2025-07-03",
+    "next_ship_qty": 1
+  },
+  "4031": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v3)",
+    "price": 59.72,
+    "stock": 165,
+    "next_ship": "2025-07-28",
+    "next_ship_qty": 127
+  },
+  "4032": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v4)",
+    "price": 85.17,
+    "stock": 181,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4033": {
+    "category": "Power Tools",
+    "name": "Heat Gun (v3)",
+    "price": 80.12,
+    "stock": 45,
+    "next_ship": "2025-09-27",
+    "next_ship_qty": 20
+  },
+  "4034": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v4)",
+    "price": 53.29,
+    "stock": 117,
+    "next_ship": "2025-09-06",
+    "next_ship_qty": 127
+  },
+  "4035": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v2)",
+    "price": 42.07,
+    "stock": 231,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 370
+  },
+  "4036": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v3)",
+    "price": 58.77,
+    "stock": 200,
+    "next_ship": "2025-08-22",
+    "next_ship_qty": 353
+  },
+  "4037": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v4)",
+    "price": 27.21,
+    "stock": 254,
+    "next_ship": "2025-06-12",
+    "next_ship_qty": 317
+  },
+  "4038": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v5)",
+    "price": 62.85,
+    "stock": 204,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 119
+  },
+  "4039": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v4)",
+    "price": 70.55,
+    "stock": 132,
+    "next_ship": "2025-04-07",
+    "next_ship_qty": 295
+  },
+  "4040": {
+    "category": "Power Tools",
+    "name": "Laser Level (v3)",
+    "price": 47.99,
+    "stock": 12,
+    "next_ship": "2025-07-31",
+    "next_ship_qty": 62
+  },
+  "4041": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v5)",
+    "price": 26.79,
+    "stock": 68,
+    "next_ship": "2025-08-24",
+    "next_ship_qty": 458
+  },
+  "4042": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v5)",
+    "price": 48.58,
+    "stock": 21,
+    "next_ship": "2025-04-09",
+    "next_ship_qty": 373
+  },
+  "4043": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v5)",
+    "price": 96.63,
+    "stock": 71,
+    "next_ship": "2025-09-27",
+    "next_ship_qty": 409
+  },
+  "4044": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v6)",
+    "price": 89.58,
+    "stock": 111,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4045": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v6)",
+    "price": 36.61,
+    "stock": 34,
+    "next_ship": "2025-08-31",
+    "next_ship_qty": 200
+  },
+  "4046": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v2)",
+    "price": 37.63,
+    "stock": 172,
+    "next_ship": "2025-07-30",
+    "next_ship_qty": 116
+  },
+  "4047": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v3)",
+    "price": 61.61,
+    "stock": 234,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4048": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v3)",
+    "price": 66.84,
+    "stock": 39,
+    "next_ship": "2025-05-17",
+    "next_ship_qty": 487
+  },
+  "4049": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v3)",
+    "price": 50.54,
+    "stock": 138,
+    "next_ship": "2025-08-17",
+    "next_ship_qty": 61
+  },
+  "4050": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v4)",
+    "price": 59.18,
+    "stock": 85,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4051": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v4)",
+    "price": 75.56,
+    "stock": 143,
+    "next_ship": "2025-05-21",
+    "next_ship_qty": 207
+  },
+  "4052": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v4)",
+    "price": 93.59,
+    "stock": 175,
+    "next_ship": "2025-07-13",
+    "next_ship_qty": 59
+  },
+  "4053": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v6)",
+    "price": 72.7,
+    "stock": 169,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4054": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v3)",
+    "price": 43.3,
+    "stock": 174,
+    "next_ship": "2025-04-06",
+    "next_ship_qty": 295
+  },
+  "4055": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v5)",
+    "price": 94.07,
+    "stock": 16,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4056": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v6)",
+    "price": 39.29,
+    "stock": 108,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4057": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v5)",
+    "price": 47.29,
+    "stock": 139,
+    "next_ship": "2025-04-20",
+    "next_ship_qty": 80
+  },
+  "4058": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v6)",
+    "price": 56.6,
+    "stock": 93,
+    "next_ship": "2025-04-19",
+    "next_ship_qty": 112
+  },
+  "4059": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v6)",
+    "price": 64.09,
+    "stock": 257,
+    "next_ship": "2025-05-31",
+    "next_ship_qty": 308
+  },
+  "4060": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v7)",
+    "price": 50.51,
+    "stock": 109,
+    "next_ship": "2025-08-23",
+    "next_ship_qty": 229
+  },
+  "4061": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v8)",
+    "price": 31.25,
+    "stock": 74,
+    "next_ship": "2025-05-03",
+    "next_ship_qty": 8
+  },
+  "4062": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v5)",
+    "price": 27.97,
+    "stock": 285,
+    "next_ship": "2025-05-28",
+    "next_ship_qty": 286
+  },
+  "4063": {
+    "category": "Power Tools",
+    "name": "Laser Level (v4)",
+    "price": 71.83,
+    "stock": 91,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 77
+  },
+  "4064": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v7)",
+    "price": 94.17,
+    "stock": 127,
+    "next_ship": "2025-06-01",
+    "next_ship_qty": 360
+  },
+  "4065": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v8)",
+    "price": 46.95,
+    "stock": 57,
+    "next_ship": "2025-06-15",
+    "next_ship_qty": 3
+  },
+  "4066": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v9)",
+    "price": 40.3,
+    "stock": 120,
+    "next_ship": "2025-07-06",
+    "next_ship_qty": 53
+  },
+  "4067": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v7)",
+    "price": 30.77,
+    "stock": 255,
+    "next_ship": "2025-07-30",
+    "next_ship_qty": 119
+  },
+  "4068": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v4)",
+    "price": 43.79,
+    "stock": 237,
+    "next_ship": "2025-04-30",
+    "next_ship_qty": 134
+  },
+  "4069": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v7)",
+    "price": 66.95,
+    "stock": 121,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4070": {
+    "category": "Power Tools",
+    "name": "Heat Gun (v4)",
+    "price": 46.69,
+    "stock": 128,
+    "next_ship": "2025-08-18",
+    "next_ship_qty": 205
+  },
+  "4071": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v6)",
+    "price": 27.29,
+    "stock": 287,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 100
+  },
+  "4072": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v5)",
+    "price": 98.76,
+    "stock": 195,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4073": {
+    "category": "Power Tools",
+    "name": "Laser Level (v5)",
+    "price": 31.01,
+    "stock": 84,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4074": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v7)",
+    "price": 98.17,
+    "stock": 214,
+    "next_ship": "2025-05-22",
+    "next_ship_qty": 44
+  },
+  "4075": {
+    "category": "Power Tools",
+    "name": "Impact Wrench (v8)",
+    "price": 79.99,
+    "stock": 131,
+    "next_ship": "2025-09-05",
+    "next_ship_qty": 114
+  },
+  "4076": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v9)",
+    "price": 20.71,
+    "stock": 197,
+    "next_ship": "2025-07-19",
+    "next_ship_qty": 180
+  },
+  "4077": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v10)",
+    "price": 40.99,
+    "stock": 188,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4078": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v10)",
+    "price": 87.42,
+    "stock": 178,
+    "next_ship": "2025-08-04",
+    "next_ship_qty": 187
+  },
+  "4079": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v11)",
+    "price": 42.19,
+    "stock": 137,
+    "next_ship": "2025-05-30",
+    "next_ship_qty": 51
+  },
+  "4080": {
+    "category": "Power Tools",
+    "name": "Heat Gun (v5)",
+    "price": 43.61,
+    "stock": 86,
+    "next_ship": "2025-05-20",
+    "next_ship_qty": 310
+  },
+  "4081": {
+    "category": "Power Tools",
+    "name": "Cordless Sander (v8)",
+    "price": 85.0,
+    "stock": 13,
+    "next_ship": "2025-07-08",
+    "next_ship_qty": 393
+  },
+  "4082": {
+    "category": "Power Tools",
+    "name": "Rotary Hammer (v8)",
+    "price": 92.96,
+    "stock": 255,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4083": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v6)",
+    "price": 96.8,
+    "stock": 209,
+    "next_ship": "2025-06-30",
+    "next_ship_qty": 342
+  },
+  "4084": {
+    "category": "Power Tools",
+    "name": "Laser Level (v6)",
+    "price": 77.82,
+    "stock": 274,
+    "next_ship": "2025-08-27",
+    "next_ship_qty": 424
+  },
+  "4085": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v7)",
+    "price": 57.32,
+    "stock": 182,
+    "next_ship": "2025-08-16",
+    "next_ship_qty": 412
+  },
+  "4086": {
+    "category": "Power Tools",
+    "name": "Chain Saw (v7)",
+    "price": 54.56,
+    "stock": 286,
+    "next_ship": "2025-09-11",
+    "next_ship_qty": 116
+  },
+  "4087": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v7)",
+    "price": 41.61,
+    "stock": 142,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4088": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v11)",
+    "price": 93.06,
+    "stock": 34,
+    "next_ship": "2025-07-17",
+    "next_ship_qty": 214
+  },
+  "4089": {
+    "category": "Power Tools",
+    "name": "Bench Grinder (v12)",
+    "price": 83.47,
+    "stock": 82,
+    "next_ship": "2025-09-09",
+    "next_ship_qty": 447
+  },
+  "4090": {
+    "category": "Power Tools",
+    "name": "Oscillating Tool (v8)",
+    "price": 98.13,
+    "stock": 47,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "4091": {
+    "category": "Power Tools",
+    "name": "Drill Bit Set (v12)",
+    "price": 92.57,
+    "stock": 12,
+    "next_ship": "2025-04-22",
+    "next_ship_qty": 93
+  },
+  "4092": {
+    "category": "Power Tools",
+    "name": "Tile Cutter (v8)",
+    "price": 26.27,
+    "stock": 64,
+    "next_ship": "2025-09-10",
+    "next_ship_qty": 144
+  },
+  "5011": {
+    "category": "Plumbing",
+    "name": "Pipe Tee",
+    "price": 3.99,
+    "stock": 140,
+    "next_ship": "2025-05-25",
+    "next_ship_qty": 250
+  },
+  "5012": {
+    "category": "Plumbing",
+    "name": "Drain Snake",
+    "price": 15.75,
+    "stock": 60,
+    "next_ship": "2025-07-10",
+    "next_ship_qty": 100
+  },
+  "5013": {
+    "category": "Plumbing",
+    "name": "Ball Valve",
+    "price": 9.25,
+    "stock": 85,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 150
+  },
+  "5014": {
+    "category": "Plumbing",
+    "name": "Hose Bib",
+    "price": 12.5,
+    "stock": 70,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5015": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation",
+    "price": 6.89,
+    "stock": 110,
+    "next_ship": "2025-08-15",
+    "next_ship_qty": 200
+  },
+  "5016": {
+    "category": "Plumbing",
+    "name": "Solder Kit",
+    "price": 18.99,
+    "stock": 45,
+    "next_ship": "2025-06-20",
+    "next_ship_qty": 80
+  },
+  "5017": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper",
+    "price": 7.75,
+    "stock": 95,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 120
+  },
+  "5018": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator",
+    "price": 25.0,
+    "stock": 30,
+    "next_ship": "2025-09-10",
+    "next_ship_qty": 60
+  },
+  "5019": {
+    "category": "Plumbing",
+    "name": "Pipe Threader",
+    "price": 35.5,
+    "stock": 20,
+    "next_ship": "2025-04-25",
+    "next_ship_qty": 40
+  },
+  "5020": {
+    "category": "Plumbing",
+    "name": "Gasket Set",
+    "price": 4.99,
+    "stock": 150,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 300
+  },
+  "5021": {
+    "category": "Plumbing",
+    "name": "Ball Valve (v2)",
+    "price": 35.87,
+    "stock": 155,
+    "next_ship": "2025-09-18",
+    "next_ship_qty": 145
+  },
+  "5022": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v2)",
+    "price": 3.89,
+    "stock": 195,
+    "next_ship": "2025-06-21",
+    "next_ship_qty": 46
+  },
+  "5023": {
+    "category": "Plumbing",
+    "name": "Ball Valve (v3)",
+    "price": 29.97,
+    "stock": 36,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5024": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v3)",
+    "price": 5.7,
+    "stock": 61,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5025": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v2)",
+    "price": 25.84,
+    "stock": 187,
+    "next_ship": "2025-07-27",
+    "next_ship_qty": 487
+  },
+  "5026": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper (v2)",
+    "price": 33.27,
+    "stock": 189,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5027": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v2)",
+    "price": 34.65,
+    "stock": 280,
+    "next_ship": "2025-08-22",
+    "next_ship_qty": 455
+  },
+  "5028": {
+    "category": "Plumbing",
+    "name": "Hose Bib (v2)",
+    "price": 25.93,
+    "stock": 64,
+    "next_ship": "2025-07-01",
+    "next_ship_qty": 499
+  },
+  "5029": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v2)",
+    "price": 23.59,
+    "stock": 113,
+    "next_ship": "2025-07-05",
+    "next_ship_qty": 118
+  },
+  "5030": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v2)",
+    "price": 17.28,
+    "stock": 126,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 436
+  },
+  "5031": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation (v2)",
+    "price": 35.15,
+    "stock": 268,
+    "next_ship": "2025-07-02",
+    "next_ship_qty": 10
+  },
+  "5032": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v3)",
+    "price": 41.97,
+    "stock": 118,
+    "next_ship": "2025-09-21",
+    "next_ship_qty": 109
+  },
+  "5033": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator (v2)",
+    "price": 27.33,
+    "stock": 169,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 120
+  },
+  "5034": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v3)",
+    "price": 7.29,
+    "stock": 284,
+    "next_ship": "2025-04-24",
+    "next_ship_qty": 115
+  },
+  "5035": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v4)",
+    "price": 31.3,
+    "stock": 61,
+    "next_ship": "2025-05-04",
+    "next_ship_qty": 32
+  },
+  "5036": {
+    "category": "Plumbing",
+    "name": "Hose Bib (v3)",
+    "price": 32.09,
+    "stock": 131,
+    "next_ship": "2025-04-10",
+    "next_ship_qty": 132
+  },
+  "5037": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v5)",
+    "price": 17.63,
+    "stock": 109,
+    "next_ship": "2025-07-17",
+    "next_ship_qty": 232
+  },
+  "5038": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v4)",
+    "price": 36.38,
+    "stock": 37,
+    "next_ship": "2025-09-28",
+    "next_ship_qty": 85
+  },
+  "5039": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v3)",
+    "price": 38.93,
+    "stock": 166,
+    "next_ship": "2025-07-24",
+    "next_ship_qty": 258
+  },
+  "5040": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v4)",
+    "price": 31.15,
+    "stock": 21,
+    "next_ship": "2025-05-26",
+    "next_ship_qty": 145
+  },
+  "5041": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v5)",
+    "price": 44.64,
+    "stock": 228,
+    "next_ship": "2025-07-06",
+    "next_ship_qty": 367
+  },
+  "5042": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator (v3)",
+    "price": 20.47,
+    "stock": 139,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5043": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v5)",
+    "price": 23.59,
+    "stock": 50,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 363
+  },
+  "5044": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v6)",
+    "price": 9.41,
+    "stock": 113,
+    "next_ship": "2025-08-11",
+    "next_ship_qty": 192
+  },
+  "5045": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator (v4)",
+    "price": 35.92,
+    "stock": 63,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5046": {
+    "category": "Plumbing",
+    "name": "Hose Bib (v4)",
+    "price": 24.41,
+    "stock": 142,
+    "next_ship": "2025-07-20",
+    "next_ship_qty": 482
+  },
+  "5047": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator (v5)",
+    "price": 11.23,
+    "stock": 80,
+    "next_ship": "2025-04-21",
+    "next_ship_qty": 365
+  },
+  "5048": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v6)",
+    "price": 4.87,
+    "stock": 71,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5049": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v4)",
+    "price": 7.19,
+    "stock": 214,
+    "next_ship": "2025-05-31",
+    "next_ship_qty": 364
+  },
+  "5050": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v3)",
+    "price": 17.33,
+    "stock": 111,
+    "next_ship": "2025-08-21",
+    "next_ship_qty": 486
+  },
+  "5051": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v7)",
+    "price": 14.48,
+    "stock": 50,
+    "next_ship": "2025-06-12",
+    "next_ship_qty": 70
+  },
+  "5052": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v7)",
+    "price": 7.33,
+    "stock": 76,
+    "next_ship": "2025-04-27",
+    "next_ship_qty": 398
+  },
+  "5053": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v5)",
+    "price": 44.89,
+    "stock": 217,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 364
+  },
+  "5054": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation (v3)",
+    "price": 27.56,
+    "stock": 271,
+    "next_ship": "2025-06-01",
+    "next_ship_qty": 495
+  },
+  "5055": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v6)",
+    "price": 8.4,
+    "stock": 136,
+    "next_ship": "2025-08-30",
+    "next_ship_qty": 296
+  },
+  "5056": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper (v3)",
+    "price": 43.97,
+    "stock": 184,
+    "next_ship": "2025-08-16",
+    "next_ship_qty": 339
+  },
+  "5057": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v8)",
+    "price": 4.76,
+    "stock": 45,
+    "next_ship": "2025-09-23",
+    "next_ship_qty": 493
+  },
+  "5058": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v4)",
+    "price": 10.18,
+    "stock": 82,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 372
+  },
+  "5059": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper (v4)",
+    "price": 17.84,
+    "stock": 65,
+    "next_ship": "2025-08-24",
+    "next_ship_qty": 489
+  },
+  "5060": {
+    "category": "Plumbing",
+    "name": "Pressure Regulator (v6)",
+    "price": 5.83,
+    "stock": 268,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5061": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v6)",
+    "price": 13.37,
+    "stock": 14,
+    "next_ship": "2025-04-15",
+    "next_ship_qty": 184
+  },
+  "5062": {
+    "category": "Plumbing",
+    "name": "Hose Bib (v5)",
+    "price": 40.77,
+    "stock": 219,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5063": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v7)",
+    "price": 3.16,
+    "stock": 90,
+    "next_ship": "2025-06-18",
+    "next_ship_qty": 82
+  },
+  "5064": {
+    "category": "Plumbing",
+    "name": "Ball Valve (v4)",
+    "price": 3.4,
+    "stock": 153,
+    "next_ship": "2025-05-07",
+    "next_ship_qty": 82
+  },
+  "5065": {
+    "category": "Plumbing",
+    "name": "Ball Valve (v5)",
+    "price": 6.31,
+    "stock": 45,
+    "next_ship": "2025-06-03",
+    "next_ship_qty": 128
+  },
+  "5066": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v8)",
+    "price": 42.74,
+    "stock": 166,
+    "next_ship": "2025-08-12",
+    "next_ship_qty": 335
+  },
+  "5067": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v5)",
+    "price": 38.64,
+    "stock": 82,
+    "next_ship": "2025-09-24",
+    "next_ship_qty": 194
+  },
+  "5068": {
+    "category": "Plumbing",
+    "name": "Drain Snake (v8)",
+    "price": 11.22,
+    "stock": 232,
+    "next_ship": "2025-07-08",
+    "next_ship_qty": 299
+  },
+  "5069": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v7)",
+    "price": 25.04,
+    "stock": 11,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5070": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper (v5)",
+    "price": 19.28,
+    "stock": 216,
+    "next_ship": "2025-07-06",
+    "next_ship_qty": 341
+  },
+  "5071": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation (v4)",
+    "price": 3.85,
+    "stock": 242,
+    "next_ship": "2025-07-19",
+    "next_ship_qty": 252
+  },
+  "5072": {
+    "category": "Plumbing",
+    "name": "Ball Valve (v6)",
+    "price": 40.77,
+    "stock": 111,
+    "next_ship": "2025-07-25",
+    "next_ship_qty": 132
+  },
+  "5073": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v9)",
+    "price": 6.62,
+    "stock": 256,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5074": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation (v5)",
+    "price": 33.91,
+    "stock": 177,
+    "next_ship": "2025-08-28",
+    "next_ship_qty": 262
+  },
+  "5075": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v6)",
+    "price": 23.62,
+    "stock": 11,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 303
+  },
+  "5076": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v8)",
+    "price": 6.33,
+    "stock": 277,
+    "next_ship": "2025-07-15",
+    "next_ship_qty": 311
+  },
+  "5077": {
+    "category": "Plumbing",
+    "name": "Toilet Flapper (v6)",
+    "price": 26.01,
+    "stock": 92,
+    "next_ship": "2025-06-05",
+    "next_ship_qty": 422
+  },
+  "5078": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v10)",
+    "price": 37.76,
+    "stock": 258,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5079": {
+    "category": "Plumbing",
+    "name": "Pipe Insulation (v6)",
+    "price": 13.2,
+    "stock": 32,
+    "next_ship": "2025-04-14",
+    "next_ship_qty": 8
+  },
+  "5080": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v7)",
+    "price": 35.22,
+    "stock": 207,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "5081": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v11)",
+    "price": 25.26,
+    "stock": 184,
+    "next_ship": "2025-05-26",
+    "next_ship_qty": 431
+  },
+  "5082": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v12)",
+    "price": 41.35,
+    "stock": 44,
+    "next_ship": "2025-05-24",
+    "next_ship_qty": 43
+  },
+  "5083": {
+    "category": "Plumbing",
+    "name": "Pipe Tee (v9)",
+    "price": 10.36,
+    "stock": 66,
+    "next_ship": "2025-07-26",
+    "next_ship_qty": 289
+  },
+  "5084": {
+    "category": "Plumbing",
+    "name": "Pipe Threader (v13)",
+    "price": 32.58,
+    "stock": 227,
+    "next_ship": "2025-04-19",
+    "next_ship_qty": 317
+  },
+  "5085": {
+    "category": "Plumbing",
+    "name": "Gasket Set (v9)",
+    "price": 31.75,
+    "stock": 53,
+    "next_ship": "2025-04-30",
+    "next_ship_qty": 85
+  },
+  "5086": {
+    "category": "Plumbing",
+    "name": "Solder Kit (v8)",
+    "price": 44.05,
+    "stock": 148,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6011": {
+    "category": "HVAC",
+    "name": "Air Diffuser",
+    "price": 9.75,
+    "stock": 80,
+    "next_ship": "2025-06-10",
+    "next_ship_qty": 150
+  },
+  "6012": {
+    "category": "HVAC",
+    "name": "Thermocouple",
+    "price": 14.5,
+    "stock": 55,
+    "next_ship": "2025-08-20",
+    "next_ship_qty": 100
+  },
+  "6013": {
+    "category": "HVAC",
+    "name": "Duct Elbow",
+    "price": 7.25,
+    "stock": 120,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 200
+  },
+  "6014": {
+    "category": "HVAC",
+    "name": "Filter Dryer",
+    "price": 19.99,
+    "stock": 40,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6015": {
+    "category": "HVAC",
+    "name": "Blower Motor",
+    "price": 65.75,
+    "stock": 25,
+    "next_ship": "2025-07-15",
+    "next_ship_qty": 50
+  },
+  "6016": {
+    "category": "HVAC",
+    "name": "Capacitor (10uF)",
+    "price": 12.99,
+    "stock": 70,
+    "next_ship": "2025-05-30",
+    "next_ship_qty": 120
+  },
+  "6017": {
+    "category": "HVAC",
+    "name": "Vent Damper",
+    "price": 25.5,
+    "stock": 35,
+    "next_ship": "2025-09-05",
+    "next_ship_qty": 80
+  },
+  "6018": {
+    "category": "HVAC",
+    "name": "Heat Exchanger",
+    "price": 85.0,
+    "stock": 15,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 30
+  },
+  "6019": {
+    "category": "HVAC",
+    "name": "Freon Gauge",
+    "price": 39.95,
+    "stock": 45,
+    "next_ship": "2025-04-12",
+    "next_ship_qty": 100
+  },
+  "6020": {
+    "category": "HVAC",
+    "name": "Condensate Pump",
+    "price": 55.25,
+    "stock": 60,
+    "next_ship": "2025-07-20",
+    "next_ship_qty": 150
+  },
+  "6021": {
+    "category": "HVAC",
+    "name": "Blower Motor (v2)",
+    "price": 33.87,
+    "stock": 172,
+    "next_ship": "2025-06-12",
+    "next_ship_qty": 355
+  },
+  "6022": {
+    "category": "HVAC",
+    "name": "Thermocouple (v2)",
+    "price": 32.31,
+    "stock": 23,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6023": {
+    "category": "HVAC",
+    "name": "Vent Damper (v2)",
+    "price": 85.23,
+    "stock": 170,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 187
+  },
+  "6024": {
+    "category": "HVAC",
+    "name": "Vent Damper (v3)",
+    "price": 14.48,
+    "stock": 155,
+    "next_ship": "2025-09-12",
+    "next_ship_qty": 497
+  },
+  "6025": {
+    "category": "HVAC",
+    "name": "Blower Motor (v3)",
+    "price": 75.41,
+    "stock": 120,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6026": {
+    "category": "HVAC",
+    "name": "Capacitor (10uF) (v2)",
+    "price": 75.05,
+    "stock": 88,
+    "next_ship": "2025-06-25",
+    "next_ship_qty": 391
+  },
+  "6027": {
+    "category": "HVAC",
+    "name": "Filter Dryer (v2)",
+    "price": 92.14,
+    "stock": 169,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 469
+  },
+  "6028": {
+    "category": "HVAC",
+    "name": "Capacitor (10uF) (v3)",
+    "price": 82.2,
+    "stock": 182,
+    "next_ship": "2025-07-06",
+    "next_ship_qty": 390
+  },
+  "6029": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v2)",
+    "price": 85.99,
+    "stock": 184,
+    "next_ship": "2025-05-29",
+    "next_ship_qty": 130
+  },
+  "6030": {
+    "category": "HVAC",
+    "name": "Vent Damper (v4)",
+    "price": 74.16,
+    "stock": 222,
+    "next_ship": "2025-09-14",
+    "next_ship_qty": 232
+  },
+  "6031": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v2)",
+    "price": 17.57,
+    "stock": 247,
+    "next_ship": "2025-07-27",
+    "next_ship_qty": 339
+  },
+  "6032": {
+    "category": "HVAC",
+    "name": "Blower Motor (v4)",
+    "price": 21.02,
+    "stock": 104,
+    "next_ship": "2025-07-22",
+    "next_ship_qty": 343
+  },
+  "6033": {
+    "category": "HVAC",
+    "name": "Blower Motor (v5)",
+    "price": 38.89,
+    "stock": 203,
+    "next_ship": "2025-06-19",
+    "next_ship_qty": 404
+  },
+  "6034": {
+    "category": "HVAC",
+    "name": "Blower Motor (v6)",
+    "price": 21.0,
+    "stock": 194,
+    "next_ship": "2025-05-01",
+    "next_ship_qty": 404
+  },
+  "6035": {
+    "category": "HVAC",
+    "name": "Blower Motor (v7)",
+    "price": 79.59,
+    "stock": 46,
+    "next_ship": "2025-06-06",
+    "next_ship_qty": 462
+  },
+  "6036": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v3)",
+    "price": 89.11,
+    "stock": 195,
+    "next_ship": "2025-07-30",
+    "next_ship_qty": 370
+  },
+  "6037": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v3)",
+    "price": 47.63,
+    "stock": 47,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6038": {
+    "category": "HVAC",
+    "name": "Blower Motor (v8)",
+    "price": 69.74,
+    "stock": 66,
+    "next_ship": "2025-08-03",
+    "next_ship_qty": 68
+  },
+  "6039": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v4)",
+    "price": 44.58,
+    "stock": 286,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6040": {
+    "category": "HVAC",
+    "name": "Freon Gauge (v2)",
+    "price": 26.05,
+    "stock": 57,
+    "next_ship": "2025-05-06",
+    "next_ship_qty": 336
+  },
+  "6041": {
+    "category": "HVAC",
+    "name": "Duct Elbow (v2)",
+    "price": 27.3,
+    "stock": 152,
+    "next_ship": "2025-09-07",
+    "next_ship_qty": 447
+  },
+  "6042": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v5)",
+    "price": 18.63,
+    "stock": 134,
+    "next_ship": "2025-09-11",
+    "next_ship_qty": 136
+  },
+  "6043": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v4)",
+    "price": 70.78,
+    "stock": 162,
+    "next_ship": "2025-05-20",
+    "next_ship_qty": 409
+  },
+  "6044": {
+    "category": "HVAC",
+    "name": "Freon Gauge (v3)",
+    "price": 53.6,
+    "stock": 196,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6045": {
+    "category": "HVAC",
+    "name": "Filter Dryer (v3)",
+    "price": 89.0,
+    "stock": 226,
+    "next_ship": "2025-07-24",
+    "next_ship_qty": 360
+  },
+  "6046": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v6)",
+    "price": 19.65,
+    "stock": 176,
+    "next_ship": "2025-07-31",
+    "next_ship_qty": 415
+  },
+  "6047": {
+    "category": "HVAC",
+    "name": "Freon Gauge (v4)",
+    "price": 18.46,
+    "stock": 168,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6048": {
+    "category": "HVAC",
+    "name": "Thermocouple (v3)",
+    "price": 63.5,
+    "stock": 92,
+    "next_ship": "2025-08-28",
+    "next_ship_qty": 360
+  },
+  "6049": {
+    "category": "HVAC",
+    "name": "Filter Dryer (v4)",
+    "price": 81.39,
+    "stock": 98,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6050": {
+    "category": "HVAC",
+    "name": "Thermocouple (v4)",
+    "price": 25.05,
+    "stock": 77,
+    "next_ship": "2025-07-04",
+    "next_ship_qty": 358
+  },
+  "6051": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v7)",
+    "price": 89.44,
+    "stock": 185,
+    "next_ship": "2025-05-08",
+    "next_ship_qty": 217
+  },
+  "6052": {
+    "category": "HVAC",
+    "name": "Blower Motor (v9)",
+    "price": 78.83,
+    "stock": 298,
+    "next_ship": "2025-07-04",
+    "next_ship_qty": 355
+  },
+  "6053": {
+    "category": "HVAC",
+    "name": "Thermocouple (v5)",
+    "price": 91.76,
+    "stock": 190,
+    "next_ship": "2025-09-27",
+    "next_ship_qty": 16
+  },
+  "6054": {
+    "category": "HVAC",
+    "name": "Air Diffuser (v2)",
+    "price": 68.67,
+    "stock": 213,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6055": {
+    "category": "HVAC",
+    "name": "Air Diffuser (v3)",
+    "price": 74.23,
+    "stock": 164,
+    "next_ship": "2025-04-16",
+    "next_ship_qty": 56
+  },
+  "6056": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v5)",
+    "price": 85.41,
+    "stock": 285,
+    "next_ship": "2025-06-19",
+    "next_ship_qty": 281
+  },
+  "6057": {
+    "category": "HVAC",
+    "name": "Thermocouple (v6)",
+    "price": 39.82,
+    "stock": 34,
+    "next_ship": "2025-06-26",
+    "next_ship_qty": 342
+  },
+  "6058": {
+    "category": "HVAC",
+    "name": "Thermocouple (v7)",
+    "price": 34.13,
+    "stock": 85,
+    "next_ship": "2025-08-26",
+    "next_ship_qty": 103
+  },
+  "6059": {
+    "category": "HVAC",
+    "name": "Blower Motor (v10)",
+    "price": 92.14,
+    "stock": 239,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6060": {
+    "category": "HVAC",
+    "name": "Capacitor (10uF) (v4)",
+    "price": 55.72,
+    "stock": 80,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6061": {
+    "category": "HVAC",
+    "name": "Filter Dryer (v5)",
+    "price": 75.53,
+    "stock": 26,
+    "next_ship": "2025-05-25",
+    "next_ship_qty": 349
+  },
+  "6062": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v8)",
+    "price": 8.38,
+    "stock": 12,
+    "next_ship": "2025-05-31",
+    "next_ship_qty": 187
+  },
+  "6063": {
+    "category": "HVAC",
+    "name": "Blower Motor (v11)",
+    "price": 8.21,
+    "stock": 248,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6064": {
+    "category": "HVAC",
+    "name": "Air Diffuser (v4)",
+    "price": 67.9,
+    "stock": 141,
+    "next_ship": "2025-08-31",
+    "next_ship_qty": 52
+  },
+  "6065": {
+    "category": "HVAC",
+    "name": "Duct Elbow (v3)",
+    "price": 92.42,
+    "stock": 234,
+    "next_ship": "2025-08-14",
+    "next_ship_qty": 500
+  },
+  "6066": {
+    "category": "HVAC",
+    "name": "Thermocouple (v8)",
+    "price": 55.27,
+    "stock": 127,
+    "next_ship": "2025-08-25",
+    "next_ship_qty": 489
+  },
+  "6067": {
+    "category": "HVAC",
+    "name": "Vent Damper (v5)",
+    "price": 61.06,
+    "stock": 166,
+    "next_ship": "2025-05-01",
+    "next_ship_qty": 216
+  },
+  "6068": {
+    "category": "HVAC",
+    "name": "Air Diffuser (v5)",
+    "price": 78.46,
+    "stock": 17,
+    "next_ship": "2025-09-09",
+    "next_ship_qty": 434
+  },
+  "6069": {
+    "category": "HVAC",
+    "name": "Duct Elbow (v4)",
+    "price": 38.91,
+    "stock": 159,
+    "next_ship": "2025-06-14",
+    "next_ship_qty": 69
+  },
+  "6070": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v6)",
+    "price": 6.77,
+    "stock": 266,
+    "next_ship": "2025-09-09",
+    "next_ship_qty": 346
+  },
+  "6071": {
+    "category": "HVAC",
+    "name": "Duct Elbow (v5)",
+    "price": 26.7,
+    "stock": 76,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "6072": {
+    "category": "HVAC",
+    "name": "Blower Motor (v12)",
+    "price": 31.58,
+    "stock": 126,
+    "next_ship": "2025-04-26",
+    "next_ship_qty": 271
+  },
+  "6073": {
+    "category": "HVAC",
+    "name": "Filter Dryer (v6)",
+    "price": 84.52,
+    "stock": 180,
+    "next_ship": "2025-08-11",
+    "next_ship_qty": 34
+  },
+  "6074": {
+    "category": "HVAC",
+    "name": "Condensate Pump (v9)",
+    "price": 81.57,
+    "stock": 122,
+    "next_ship": "2025-04-01",
+    "next_ship_qty": 261
+  },
+  "6075": {
+    "category": "HVAC",
+    "name": "Vent Damper (v6)",
+    "price": 30.15,
+    "stock": 176,
+    "next_ship": "2025-05-30",
+    "next_ship_qty": 353
+  },
+  "6076": {
+    "category": "HVAC",
+    "name": "Heat Exchanger (v7)",
+    "price": 64.71,
+    "stock": 138,
+    "next_ship": "2025-09-30",
+    "next_ship_qty": 195
+  },
+  "6077": {
+    "category": "HVAC",
+    "name": "Blower Motor (v13)",
+    "price": 74.09,
+    "stock": 69,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 127
+  },
+  "7011": {
+    "category": "Automotive",
+    "name": "Alternator Belt",
+    "price": 14.75,
+    "stock": 90,
+    "next_ship": "2025-05-15",
+    "next_ship_qty": 200
+  },
+  "7012": {
+    "category": "Automotive",
+    "name": "Fuel Filter",
+    "price": 9.99,
+    "stock": 110,
+    "next_ship": "2025-07-25",
+    "next_ship_qty": 250
+  },
+  "7013": {
+    "category": "Automotive",
+    "name": "Wheel Lug Wrench",
+    "price": 19.5,
+    "stock": 65,
+    "next_ship": "2025-04-20",
+    "next_ship_qty": 150
+  },
+  "7014": {
+    "category": "Automotive",
+    "name": "Battery Terminal",
+    "price": 6.25,
+    "stock": 140,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7015": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan",
+    "price": 12.99,
+    "stock": 85,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 180
+  },
+  "7016": {
+    "category": "Automotive",
+    "name": "Headlight Bulb",
+    "price": 8.75,
+    "stock": 120,
+    "next_ship": "2025-06-15",
+    "next_ship_qty": 300
+  },
+  "7017": {
+    "category": "Automotive",
+    "name": "Brake Fluid",
+    "price": 5.99,
+    "stock": 200,
+    "next_ship": "2025-05-05",
+    "next_ship_qty": 400
+  },
+  "7018": {
+    "category": "Automotive",
+    "name": "Tire Gauge",
+    "price": 7.25,
+    "stock": 95,
+    "next_ship": "2025-09-01",
+    "next_ship_qty": 250
+  },
+  "7019": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp",
+    "price": 4.5,
+    "stock": 150,
+    "next_ship": "2025-04-25",
+    "next_ship_qty": 350
+  },
+  "7020": {
+    "category": "Automotive",
+    "name": "Timing Belt",
+    "price": 29.95,
+    "stock": 40,
+    "next_ship": "2025-07-10",
+    "next_ship_qty": 80
+  },
+  "7021": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v2)",
+    "price": 30.57,
+    "stock": 100,
+    "next_ship": "2025-04-23",
+    "next_ship_qty": 438
+  },
+  "7022": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v2)",
+    "price": 56.02,
+    "stock": 22,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7023": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v3)",
+    "price": 82.94,
+    "stock": 287,
+    "next_ship": "2025-08-10",
+    "next_ship_qty": 466
+  },
+  "7024": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v2)",
+    "price": 11.0,
+    "stock": 35,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7025": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v3)",
+    "price": 55.71,
+    "stock": 188,
+    "next_ship": "2025-09-08",
+    "next_ship_qty": 426
+  },
+  "7026": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v2)",
+    "price": 84.77,
+    "stock": 254,
+    "next_ship": "2025-08-12",
+    "next_ship_qty": 14
+  },
+  "7027": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v3)",
+    "price": 18.57,
+    "stock": 87,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7028": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v2)",
+    "price": 11.46,
+    "stock": 274,
+    "next_ship": "2025-07-31",
+    "next_ship_qty": 480
+  },
+  "7029": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v4)",
+    "price": 64.22,
+    "stock": 65,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7030": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v3)",
+    "price": 4.18,
+    "stock": 231,
+    "next_ship": "2025-09-02",
+    "next_ship_qty": 383
+  },
+  "7031": {
+    "category": "Automotive",
+    "name": "Timing Belt (v2)",
+    "price": 65.36,
+    "stock": 95,
+    "next_ship": "2025-06-09",
+    "next_ship_qty": 255
+  },
+  "7032": {
+    "category": "Automotive",
+    "name": "Timing Belt (v3)",
+    "price": 47.01,
+    "stock": 100,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7033": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v4)",
+    "price": 67.98,
+    "stock": 295,
+    "next_ship": "2025-05-28",
+    "next_ship_qty": 6
+  },
+  "7034": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v4)",
+    "price": 14.66,
+    "stock": 147,
+    "next_ship": "2025-06-03",
+    "next_ship_qty": 270
+  },
+  "7035": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v4)",
+    "price": 14.62,
+    "stock": 109,
+    "next_ship": "2025-08-25",
+    "next_ship_qty": 390
+  },
+  "7036": {
+    "category": "Automotive",
+    "name": "Alternator Belt (v2)",
+    "price": 88.51,
+    "stock": 268,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7037": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v5)",
+    "price": 7.73,
+    "stock": 291,
+    "next_ship": "2025-04-20",
+    "next_ship_qty": 281
+  },
+  "7038": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v5)",
+    "price": 12.41,
+    "stock": 22,
+    "next_ship": "2025-08-15",
+    "next_ship_qty": 246
+  },
+  "7039": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v2)",
+    "price": 76.05,
+    "stock": 104,
+    "next_ship": "2025-08-03",
+    "next_ship_qty": 239
+  },
+  "7040": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan (v2)",
+    "price": 55.65,
+    "stock": 128,
+    "next_ship": "2025-06-19",
+    "next_ship_qty": 470
+  },
+  "7041": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v3)",
+    "price": 50.13,
+    "stock": 25,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7042": {
+    "category": "Automotive",
+    "name": "Timing Belt (v4)",
+    "price": 60.14,
+    "stock": 267,
+    "next_ship": "2025-05-15",
+    "next_ship_qty": 80
+  },
+  "7043": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v5)",
+    "price": 17.59,
+    "stock": 294,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7044": {
+    "category": "Automotive",
+    "name": "Alternator Belt (v3)",
+    "price": 47.82,
+    "stock": 254,
+    "next_ship": "2025-07-24",
+    "next_ship_qty": 148
+  },
+  "7045": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v4)",
+    "price": 84.55,
+    "stock": 211,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7046": {
+    "category": "Automotive",
+    "name": "Timing Belt (v5)",
+    "price": 8.95,
+    "stock": 17,
+    "next_ship": "2025-08-31",
+    "next_ship_qty": 473
+  },
+  "7047": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v6)",
+    "price": 67.73,
+    "stock": 198,
+    "next_ship": "2025-05-20",
+    "next_ship_qty": 341
+  },
+  "7048": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v5)",
+    "price": 54.03,
+    "stock": 132,
+    "next_ship": "2025-05-23",
+    "next_ship_qty": 313
+  },
+  "7049": {
+    "category": "Automotive",
+    "name": "Alternator Belt (v4)",
+    "price": 75.81,
+    "stock": 112,
+    "next_ship": "2025-05-27",
+    "next_ship_qty": 263
+  },
+  "7050": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan (v3)",
+    "price": 82.83,
+    "stock": 137,
+    "next_ship": "2025-08-06",
+    "next_ship_qty": 26
+  },
+  "7051": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v6)",
+    "price": 52.28,
+    "stock": 286,
+    "next_ship": "2025-09-30",
+    "next_ship_qty": 224
+  },
+  "7052": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v7)",
+    "price": 22.85,
+    "stock": 90,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7053": {
+    "category": "Automotive",
+    "name": "Timing Belt (v6)",
+    "price": 44.68,
+    "stock": 140,
+    "next_ship": "2025-09-28",
+    "next_ship_qty": 460
+  },
+  "7054": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v5)",
+    "price": 77.0,
+    "stock": 203,
+    "next_ship": "2025-09-29",
+    "next_ship_qty": 287
+  },
+  "7055": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v6)",
+    "price": 31.08,
+    "stock": 60,
+    "next_ship": "2025-08-25",
+    "next_ship_qty": 85
+  },
+  "7056": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v3)",
+    "price": 37.31,
+    "stock": 132,
+    "next_ship": "2025-06-04",
+    "next_ship_qty": 237
+  },
+  "7057": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v7)",
+    "price": 42.9,
+    "stock": 223,
+    "next_ship": "2025-07-18",
+    "next_ship_qty": 190
+  },
+  "7058": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v7)",
+    "price": 36.26,
+    "stock": 159,
+    "next_ship": "2025-06-20",
+    "next_ship_qty": 474
+  },
+  "7059": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v4)",
+    "price": 79.94,
+    "stock": 213,
+    "next_ship": "2025-08-09",
+    "next_ship_qty": 196
+  },
+  "7060": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v8)",
+    "price": 64.19,
+    "stock": 234,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7061": {
+    "category": "Automotive",
+    "name": "Timing Belt (v7)",
+    "price": 86.98,
+    "stock": 84,
+    "next_ship": "2025-04-06",
+    "next_ship_qty": 105
+  },
+  "7062": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v6)",
+    "price": 65.75,
+    "stock": 271,
+    "next_ship": "2025-09-12",
+    "next_ship_qty": 119
+  },
+  "7063": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v5)",
+    "price": 71.13,
+    "stock": 120,
+    "next_ship": "2025-08-29",
+    "next_ship_qty": 372
+  },
+  "7064": {
+    "category": "Automotive",
+    "name": "Timing Belt (v8)",
+    "price": 57.58,
+    "stock": 268,
+    "next_ship": "2025-08-29",
+    "next_ship_qty": 309
+  },
+  "7065": {
+    "category": "Automotive",
+    "name": "Timing Belt (v9)",
+    "price": 37.45,
+    "stock": 94,
+    "next_ship": "2025-06-17",
+    "next_ship_qty": 157
+  },
+  "7066": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v6)",
+    "price": 8.91,
+    "stock": 256,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7067": {
+    "category": "Automotive",
+    "name": "Wheel Lug Wrench (v2)",
+    "price": 40.68,
+    "stock": 249,
+    "next_ship": "2025-08-09",
+    "next_ship_qty": 69
+  },
+  "7068": {
+    "category": "Automotive",
+    "name": "Battery Terminal (v7)",
+    "price": 68.35,
+    "stock": 163,
+    "next_ship": "2025-08-18",
+    "next_ship_qty": 193
+  },
+  "7069": {
+    "category": "Automotive",
+    "name": "Timing Belt (v10)",
+    "price": 16.12,
+    "stock": 10,
+    "next_ship": "2025-07-23",
+    "next_ship_qty": 151
+  },
+  "7070": {
+    "category": "Automotive",
+    "name": "Timing Belt (v11)",
+    "price": 88.49,
+    "stock": 43,
+    "next_ship": "2025-09-02",
+    "next_ship_qty": 77
+  },
+  "7071": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v9)",
+    "price": 67.04,
+    "stock": 89,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7072": {
+    "category": "Automotive",
+    "name": "Headlight Bulb (v8)",
+    "price": 30.26,
+    "stock": 103,
+    "next_ship": "2025-05-22",
+    "next_ship_qty": 335
+  },
+  "7073": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan (v4)",
+    "price": 79.36,
+    "stock": 114,
+    "next_ship": "2025-09-11",
+    "next_ship_qty": 145
+  },
+  "7074": {
+    "category": "Automotive",
+    "name": "Alternator Belt (v5)",
+    "price": 35.67,
+    "stock": 222,
+    "next_ship": "2025-06-08",
+    "next_ship_qty": 486
+  },
+  "7075": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v8)",
+    "price": 50.74,
+    "stock": 213,
+    "next_ship": "2025-04-20",
+    "next_ship_qty": 193
+  },
+  "7076": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v6)",
+    "price": 13.99,
+    "stock": 186,
+    "next_ship": "2025-09-22",
+    "next_ship_qty": 140
+  },
+  "7077": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan (v5)",
+    "price": 5.15,
+    "stock": 103,
+    "next_ship": "2025-04-18",
+    "next_ship_qty": 249
+  },
+  "7078": {
+    "category": "Automotive",
+    "name": "Exhaust Clamp (v10)",
+    "price": 84.02,
+    "stock": 181,
+    "next_ship": "2025-05-09",
+    "next_ship_qty": 79
+  },
+  "7079": {
+    "category": "Automotive",
+    "name": "Tire Gauge (v7)",
+    "price": 46.7,
+    "stock": 159,
+    "next_ship": "no shipment",
+    "next_ship_qty": 0
+  },
+  "7080": {
+    "category": "Automotive",
+    "name": "Oil Drain Pan (v6)",
+    "price": 88.89,
+    "stock": 181,
+    "next_ship": "2025-06-02",
+    "next_ship_qty": 286
+  },
+  "7081": {
+    "category": "Automotive",
+    "name": "Fuel Filter (v7)",
+    "price": 52.59,
+    "stock": 93,
+    "next_ship": "2025-06-08",
+    "next_ship_qty": 74
+  },
+  "7082": {
+    "category": "Automotive",
+    "name": "Brake Fluid (v9)",
+    "price": 14.06,
+    "stock": 269,
+    "next_ship": "2025-09-08",
+    "next_ship_qty": 413
   }
+}

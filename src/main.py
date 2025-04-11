@@ -9,6 +9,7 @@ from pathlib import Path
 import json
 from datetime import datetime
 import pyfiglet
+from inventory import * #inventory viewing logic is in inventory.py
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 PRODUCTS_FILE = DATA_PATH / "products.json"
@@ -91,24 +92,25 @@ class Menu(Screen):
     def action_help(self): self.app.push_screen(HelpScreen())
     def action_back(self): self.app.pop_screen()
 
-class InventoryScreen(Screen):
-    BINDINGS = [Binding("f3", "app.pop_screen", "Back"),
-                Binding("f1", "help", "Help")]
+# class InventoryScreen(Screen):
+#     BINDINGS = [Binding("f3", "app.pop_screen", "Back"),
+#                 Binding("f1", "help", "Help")]
 
-    def compose(self) -> ComposeResult:
-        inventory = load_inventory()
-        table = DataTable()
-        table.add_columns("SKU", "Name", "Price", "Stock")
-        for sku, item in inventory.items():
-            table.add_row(sku, item["name"], f"${item['price']:.2f}", str(item["stock"]))
-        yield Center(
-            Container(
-                Static("[bold green]Inventory View[/bold green]", expand=True),
-                table
-            )
-        )
+#     def compose(self) -> ComposeResult:
+#         inventory = load_inventory()
+#         table = DataTable()
+#         table.add_columns("SKU", "Name", "Price", "Stock")
+#         for sku, item in inventory.items():
+#             table.add_row(sku, item["name"], f"${item['price']:.2f}", str(item["stock"]))
+#         yield Center(
+#             Container(
+#                 Static("[bold green]Inventory View[/bold green]", expand=True),
+#                 table
+#             )
+#         )
 
-    def action_help(self): self.app.push_screen(HelpScreen())
+#     def action_help(self): self.app.push_screen(HelpScreen())
+
 
 from textual.app import App, ComposeResult
 from textual.containers import Container, Center, Horizontal, Vertical
