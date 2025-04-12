@@ -130,5 +130,32 @@
       }
     ],
     "total": 299.25
+  },
+  {
+    "date": "2025-04-12 11:47:35",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 5,
+        "price": 19.95,
+        "total": 99.75
+      },
+      {
+        "sku": "6012",
+        "name": "Thermocouple",
+        "quantity": 25,
+        "price": 14.5,
+        "total": 362.5
+      },
+      {
+        "sku": "7011",
+        "name": "Alternator Belt",
+        "quantity": 6,
+        "price": 14.75,
+        "total": 88.5
+      }
+    ],
+    "total": 550.75
   }
 ]

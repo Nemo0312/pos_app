@@ -46,7 +46,6 @@ class SalesScreen(Screen):
         Binding("f3", "app.pop_screen", "Back"),
         Binding("f1", "help", "Help"),
         Binding("enter", "add_item", "Add Item"),
-        Binding("f2", "undo_last", "Undo Last"),
         Binding("ctrl+z", "undo_last", "Undo Last"),
         Binding("-", "undo_last", "Undo Last"),
     ]
@@ -64,6 +63,19 @@ class SalesScreen(Screen):
         self.input_qty = Input(placeholder="Enter new quantity", id="qty-input", disabled=True)
         self.message = Static("", id="message")
         
+                # Add operations help box
+        operations_help = Static(
+            """[b]Operations Help[/b]
+─────────────────────────────
+ [b]Add Item[/b]: SKU.QUANTITY       
+ [b]Edit Qty[/b]: Select + New Value 
+ [b]Delete[/b]: Select + "-" or "d"  
+ [b]Undo[/b]: Ctrl+Z/-               
+ [b]Complete Sale[/b]: Finish Button 
+─────────────────────────────""",
+            classes="operations-help"
+        )
+        
         yield Vertical(
             Horizontal(
                 Vertical(
@@ -72,9 +84,10 @@ class SalesScreen(Screen):
                     self.input_qty,
                     self.message,
                     Horizontal(
-                        Button("Complete Sale", id="finish", variant="success"),
-                        Button("Undo Last", id="undo", variant="warning"),
                         Button("Update Qty", id="update", variant="primary", disabled=True),
+                        Button("Delete Item", id="delete", variant="error", disabled=True),
+                        Button("Undo Last", id="undo", variant="warning"),
+                        Button("Complete Sale", id="finish", variant="success"),
                         classes="button-group"
                     ),
                     classes="input-panel"
@@ -82,6 +95,7 @@ class SalesScreen(Screen):
                 Vertical(
                     Static("CART", classes="header"),
                     self.cart_table,
+                    operations_help,
                     classes="cart-panel"
                 ),
             )
@@ -103,6 +117,8 @@ class SalesScreen(Screen):
         """Enable/disable quantity input based on selection"""
         self.input_qty.disabled = selected_item is None
         self.query_one("#update").disabled = selected_item is None
+        self.query_one("#delete").disabled = selected_item is None
+        
         if selected_item:
             self.input_qty.value = str(selected_item["quantity"])
             self.input_qty.focus()# Focus quantity input when item is selected
@@ -120,11 +136,32 @@ class SalesScreen(Screen):
             self.selected_item = next((item for item in self.cart if item["sku"] == row_key), None)
         else:
             self.selected_item = None
-
-    def action_undo_last(self) -> None:
-        """Action triggered by F2 hotkey"""
-        self.undo_last_entry()
+            
+    @on(Button.Pressed, "#delete")
+    def delete_selected_item(self) -> None:
+        """Delete the currently selected item"""
+        if not self.selected_item:
+            return
         
+        sku = self.selected_item["sku"]
+        item_name = self.selected_item["name"]
+        
+        # Record deletion in history
+        self.add_to_history("delete_item", {
+            "sku": sku,
+            "item": self.selected_item.copy()
+        })
+        # Remove item from cart
+        self.cart = [item for item in self.cart if item["sku"] != sku]
+        self.cart = self.cart.copy()  # Force UI update
+        self.message.update(f"Removed {item_name} from cart")
+        self.input_sku.focus()
+        self.selected_item = None
+        
+    def action_undo_last(self) -> None:
+        """Action triggered by ctrl+z"""
+        self.undo_last_entry()
+            
         
     
     @on(Button.Pressed, "#undo")
@@ -158,10 +195,26 @@ class SalesScreen(Screen):
             self.cart = new_cart
             self.message.update(f"Undo: Restored quantity to {old_qty}")
             
-            # Force UI update
-            self.cart = self.cart.copy()
-            # self.message.update("Last item removed")
-            self.input_sku.focus()
+        elif last_action["type"] == "delete_item":
+            restored_item = last_action["data"]["item"]
+            
+            # Check if item already exists in cart
+            existing_index = next((i for i, x in enumerate(self.cart) if x["sku"] == restored_item["sku"]), None)
+            
+            if existing_index is not None:
+                # If item exists, add the restored quantity to it
+                self.cart[existing_index]["quantity"] += restored_item["quantity"]
+                self.cart[existing_index]["total"] += restored_item["total"]
+            else:
+                # Otherwise add the item back as it was
+                self.cart.append(restored_item.copy())
+            
+            self.message.update(f"Undo: Restored {restored_item['name']} (qty: {restored_item['quantity']})")
+            
+        # Force UI update
+        self.cart = self.cart.copy()
+        # self.message.update("Last item removed")
+        self.input_sku.focus()
 
     @on(Button.Pressed, "#update")
     @on(Input.Submitted, "#qty-input")
@@ -169,7 +222,30 @@ class SalesScreen(Screen):
         """Update the quantity of the selected item"""
         if not self.selected_item:
             return
+        """Update quantity or delete item if input is '-' or 'd'"""       
+        input_text = self.input_qty.value.strip().lower()
+        
+        # Handle deletion if input is '-' or 'd'
+        if input_text in ('-', 'd'):
+            sku = self.selected_item["sku"]
+            item_name = self.selected_item["name"]
             
+            # Record deletion in history
+            self.add_to_history("delete_item", {
+                "sku": sku,
+                "item": self.selected_item.copy()
+            })
+            
+            # Remove item from cart
+            self.cart = [item for item in self.cart if item["sku"] != sku]
+            self.message.update(f"Removed {item_name} from cart")
+            self.input_qty.value = ""
+            self.input_qty.placeholder = "Enter new quantity"
+            self.input_sku.focus()
+            self.selected_item = None
+            return
+
+        
         try:
             new_qty = int(self.input_qty.value)
             if new_qty <= 0:
@@ -206,6 +282,8 @@ class SalesScreen(Screen):
             # Force cart update
             self.cart = new_cart
             self.message.update(f"Updated {item_name} quantity")
+            self.input_qty.value = ""
+            self.input_qty.placeholder = "Enter new quantity"
             self.input_sku.focus()
             self.selected_item = None  # Clear selection after update
         except ValueError:
@@ -317,3 +395,20 @@ class SalesScreen(Screen):
         self.cart = []  # Clear cart (triggers watch_cart)
         self.action_history = []  # Clear history after sale
         self.input_sku.focus()
+        
+    # Add this CSS to your app
+    CSS = """
+    .operations-help {
+        dock: bottom;
+        width: 40;
+        margin: 1 0 0 0;
+        padding: 1;
+        background: $panel;
+        border: round $primary;
+        color: $text;
+    }
+
+    .operations-help Static {
+        width: 100%;
+    }
+    """
