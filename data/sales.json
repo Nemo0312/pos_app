@@ -22,5 +22,100 @@
       }
     ],
     "total": 19.98
+  },
+  {
+    "date": "2025-04-11 23:20:41",
+    "items": [
+      {
+        "item_id": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "total": 19.95
+      }
+    ],
+    "total": 19.95
+  },
+  {
+    "date": "2025-04-11 23:26:06",
+    "items": [
+      {
+        "item_id": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "total": 19.95
+      },
+      {
+        "item_id": "1012",
+        "name": "Cable Ties (Pack of 100)",
+        "quantity": 1,
+        "total": 4.5
+      }
+    ],
+    "total": 24.45
+  },
+  {
+    "date": "2025-04-11 23:27:23",
+    "items": [
+      {
+        "item_id": "1011",
+        "name": "Surge Protector",
+        "quantity": 2,
+        "total": 39.9
+      },
+      {
+        "item_id": "1012",
+        "name": "Cable Ties (Pack of 100)",
+        "quantity": 1,
+        "total": 4.5
+      }
+    ],
+    "total": 44.4
+  },
+  {
+    "date": "2025-04-11 23:42:21",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "price": 19.95,
+        "total": 19.95
+      },
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "price": 19.95,
+        "total": 19.95
+      },
+      {
+        "sku": "1012",
+        "name": "Cable Ties (Pack of 100)",
+        "quantity": 1,
+        "price": 4.5,
+        "total": 4.5
+      },
+      {
+        "sku": "6012",
+        "name": "Thermocouple",
+        "quantity": 1,
+        "price": 14.5,
+        "total": 14.5
+      }
+    ],
+    "total": 58.9
+  },
+  {
+    "date": "2025-04-12 00:17:15",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 5,
+        "price": 19.95,
+        "total": 99.75
+      }
+    ],
+    "total": 19.95
   }
 ]
