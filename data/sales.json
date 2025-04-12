@@ -117,5 +117,18 @@
       }
     ],
     "total": 19.95
+  },
+  {
+    "date": "2025-04-12 10:57:06",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 15,
+        "price": 19.95,
+        "total": 299.25
+      }
+    ],
+    "total": 299.25
   }
 ]

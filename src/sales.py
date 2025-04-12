@@ -9,10 +9,6 @@ from textual.reactive import reactive
 from textual.binding import Binding
 from textual import events
 from pathlib import Path
-# import json
-# from datetime import datetime
-# import pyfiglet
-# from inventory import * #inventory viewing logic is in inventory.py
 from rich.text import Text
 from textual import on
 from main import load_inventory, save_sale
@@ -50,25 +46,37 @@ class SalesScreen(Screen):
         Binding("f3", "app.pop_screen", "Back"),
         Binding("f1", "help", "Help"),
         Binding("enter", "add_item", "Add Item"),
+        Binding("f2", "undo_last", "Undo Last"),
+        Binding("ctrl+z", "undo_last", "Undo Last"),
+        Binding("-", "undo_last", "Undo Last"),
     ]
 
     cart = reactive([])
+    action_history = []  # Track all actions for undo
+    selected_item = reactive(None)  # Track selected item for editing
 
     def compose(self) -> ComposeResult:
         self.cart_table = DataTable(id="cart-table")
+        self.cart_table.cursor_type = "row"  # Ensure row selection is enabled
         self.cart_table.add_columns("SKU", "Name", "Qty", "Price")
         
         self.input_sku = Input(placeholder="Scan or enter SKU", id="sku-input")
+        self.input_qty = Input(placeholder="Enter new quantity", id="qty-input", disabled=True)
         self.message = Static("", id="message")
         
-        # Wrap the Vertical container in a list
         yield Vertical(
             Horizontal(
                 Vertical(
                     Static("ADD ITEM", classes="header"),
                     self.input_sku,
+                    self.input_qty,
                     self.message,
-                    Button("Complete Sale", id="finish", variant="success"),
+                    Horizontal(
+                        Button("Complete Sale", id="finish", variant="success"),
+                        Button("Undo Last", id="undo", variant="warning"),
+                        Button("Update Qty", id="update", variant="primary", disabled=True),
+                        classes="button-group"
+                    ),
                     classes="input-panel"
                 ),
                 Vertical(
@@ -81,7 +89,127 @@ class SalesScreen(Screen):
 
     def on_mount(self) -> None:
         self.input_sku.focus()
+        # self.cart_table.focus()  # Ensure the table can receive focus
         
+    def add_to_history(self, action_type: str, data: dict):
+        """Record an action in history"""
+        self.action_history.append({
+            "type": action_type,
+            "data": data,
+            "snapshot": [item.copy() for item in self.cart]  # Save cart state
+        })
+
+    def watch_selected_item(self, selected_item: dict | None) -> None:
+        """Enable/disable quantity input based on selection"""
+        self.input_qty.disabled = selected_item is None
+        self.query_one("#update").disabled = selected_item is None
+        if selected_item:
+            self.input_qty.value = str(selected_item["quantity"])
+            self.input_qty.focus()# Focus quantity input when item is selected
+        else:
+            self.input_sku.focus()# Return focus to SKU input when nothing is selected
+
+    @on(DataTable.RowSelected, "#cart-table")
+    def handle_row_selected(self, event: DataTable.RowSelected) -> None:
+        """When a row is selected in the cart table"""
+        # Get the row key (we'll use the SKU as the key when adding rows)
+        row_key = event.row_key.value if event.row_key else None
+        
+        if row_key and row_key != "total":  # Skip the total row
+            # Find the item in cart with matching SKU
+            self.selected_item = next((item for item in self.cart if item["sku"] == row_key), None)
+        else:
+            self.selected_item = None
+
+    def action_undo_last(self) -> None:
+        """Action triggered by F2 hotkey"""
+        self.undo_last_entry()
+        
+        
+    
+    @on(Button.Pressed, "#undo")
+    def undo_last_entry(self) -> None:
+        """Undo the last added item"""
+        if not self.action_history:
+            self.message.update("Nothing to undo")
+            return
+            
+        last_action = self.action_history.pop()
+        
+        if last_action["type"] == "add_item":
+            # Undo add item - restore previous cart state
+            self.cart = [item.copy() for item in last_action["snapshot"]]
+            self.message.update(f"Undo: Removed {last_action['data']['quantity']} of {last_action['data']['sku']}")
+            
+        elif last_action["type"] == "edit_qty":
+            # Restore previous quantity
+            sku = last_action["data"]["sku"]
+            old_qty = last_action["data"]["old_qty"]
+            
+            new_cart = []
+            for item in self.cart:
+                if item["sku"] == sku:
+                    new_item = item.copy()
+                    new_item["quantity"] = old_qty
+                    new_item["total"] = old_qty * item["price"]
+                    new_cart.append(new_item)
+                else:
+                    new_cart.append(item.copy())
+            self.cart = new_cart
+            self.message.update(f"Undo: Restored quantity to {old_qty}")
+            
+            # Force UI update
+            self.cart = self.cart.copy()
+            # self.message.update("Last item removed")
+            self.input_sku.focus()
+
+    @on(Button.Pressed, "#update")
+    @on(Input.Submitted, "#qty-input")
+    def update_quantity(self) -> None:
+        """Update the quantity of the selected item"""
+        if not self.selected_item:
+            return
+            
+        try:
+            new_qty = int(self.input_qty.value)
+            if new_qty <= 0:
+                self.message.update("Quantity must be positive")
+                return
+
+            inventory = load_inventory()
+            sku = self.selected_item["sku"]
+            item_name = self.selected_item["name"]  # Store name before clearing
+            
+            # Check stock availability
+            if inventory[sku]["stock"] < new_qty:
+                self.message.update(f"Only {inventory[sku]['stock']} available in stock")
+                return
+            
+            # Record state before modification
+            self.add_to_history("edit_qty", {
+                "sku": sku,
+                "old_qty": self.selected_item["quantity"],
+                "new_qty": new_qty
+            })
+
+            # Update quantity in a new cart
+            new_cart = []
+            for item in self.cart:
+                if item["sku"] == sku:
+                    new_item = item.copy()
+                    new_item["quantity"] = new_qty
+                    new_item["total"] = new_item["price"] * new_qty
+                    new_cart.append(new_item)
+                else:
+                    new_cart.append(item.copy())
+            
+            # Force cart update
+            self.cart = new_cart
+            self.message.update(f"Updated {item_name} quantity")
+            self.input_sku.focus()
+            self.selected_item = None  # Clear selection after update
+        except ValueError:
+            self.message.update("Please enter a valid number")
 
     @on(Input.Submitted, "#sku-input")
     def add_item(self) -> None:
@@ -115,6 +243,14 @@ class SalesScreen(Screen):
         # Check if item already exists in cart
         existing_index = next((i for i, x in enumerate(self.cart) if x["sku"] == sku), None)
         
+        # Record action before modifying cart
+        self.add_to_history("add_item", {
+            "sku": sku,
+            "quantity": quantity,
+            "existing_index": existing_index,
+            "current_qty": self.cart[existing_index]["quantity"] if existing_index is not None else 0
+        })
+        
         if existing_index is not None:
             # Update existing item
             self.cart[existing_index]["quantity"] += quantity
@@ -129,20 +265,17 @@ class SalesScreen(Screen):
                 "total": item["price"] * quantity
             })
         
-        # This will trigger watch_cart() automatically
-        # self.cart = self.cart.copy()  # Force reactive update
         self.watch_cart()
-        
         self.input_sku.value = ""
         self.message.update(f"Added {item['name']}")
-        self.input_sku.focus()
+        self.input_sku.focus()# Re-focus SKU input after adding item
 
     def watch_cart(self) -> None:
         """Automatically called when cart changes"""
         self.cart_table.clear()
+        self.selected_item = None  # Clear selection when cart changes
         
-        
-       # Create a dictionary to combine duplicate SKUs
+        # Create a dictionary to combine duplicate SKUs
         combined_items = {}
         for item in self.cart:
             if item["sku"] in combined_items:
@@ -151,13 +284,14 @@ class SalesScreen(Screen):
             else:
                 combined_items[item["sku"]] = item.copy()
         
-        # Display the combined items
+        # Display the combined items with row keys
         for sku, item in combined_items.items():
             self.cart_table.add_row(
                 sku,
                 item["name"],
                 str(item["quantity"]),
-                f"${item['total']:.2f}"
+                f"${item['total']:.2f}",
+                key=sku  # Important: Set the row key to SKU
             )
         
         # Add total row if cart has items
@@ -167,7 +301,8 @@ class SalesScreen(Screen):
                 "", 
                 "", 
                 Text("Total:", style="bold"), 
-                Text(f"${total:.2f}", style="bold green")
+                Text(f"${total:.2f}", style="bold green"),
+                key="total"  # Different key for total row
             )
 
     @on(Button.Pressed, "#finish")
@@ -176,8 +311,9 @@ class SalesScreen(Screen):
             self.message.update("Cart is empty")
             return
             
-        total = sum(item["price"] for item in self.cart)
+        total = sum(item["total"] for item in self.cart)
         save_sale(self.cart, total)
         self.message.update(f"Sale completed! Total: ${total:.2f}")
         self.cart = []  # Clear cart (triggers watch_cart)
+        self.action_history = []  # Clear history after sale
         self.input_sku.focus()
