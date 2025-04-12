@@ -212,7 +212,7 @@ class SalesScreen(Screen):
             self.message.update(f"Undo: Restored {restored_item['name']} (qty: {restored_item['quantity']})")
             
         # Force UI update
-        self.cart = self.cart.copy()
+        self.watch_cart()
         # self.message.update("Last item removed")
         self.input_sku.focus()
 
