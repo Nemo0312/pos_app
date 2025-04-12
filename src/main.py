@@ -9,6 +9,7 @@ from pathlib import Path
 import json
 from datetime import datetime
 import pyfiglet
+from src.view_cart import view_cart 
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 PRODUCTS_FILE = DATA_PATH / "products.json"
