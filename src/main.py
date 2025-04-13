@@ -72,7 +72,7 @@ class Menu(Screen):
     def compose(self) -> ComposeResult:
         yield Center(
             Container(
-                Static("\ud83d\udccb [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
+                Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
                 Button("1. Process Sale", id="sale"),
                 Button("2. View Inventory", id="inventory"),
                 Button("3. Exit", id="exit"),
