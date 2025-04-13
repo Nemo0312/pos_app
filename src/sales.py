@@ -295,61 +295,52 @@ class SalesScreen(Screen):
             self.message.update("Please enter a valid number")
 
     @on(Input.Submitted, "#sku-input")
-    @on(Input.Submitted, "#qty-input")
+    @on(Input.Submitted, "#qty_input")
     def add_item(self) -> None:
-        sku_text = self.input_sku.value.strip()
-        if not sku_text:
+        input_text = self.input_sku.value.strip()
+        if not input_text:
             self.message.update("Please enter a SKU")
             return
-        sku = sku_text
-
-        # Read quantity from the dedicated quantity input field
-        qty_text = self.input_qty.value.strip()
-        if qty_text:
+        
+        # Split input into SKU and quantity (default quantity is 1)
+        if '.' in input_text:
             try:
-                quantity = int(qty_text)
+                sku, quantity_str = input_text.split('.')
+                quantity = int(quantity_str)
                 if quantity <= 0:
                     self.message.update("Quantity must be positive")
                     return
             except ValueError:
-                self.message.update("Please enter a valid number for quantity")
+                self.message.update("Invalid quantity format (use SKU.QUANTITY)")
                 return
         else:
-            quantity = 1  # Default to 1 if no quantity is specified
-
+            sku = input_text
+            quantity = 1
+            
         inventory = load_inventory()
         if sku not in inventory:
             self.message.update(f"SKU {sku} not found")
             return
-
+            
         item = inventory[sku]
-
-        # Check stock availability for a new addition
+        
+        # Check if item already exists in cart
         existing_index = next((i for i, x in enumerate(self.cart) if x["sku"] == sku), None)
-        if existing_index is not None:
-            current_qty = self.cart[existing_index]["quantity"]
-            if inventory[sku]["stock"] < (current_qty + quantity):
-                self.message.update(f"Only {inventory[sku]['stock']} available in stock for {item['name']}")
-                return
-        else:
-            if inventory[sku]["stock"] < quantity:
-                self.message.update(f"Only {inventory[sku]['stock']} available in stock for {item['name']}")
-                return
-
-        # Record the action in history before modifying the cart
+        
+        # Record action before modifying cart
         self.add_to_history("add_item", {
             "sku": sku,
             "quantity": quantity,
             "existing_index": existing_index,
             "current_qty": self.cart[existing_index]["quantity"] if existing_index is not None else 0
         })
-
+        
         if existing_index is not None:
-            # Update the existing item's quantity in the cart
+            # Update existing item
             self.cart[existing_index]["quantity"] += quantity
             self.cart[existing_index]["total"] += item["price"] * quantity
         else:
-            # Add a new item to the cart
+            # Add new item
             self.cart.append({
                 "sku": sku,
                 "name": item["name"],
@@ -357,13 +348,12 @@ class SalesScreen(Screen):
                 "price": item["price"],
                 "total": item["price"] * quantity
             })
-
+        
         self.watch_cart()
-        # Clear the SKU and quantity inputs after adding the item
         self.input_sku.value = ""
-        self.input_qty.value = ""
-        self.message.update(f"Added {item['name']} (Qty: {quantity})")
-        self.input_sku.focus()  # Return focus to the SKU input
+        self.message.update(f"Added {item['name']}")
+        self.input_sku.focus()# Re-focus SKU input after adding item
+
 
     def watch_cart(self) -> None:
         """Automatically called when cart changes"""
