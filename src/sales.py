@@ -69,6 +69,7 @@ def save_sale(cart: list, total: float):
         
 class SalesScreen(Screen):
     BINDINGS = [
+        Binding("f5", "search_receipts", "Search Receipts"),
         Binding("f4","print_receipt", "Print Receipt"),
         Binding("f3", "app.pop_screen", "Back"),
         Binding("f1", "help", "Help"),
@@ -77,6 +78,7 @@ class SalesScreen(Screen):
         Binding("-", "undo_last", "Undo Last"),
         Binding("f12", "complete_sale", "Complete Sale"),
     ]
+
 
     cart = reactive([])
     action_history = []  # Track all actions for undo
@@ -104,31 +106,38 @@ class SalesScreen(Screen):
             classes="operations-help"
         )
         
-        yield Vertical(
-            Horizontal(
-                Vertical(
-                    Static("ADD ITEM", classes="header"),
-                    self.input_sku,
-                    self.input_qty,
-                    self.message,
-                    Horizontal(
-                        Button("Update Qty", id="update", variant="primary", disabled=True),
-                        Button("Delete Item", id="delete", variant="error", disabled=True),
-                        Button("Undo Last", id="undo", variant="warning"),
-                        Button("Complete Sale", id="finish", variant="success"),
-                        Button("Print Receipt", id="print", variant="primary", disabled=True), 
-                        classes="button-group"
+        
+        yield Container(
+            Vertical(
+                Static("[bold cyan] NewOldPOS Terminal[/bold cyan]", classes="title"),
+                Static("Add Items to Cart", classes="title"),
+            
+                Horizontal(
+                    Vertical(
+                        Static("ADD ITEM", classes="header"),
+                        self.input_sku,
+                        self.input_qty,
+                        self.message,
+                        Horizontal(
+                            Button("Update Qty", id="update", variant="primary", disabled=True),
+                            Button("Delete Item", id="delete", variant="error", disabled=True),
+                            Button("Undo Last", id="undo", variant="warning"),
+                            Button("Complete Sale", id="finish", variant="success"),
+                            Button("Print Receipt", id="print", variant="primary", disabled=True), 
+                            classes="button-group"
+                        ),
+                        operations_help,
+                        classes="input-panel"
+                        
                     ),
-                    classes="input-panel"
-                ),
-                Vertical(
-                    Static("CART", classes="header"),
-                    self.cart_table,
-                    operations_help,
-                    classes="cart-panel"
-                ),
-            )
-        )
+                    Vertical(
+                        Static("CART", classes="header"),
+                        self.cart_table,
+                        classes="cart-panel"
+                    ),
+                )
+            ))
+        
 
     def on_mount(self) -> None:
         self.input_sku.focus()
@@ -418,7 +427,11 @@ class SalesScreen(Screen):
                 Text(f"${total:.2f}", style="bold green"),
                 key="total"  # Different key for total row
             )
-            
+    
+    def action_search_receipts(self) -> None:
+        """Action triggered by F5"""
+        self.app.push_screen(ReceiptSearchScreen())
+        
     def action_complete_sale(self) -> None:
         """Action triggered by F12"""
         self.complete_sale()

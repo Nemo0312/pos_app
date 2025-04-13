@@ -5,9 +5,11 @@ from textual.widgets import DataTable, Static, Input, Button
 from textual.containers import Vertical, Horizontal
 from textual.reactive import reactive
 from textual.binding import Binding
-from textual import events
+from textual import events, on
 from pathlib import Path
 import json
+from rich.text import Text
+from sales import SalesScreen
 
 
 DATA_PATH = Path(__file__).parent.parent / "data"
@@ -26,20 +28,63 @@ class InventoryScreen(Screen):
         Binding("p", "page_mode", "Page Mode"),
         Binding("left", "prev_page", "Previous Page"),
         Binding("right", "next_page", "Next Page"),
+        
         Binding("+", "next_page", "Next Page"),
         Binding("minus", "prev_page", "Previous Page"),  # Changed from "-" to "minus"
-        Binding("2", "full_view", "Toggle Full/Paginated View")  # Updated description
+        Binding("2", "full_view", "Toggle Full/Paginated View"),  # Updated description
+        Binding("ctrl+d", "focus_search", "Focus Search", priority=True),
+        Binding("a", "add_to_cart", "Add to Cart (A)"),
+        Binding("up", "focus_table", "Focus Table", show=False),
+        Binding("down", "focus_table", "Focus Table", show=False),
+        
     ]
 
     page = reactive(1)
     page_size = 10
     is_full_view = reactive(False)  # New reactive variable to track full view state
-
+    current_inventory = reactive({})  # Track currently displayed inventory
+    selected_item_id = reactive(None)  # Track selected item ID
+    temp_message = reactive("", init=False)  # Temporary message for status updates
+    
+    def watch_temp_message(self, message: str) -> None:
+        """Handle temporary message updates."""
+        if message:
+            self.status.update(message)
+            # Clear message after 2 seconds
+            self.set_timer(2, self.clear_temp_message)
+    def clear_temp_message(self) -> None:
+        """Clear the temporary message and show current view info."""
+        self.temp_message = ""
+        self.update_status()
+    
+    def update_status(self) -> None:
+        """Update status with current view information."""
+        if self.is_full_view:
+            item_count = len(self.current_inventory)
+            self.status.update(f"[yellow]Showing {item_count} items (Full View)[/yellow]")
+        else:
+            items = list(self.current_inventory.items())
+            item_count = len(items)
+            page_count = (item_count + self.page_size - 1) // self.page_size
+            start_index = (self.page - 1) * self.page_size
+            end_index = min(start_index + self.page_size, item_count)
+            self.status.update(
+                f"[yellow]Showing items {start_index + 1}-{end_index} of {item_count} "
+                f"(Page {self.page}/{page_count})[/yellow]"
+            )
     CSS = """
     DataTable {
         height: 1fr;
         width: 1fr;
         border: round yellow;
+    }
+    DataTable > .datatable--hover {
+        background: $accent;
+        color: $text;
+    }
+    DataTable > .datatable--highlight {
+        background: $accent 50%;
+        color: $text;
     }
     Static.title {
         text-align: center;
@@ -69,18 +114,22 @@ class InventoryScreen(Screen):
         self.table = DataTable()
         self.table.add_columns("ID", "Category", "Name", "Price", "Stock", "Next Shipment", "Incoming Stock")
         self.table.zebra_stripes = True
+        self.table.cursor_type = "row"
         self.status = Static("", classes="status")
         self.search_input = Input(placeholder="Search by ID, name, or category (Enter to search)", id="search")
+        self.add_to_cart_btn = Button("Add to Cart (A)", id="add-to-cart", disabled=True)
         self.update_table()
 
         yield Vertical(
+            Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
             Static("[bold green]Inventory View[/bold green]", classes="title"),
             self.table,
             self.status,
+            self.search_input,
             Horizontal(
-                self.search_input,
-                Button("Previous", id="prev"),
-                Button("Next", id="next"),
+                self.add_to_cart_btn,
+                Button("Previous", id="prev", disabled=True),
+                Button("Next", id="next", disabled=False),
                 Button("Full View (2)", id="full"),
                 id="controls"
             )
@@ -89,12 +138,14 @@ class InventoryScreen(Screen):
     def update_table(self, inventory=None, filtered=False):
         """Update the table with inventory data, either paginated or filtered."""
         inventory = inventory or get_inventory()
+        self.current_inventory = inventory
         self.table.clear()
         if filtered or self.is_full_view:
             for i, ii in inventory.items():
                 self.table.add_row(
                     i, ii["category"], ii["name"], f"${ii['price']:.2f}",
-                    str(ii["stock"]), ii.get("next_ship", "N/A"), str(ii.get("next_ship_qty", 0))
+                    str(ii["stock"]), ii.get("next_ship", "N/A"), str(ii.get("next_ship_qty", 0)),
+                    key=i # Use the item ID as the key for the row
                 )
             self.status.update(f"[yellow]Showing {len(inventory)} items (Full View)[/yellow]")
         else:
@@ -107,11 +158,77 @@ class InventoryScreen(Screen):
                 for item_id, item in items[start_index:end_index]:
                     self.table.add_row(
                         item_id, item["category"], item["name"], f"${item['price']:.2f}",
-                        str(item["stock"]), item.get("next_ship", "N/A"), str(item.get("next_ship_qty", 0))
+                        str(item["stock"]), item.get("next_ship", "N/A"), str(item.get("next_ship_qty", 0)), key=item_id
                     )
                 self.status.update(f"[yellow]Showing items {start_index + 1}-{end_index} of {item_count} (Page {self.page}/{page_count})[/yellow]")
             else:
                 self.status.update(f"[red]Page {self.page} out of range 1-{page_count}[/red]")
+    @on(DataTable.RowSelected)
+    def handle_row_selected(self, event: DataTable.RowSelected) -> None:
+        """Handle row selection in the data table."""
+        if event.row_key is None:
+            self.selected_item_id = None
+            self.query_one("#add-to-cart", Button).disabled = True
+            return
+            
+        self.selected_item_id = str(event.row_key.value)
+        self.add_to_cart_btn.disabled = False
+        item_name = self.current_inventory[self.selected_item_id]["name"]
+        self.temp_message = f"Selected: {item_name}"
+        
+    @on(DataTable.RowHighlighted)
+    def handle_row_highlighted(self, event: DataTable.RowHighlighted) -> None:
+        """Handle row highlighting (keyboard navigation)."""
+        self.handle_row_selected(event) 
+
+    def action_add_to_cart(self) -> None:
+        """Add selected item to cart with proper screen initialization."""
+        if not self.selected_item_id:
+            self.temp_message = "[red]No item selected![/red]"
+            return
+        
+        try:
+            # # Get the SalesScreen class (not instance)
+            from sales import SalesScreen
+            
+            # # Create a new instance if needed
+            if not self.app.is_screen_installed("SalesScreen"):
+                self.app.install_screen(SalesScreen(), "SalesScreen")
+            
+            # Get the screen instance
+            sales_screen = self.app.get_screen("SalesScreen")
+            
+            # Verify we can access the screen's widgets
+            if not hasattr(sales_screen, 'query_one'):
+                raise AttributeError("SalesScreen not properly initialized")
+            
+            # Get the input_sku widget - wait for it to be available
+            input_sku = None
+            for _ in range(5):  # Try a few times
+                input_sku = sales_screen.query_one("#sku-input", Input)
+                if input_sku:
+                    break
+                self.app.process_events()  # Allow the screen to process events
+            
+            if not input_sku:
+                raise AttributeError("Could not find SKU input field in SalesScreen")
+            
+            # Verify add_item method exists
+            if not hasattr(sales_screen, 'add_item'):
+                raise AttributeError("SalesScreen missing add_item method")
+            
+            # Prepare the input
+            selected_item = self.current_inventory[self.selected_item_id]
+            sku_input = f"{self.selected_item_id}.1"  # Default quantity of 1
+            
+            # Set the input and trigger add_item
+            input_sku.value = sku_input
+            sales_screen.add_item()
+            
+            self.temp_message = f"[green]Added {selected_item['name']} to cart[/green]"
+            
+        except Exception as e:
+            self.temp_message(f"[red]Error adding to cart: {str(e)}[/red]")
 
     def on_button_pressed(self, event: Button.Pressed):
         """Handle button presses for navigation."""
@@ -127,6 +244,10 @@ class InventoryScreen(Screen):
         elif event.button.id == "full":
             self.is_full_view = not self.is_full_view
             self.update_table()
+        elif event.button.id == "add-to-cart":
+            self.action_add_to_cart()
+
+        
 
     def on_input_submitted(self, event: Input.Submitted):
         """Handle search and page number input."""
@@ -183,7 +304,10 @@ class InventoryScreen(Screen):
         """Go to previous page."""
         if self.page > 1 and not self.is_full_view:
             self.page -= 1
+            if self.page == 1:
+                self.query_one("#prev", Button).disabled = True
             self.update_table()
+        
 
     def action_next_page(self):
         """Go to next page."""
@@ -191,6 +315,9 @@ class InventoryScreen(Screen):
         page_count = (len(inventory) + self.page_size - 1) // self.page_size
         if self.page < page_count and not self.is_full_view:
             self.page += 1
+            self.query_one("#prev", Button).disabled = False
+            if self.page == page_count:
+                self.query_one("#next", Button).disabled = True
             self.update_table()
 
     def action_full_view(self):
@@ -202,26 +329,18 @@ class InventoryScreen(Screen):
         """Show help screen."""
         self.app.push_screen("HelpScreen")
         
-    async def on_key(self, event: events.Key) -> None:
-        if event.key == "enter":
-            self.search_input.focus()
-            
-    # def add_to_cart(cart, sku, quantity, sale_type="P", discount=0):
-    #     inventory = get_inventory()
-    #     if sku in inventory:
-    #         item = inventory[sku]
-    #         if item["stock"] >= quantity:
-    #             price = item["price"] * quantity * (1 - discount / 100)
-    #             cart_item = {
-    #                 "item_id": sku,
-    #                 "name": item["name"],
-    #                 "quantity": quantity,
-    #                 "mode": sale_type,
-    #                 "total": price
-    #             }
-    #             cart.append(cart_item)
-    #             return cart_item, sum(i["total"] for i in cart), "Item added."
-    #         else:
-    #             return None, None, "Not enough stock."
-    #     else:
-    #         return None, None, "Item not found."
+    # async def on_key(self, event: events.Key) -> None:
+    #     if event.key == "enter":
+    #         self.search_input.focus()
+    
+    def action_focus_search(self) -> None:
+        """Focus on the search input field."""
+        self.search_input.focus()
+
+    
+    def action_focus_table(self) -> None:
+        """Focus the data table and ensure it's scrollable."""
+        if not self.table.has_focus:
+            self.table.focus()
+
+    

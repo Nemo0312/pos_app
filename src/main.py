@@ -312,6 +312,18 @@ class POSApp(App):
     """
 
     def on_mount(self):
+        # Pre-install all screens
+        from inventory import InventoryScreen
+        from sales import SalesScreen
+        self.install_screen(InventoryScreen(), "InventoryScreen")
+        
+        # PLEASE DONT REMOVE THESE LINES
+        sales = SalesScreen()
+        self.install_screen(sales, "SalesScreen")
+        self.push_screen(sales)
+        self.pop_screen()
+        # I NEED IT FOR A FUNCTION
+        
         self.push_screen(IntroScreen())
 
 if __name__ == "__main__":

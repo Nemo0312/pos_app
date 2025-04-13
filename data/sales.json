@@ -1,374 +1,35 @@
 [
   {
-    "date": "2025-02-26 18:42:55",
-    "items": [
-      {
-        "item_id": "123",
-        "name": "Hammer",
-        "quantity": 1,
-        "total": 9.99
-      }
-    ],
-    "total": 9.99
-  },
-  {
-    "date": "2025-02-28 17:22:07",
-    "items": [
-      {
-        "item_id": "123",
-        "name": "Hammer",
-        "quantity": 2,
-        "total": 19.98
-      }
-    ],
-    "total": 19.98
-  },
-  {
-    "date": "2025-04-11 23:20:41",
-    "items": [
-      {
-        "item_id": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "total": 19.95
-      }
-    ],
-    "total": 19.95
-  },
-  {
-    "date": "2025-04-11 23:26:06",
-    "items": [
-      {
-        "item_id": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "total": 19.95
-      },
-      {
-        "item_id": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "total": 4.5
-      }
-    ],
-    "total": 24.45
-  },
-  {
-    "date": "2025-04-11 23:27:23",
-    "items": [
-      {
-        "item_id": "1011",
-        "name": "Surge Protector",
-        "quantity": 2,
-        "total": 39.9
-      },
-      {
-        "item_id": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "total": 4.5
-      }
-    ],
-    "total": 44.4
-  },
-  {
-    "date": "2025-04-11 23:42:21",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "price": 19.95,
-        "total": 19.95
-      },
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "price": 19.95,
-        "total": 19.95
-      },
-      {
-        "sku": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "price": 4.5,
-        "total": 4.5
-      },
-      {
-        "sku": "6012",
-        "name": "Thermocouple",
-        "quantity": 1,
-        "price": 14.5,
-        "total": 14.5
-      }
-    ],
-    "total": 58.9
-  },
-  {
-    "date": "2025-04-12 00:17:15",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 19.95
-  },
-  {
-    "date": "2025-04-12 10:57:06",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 15,
-        "price": 19.95,
-        "total": 299.25
-      }
-    ],
-    "total": 299.25
-  },
-  {
-    "date": "2025-04-12 11:47:35",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      },
-      {
-        "sku": "6012",
-        "name": "Thermocouple",
-        "quantity": 25,
-        "price": 14.5,
-        "total": 362.5
-      },
-      {
-        "sku": "7011",
-        "name": "Alternator Belt",
-        "quantity": 6,
-        "price": 14.75,
-        "total": 88.5
-      }
-    ],
-    "total": 550.75
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> view_cart
-  },
-  {
-    "date": "2025-04-13 11:23:47",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "price": 19.95,
-        "total": 19.95
-      }
-    ],
-    "total": 19.95
-  },
-  {
-    "date": "2025-04-13 11:26:22",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 1,
-        "price": 19.95,
-        "total": 19.95
-      }
-    ],
-    "total": 19.95
-<<<<<<< HEAD
-=======
-  },
-  {
     "id": 1,
-    "date": "2025-04-13 12:47:57",
+    "date": "2025-04-13 15:07:41",
     "items": [
       {
         "sku": "1011",
         "name": "Surge Protector",
-        "quantity": 16,
+        "quantity": 5,
         "price": 19.95,
-        "total": 319.2
+        "total": 99.75
       }
     ],
-    "total": 319.2
+    "total": 99.75
   },
   {
     "id": 2,
-    "date": "2025-04-13 12:59:51",
+    "date": "2025-04-13 15:10:48",
     "items": [
       {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
+        "sku": "1012",
+        "name": "Cable Ties (Pack of 100)",
+        "quantity": 1,
+        "price": 4.5,
+        "total": 4.5
       }
     ],
-    "total": 99.75
+    "total": 4.5
   },
   {
     "id": 3,
-    "date": "2025-04-13 13:10:18",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 99.75
-  },
-  {
-    "id": 4,
-    "date": "2025-04-13 13:55:53",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 99.75
-  },
-  {
-    "id": 5,
-    "date": "2025-04-13 14:00:19",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 99.75
-  },
-  {
-    "id": 6,
-    "date": "2025-04-13 14:05:06",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 99.75
-  },
-  {
-    "id": 7,
-    "date": "2025-04-13 14:06:26",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 5,
-        "price": 19.95,
-        "total": 99.75
-      }
-    ],
-    "total": 99.75
-  },
-  {
-    "id": 8,
-    "date": "2025-04-13 14:11:14",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 7,
-        "price": 19.95,
-        "total": 139.64999999999998
-      },
-      {
-        "sku": "6013",
-        "name": "Duct Elbow",
-        "quantity": 5,
-        "price": 7.25,
-        "total": 36.25
-      },
-      {
-        "sku": "7022",
-        "name": "Headlight Bulb (v2)",
-        "quantity": 13,
-        "price": 56.02,
-        "total": 728.26
-      }
-    ],
-    "total": 904.16
-  },
-  {
-    "id": 9,
-    "date": "2025-04-13 14:13:22",
-    "items": [
-      {
-        "sku": "7022",
-        "name": "Headlight Bulb (v2)",
-        "quantity": 16,
-        "price": 56.02,
-        "total": 896.32
-      },
-      {
-        "sku": "6014",
-        "name": "Filter Dryer",
-        "quantity": 35,
-        "price": 19.99,
-        "total": 699.65
-      }
-    ],
-    "total": 1595.97
-  },
-  {
-    "id": 10,
-    "date": "2025-04-13 14:14:10",
-    "items": [
-      {
-        "sku": "1056",
-        "name": "Surge Protector (v7)",
-        "quantity": 25,
-        "price": 44.93,
-        "total": 1123.25
-      }
-    ],
-    "total": 1123.25
-  },
-  {
-    "id": 11,
-    "date": "2025-04-13 14:29:46",
-    "items": [
-      {
-        "sku": "1011",
-        "name": "Surge Protector",
-        "quantity": 12,
-        "price": 19.95,
-        "total": 239.39999999999998
-      }
-    ],
-    "total": 239.39999999999998
-  },
-  {
-    "id": 12,
-    "date": "2025-04-13 14:32:19",
+    "date": "2025-04-13 15:19:27",
     "items": [
       {
         "sku": "1011",
@@ -381,8 +42,8 @@
     "total": 19.95
   },
   {
-    "id": 13,
-    "date": "2025-04-13 14:35:33",
+    "id": 4,
+    "date": "2025-04-13 17:29:33",
     "items": [
       {
         "sku": "1012",
@@ -395,61 +56,17 @@
     "total": 4.5
   },
   {
-    "id": 14,
-    "date": "2025-04-13 14:36:26",
+    "id": 5,
+    "date": "2025-04-13 17:30:39",
     "items": [
       {
-        "sku": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "price": 4.5,
-        "total": 4.5
+        "sku": "7022",
+        "name": "Headlight Bulb (v2)",
+        "quantity": 4,
+        "price": 56.02,
+        "total": 224.08
       }
     ],
-    "total": 4.5
-  },
-  {
-    "id": 15,
-    "date": "2025-04-13 14:45:15",
-    "items": [
-      {
-        "sku": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "price": 4.5,
-        "total": 4.5
-      }
-    ],
-    "total": 4.5
-  },
-  {
-    "id": 16,
-    "date": "2025-04-13 14:48:28",
-    "items": [
-      {
-        "sku": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "price": 4.5,
-        "total": 4.5
-      }
-    ],
-    "total": 4.5
-  },
-  {
-    "id": 17,
-    "date": "2025-04-13 14:51:10",
-    "items": [
-      {
-        "sku": "1012",
-        "name": "Cable Ties (Pack of 100)",
-        "quantity": 1,
-        "price": 4.5,
-        "total": 4.5
-      }
-    ],
-    "total": 4.5
->>>>>>> Stashed changes
->>>>>>> view_cart
+    "total": 224.08
   }
 ]

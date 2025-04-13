@@ -161,4 +161,91 @@ class ReceiptScreen(Screen):
         elif event.button.id == "close":
             self.app.pop_screen()
                 
+class ReceiptSearchScreen(Screen):
+    BINDINGS =[
+        Binding("f3", "app.pop_screen", "Back"),
+    ]
+    
+    def __init__ (self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.search_input = Input(placeholder="Search by Sales ID (Enter to search)", id="search-input")
+        self.pdf_path = ""
+        
+    def compose(self) -> ComposeResult:
+        yield Container(
+            Static("[bold cyan] NewOldPOS Terminal[/bold cyan]", classes="title"),
+            Static("Search By Receipt", classes="title"),
+            self.search_input,
+            Static("", id="receipt-display"),
+            Horizontal(
+                Button("Search", id="search"),
+                Button("View PDF", id="view_pdf", disabled=True),
+                Button("Close", id="close"),
+                classes="buttons"
+            )
+        )
+        
+    @staticmethod
+    def find_receipt_by_id(receipt_id: int) -> dict:
+        """Search sales.json for a receipt by ID"""
+        try:
+            with open("data/sales.json", "r") as f:
+                sales = json.load(f)
+            return next((sale for sale in sales if sale['id'] == receipt_id), None)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return None
+        
+    @on(Button.Pressed, "#search")
+    @on(Input.Submitted, "#search-input")
+    def handle_search(self) -> None:
+        """Handle receipt search"""
+        receipt_display = self.query_one("#receipt-display")
+        search_value = self.search_input.value.strip()
+        
+        if not search_value:  # Handle empty input
+            receipt_display.update("Please enter a receipt ID")
+            receipt_display.styles.color = "yellow"
+            self.query_one("#view_pdf").disabled = True
+            return
+        
+        try:
+            receipt_id = int(search_value)
+            receipt = self.find_receipt_by_id(receipt_id)
+            
+            
+            if receipt:
+                text_receipt = ReceiptGenerator.generate_receipt(receipt)
+                receipt_display.update(text_receipt)
+                receipt_display.styles.color = "yellow"
+                self.pdf_path = ReceiptGenerator.generate_pdf_receipt(receipt)
+                self.query_one("#view_pdf").disabled = False
+            else:
+                receipt_display.update(f"Receipt {receipt_id} not found")
+                receipt_display.styles.color = "red"
+                self.query_one("#view_pdf").disabled = True
+            
 
+        except ValueError:
+            receipt_display.update(f"Invalid ID {search_value} not recognized.")
+            receipt_display.styles.color = "yellow"
+            
+        self.search_input.value = ""
+        self.search_input.focus()
+
+
+    @on(Button.Pressed, "#view_pdf")
+    def view_pdf(self) -> None:
+        """View the generated PDF"""
+        if self.pdf_path:
+            ReceiptGenerator.view_pdf(self.pdf_path)
+            
+
+    @on(Button.Pressed, "#close")
+    def action_pop_screen(self) -> None:
+        """Handle escape key to go back"""
+        self.app.pop_screen()   
+        
+    def action_handle_search(self) -> None:
+        """Handle search input"""
+        self.handle_search()
+        

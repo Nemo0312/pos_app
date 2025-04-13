@@ -3,7 +3,7 @@
     "category": "Electrical",
     "name": "Surge Protector",
     "price": 19.95,
-    "stock": 35,
+    "stock": 29,
     "next_ship": "2025-07-12",
     "next_ship_qty": 150
   },
@@ -11,7 +11,7 @@
     "category": "Electrical",
     "name": "Cable Ties (Pack of 100)",
     "price": 4.5,
-    "stock": 195,
+    "stock": 193,
     "next_ship": "2025-05-20",
     "next_ship_qty": 300
   },
