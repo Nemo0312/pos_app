@@ -12,6 +12,7 @@ from pathlib import Path
 from rich.text import Text
 from textual import on
 from main import load_inventory, save_sale
+from receipt import *
 
 def add_item_to_sale(item_id: str, quantity: int):
     """Add an item to a sale, checking stock availability."""
@@ -28,26 +29,53 @@ def add_item_to_sale(item_id: str, quantity: int):
 
 def save_sale(cart: list, total: float):
     """Save the sale details to sales.json."""
-    with open("data/sales.json", "r") as f:
-        sales = json.load(f)
-    
+    try:
+        with open("data/sales.json", "r") as f:
+            sales = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        sales = []
+        
+    if sales:
+        last_id = max(sale.get("id",0) for sale in sales)
+        new_id = last_id +1
+    else:
+        new_id = 1
+        
     sale = {
+        "id": new_id,
         "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "items": cart,
         "total": total
     }
     sales.append(sale)
     
+    inventory = load_inventory()
+    for item in cart:
+        sku = str(item["sku"])
+        qty_sold = item["quantity"]
+        if sku in inventory:
+            inventory[sku]['stock']=max(inventory[sku]['stock']-qty_sold,0)
+            
+            # if inventory[sku]['stock']<5:
+            #     print(f"Warning: Low inventory for {inventory[sku]['name']} (SKU: {sku})")
+        # else:
+        #     print(f"Warning: SKU {sku} not found in inventory")
+    with open("data/products.json", "w") as f:
+        json.dump(inventory, f, indent=2)
     with open("data/sales.json", "w") as f:
         json.dump(sales, f, indent=2)
         
+    return new_id
+        
 class SalesScreen(Screen):
     BINDINGS = [
+        Binding("f4","print_receipt", "Print Receipt"),
         Binding("f3", "app.pop_screen", "Back"),
         Binding("f1", "help", "Help"),
         Binding("enter", "add_item", "Add Item"),
         Binding("ctrl+z", "undo_last", "Undo Last"),
         Binding("-", "undo_last", "Undo Last"),
+        Binding("f12", "complete_sale", "Complete Sale"),
     ]
 
     cart = reactive([])
@@ -88,6 +116,7 @@ class SalesScreen(Screen):
                         Button("Delete Item", id="delete", variant="error", disabled=True),
                         Button("Undo Last", id="undo", variant="warning"),
                         Button("Complete Sale", id="finish", variant="success"),
+                        Button("Print Receipt", id="print", variant="primary", disabled=True), 
                         classes="button-group"
                     ),
                     classes="input-panel"
@@ -382,7 +411,11 @@ class SalesScreen(Screen):
                 Text(f"${total:.2f}", style="bold green"),
                 key="total"  # Different key for total row
             )
-
+            
+    def action_complete_sale(self) -> None:
+        """Action triggered by F12"""
+        self.complete_sale()
+        
     @on(Button.Pressed, "#finish")
     def complete_sale(self) -> None:
         if not self.cart:
@@ -390,12 +423,44 @@ class SalesScreen(Screen):
             return
             
         total = sum(item["total"] for item in self.cart)
-        save_sale(self.cart, total)
-        self.message.update(f"Sale completed! Total: ${total:.2f}")
+        sales_id = save_sale(self.cart, total)
+        self.message.update(f"Sale #{sales_id} completed! Total: ${total:.2f}")
         self.cart = []  # Clear cart (triggers watch_cart)
         self.action_history = []  # Clear history after sale
         self.input_sku.focus()
         
+        self.query_one("#print", Button).disabled = False # Enable print button after sale completion
+        
+    def action_print_receipt(self)-> None:
+        """Action triggered by F4"""
+        print_button = self.query_one("#print", Button)
+        if print_button.disabled:
+            self.message.update("Please complete the sale before printing")
+        else:
+            self.print_receipt()
+            
+    @on(Button.Pressed, "#print")
+    def print_receipt(self)-> None:
+        try:
+            with open("data/sales.json", "r") as f:
+                sales = json.load(f)
+            if not sales:
+                self.message.update("No sales data found")
+                return
+            
+            last_sale = sales[-1]
+            text_receipt = ReceiptGenerator.generate_receipt(last_sale)
+            pdf_path = ReceiptGenerator.generate_pdf_receipt(last_sale)
+            
+            self.app.push_screen(
+                ReceiptScreen(text_receipt, pdf_path)
+            )
+            
+        except Exception as e:
+            self.message.update(f"Error generating receipt: {e}")
+            return
+        
+    
     # Add this CSS to your app
     CSS = """
     .operations-help {
