@@ -403,7 +403,7 @@
     "category": "Electrical",
     "name": "Fuse (20A) (v3)",
     "price": 2.24,
-    "stock": 37,
+    "stock": 36,
     "next_ship": "2025-04-28",
     "next_ship_qty": 25
   },
@@ -419,7 +419,7 @@
     "category": "Electrical",
     "name": "Fuse (20A) (v4)",
     "price": 2.52,
-    "stock": 30,
+    "stock": 29,
     "next_ship": "2025-08-07",
     "next_ship_qty": 497
   },
@@ -443,7 +443,7 @@
     "category": "Electrical",
     "name": "Cable Ties (Pack of 100) (v3)",
     "price": 49.77,
-    "stock": 115,
+    "stock": 111,
     "next_ship": "2025-08-22",
     "next_ship_qty": 430
   },

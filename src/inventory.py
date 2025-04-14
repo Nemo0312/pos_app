@@ -44,6 +44,7 @@ class InventoryScreen(Screen):
     is_full_view = reactive(False)  # New reactive variable to track full view state
     current_inventory = reactive({})  # Track currently displayed inventory
     selected_item_id = reactive(None)  # Track selected item ID
+    
     temp_message = reactive("", init=False)  # Temporary message for status updates
     
     def watch_temp_message(self, message: str) -> None:
@@ -345,9 +346,6 @@ class InventoryScreen(Screen):
         """Show help screen."""
         self.app.push_screen("HelpScreen")
         
-    # async def on_key(self, event: events.Key) -> None:
-    #     if event.key == "enter":
-    #         self.search_input.focus()
     
     def action_focus_search(self) -> None:
         """Focus on the search input field."""
@@ -358,6 +356,7 @@ class InventoryScreen(Screen):
         """Focus the data table and ensure it's scrollable."""
         if not self.table.has_focus:
             self.table.focus()
+            
     @on(Button.Pressed, "#help")
     def action_help(self)-> None:
         self.operations_help.display = not self.operations_help.display

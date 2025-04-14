@@ -109,6 +109,8 @@ class SalesScreen(Screen):
             classes="operations-help"
         )
         self.operations_help.display = False  # Initially hidden
+        self._should_clear_on_edit = False
+        
         
         
         yield Container(
@@ -164,19 +166,22 @@ class SalesScreen(Screen):
     def watch_selected_item(self, selected_item: dict | None) -> None:
  
         # Remove disabling of the quantity input field so it is always enabled.
-        # self.input_qty.disabled = selected_item is None
-
+        self.input_qty.disabled = selected_item is None
         self.query_one("#update").disabled = selected_item is None
         self.query_one("#delete").disabled = selected_item is None
 
         if selected_item:
-            # Pre-fill the quantity field with the selected item's current quantity for editing.
-            self.input_qty.value = str(selected_item["quantity"])
+            #using placeholder to show current quantity
+            temp = str(selected_item["quantity"])
+            self.input_qty.placeholder = f"Current: {temp}"
+            
             self.input_qty.focus()
+
         else:
-            # Clear the quantity field for new item entries and focus back on SKU input.
             self.input_qty.value = ""
             self.input_sku.focus()
+            
+
 
     @on(DataTable.RowSelected, "#cart-table")
     def handle_row_selected(self, event: DataTable.RowSelected) -> None:
@@ -368,6 +373,8 @@ class SalesScreen(Screen):
         inventory = load_inventory()
         if sku not in inventory:
             self.message.update(f"SKU {sku} not found")
+            self.input_sku.value = ""
+            self.input_sku.focus()
             return
             
         item = inventory[sku]
