@@ -1,39 +1,46 @@
 # NewOldPOS - Terminal Point of Sale
 
-A fast, keyboard-driven terminal POS system built with [Textual](https://github.com/Textualize/textual). 
+A fast, keyboard-driven terminal POS system built with [Textual](https://github.com/Textualize/textual).
 
 ---
 
 ## Features
 
 ### Inventory & Cart Management:
+
 - Displays available items with prices and stock levels.
 - Quick add-to-cart functionality using keyboard or cursor for selecting inventory items.
 - Items can be added to the cart via buttons or key bindings (up/down arrows).
 - Key bindings for navigating the inventory and managing the cart.
 
 ### Sales Screen with Live Updates:
+
 - Tracks sales with unique sale IDs.
 - Automatically updates the inventory when a sale is made.
 - Calculates and displays the total cost of the cart.
 - Supports discounting and different sale types (Pickup/Delivery).
 
 ### Hotkey-driven UI:
-- `E` = Edit selected cart item
-- `X` = Remove selected cart item
+#### Many keybindings that streamline processes:
+
 - `F1` = Help/Legend
 - `F3` = Go Back
 - `F12` = Complete Sale
+- `ctrl` + `z` = undo
+- ...
 
 ### Dynamic Terminal Resizing:
+
 - The interface adjusts to different terminal sizes, ensuring proper UI layout.
 
 ### Receipt Generation:
+
 - After completing a sale, a receipt is generated and displayed in the console.
 - Receipts are saved as PDFs and can be retrieved by searching for a unique sale ID.
 - A function is available to search the sales log by sale ID.
 
 ### Editable Item Entries:
+
 - Items can be edited by selecting their table rows in the inventory view.
 
 ---
@@ -44,33 +51,29 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 
 1. **Clone the repository and navigate to the directory:**
 
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/newoldpos.git
-    cd newoldpos
-    ```
-
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/newoldpos.git
+   cd newoldpos
+   ```
 2. **Create and activate a virtual environment:**
 
-    ```bash
-    python3.10 -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-    ```
-
+   ```bash
+   python3.10 -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
 3. **Install dependencies:**
 
-    ```bash
-    pip install -r requirements.txt
-    pip install typer
-    ```
-
+   ```bash
+   pip install -r requirements.txt
+   ```
 4. **Run the app:**
 
-    Navigate one level up from `src` to `pos_app` and execute:
+   Navigate one level up from `src` to `pos_app` and execute:
 
-    ```bash
-    cd pos_app  # Navigate one level up from 'src'
-    python -m src.main
-    ```
+   ```bash
+   cd pos_app  # Navigate one level up from 'src'
+   python -m src.main
+   ```
 
 ---
 
@@ -85,24 +88,60 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 ## Code Explanation
 
 ### 1. **Inventory Module (`inventory.py`)**
-- Manages the list of items available for purchase, including item names, prices, and stock levels.
-- Quick add-to-cart functionality using buttons or key bindings.
-- Edit and remove functionality for items in the inventory.
+#### Users can easily view the current/incoming inventory through the inventory module. This module supports rapid navigation with keybindings, filter searches whilst allowing users to use their cursor for an organic and dynamic experience. Users can filter search by name, ID, and category. The module also supports a quick-add function where they can add items to their live cart directly from the inventory module.
 
-### 2. **Cart and View Cart App (`view_cart.py`)**
+  ![alt text](image-1.png)
+- Overview of Commands
+
+| Command  | Action   |
+| ---- | ------ |
+| `←` `→` <br />`-` `+` <br />`Previous` `Next` Buttons | Move between pages |
+|`2` <br /> `Full View` Button| Toggle Full/Page view |
+|`↑` `↓`<br/> Cursor| Select Items|
+| `p` + number and Enter <br/>`Page` Button | Move to page number   |
+| `a` <br/> `Add to Cart` Button | Quick-add Selected Item to Cart     |
+|`ctrl` + `d`|Focus Search Bar|
+
+
+
+<!-- ### 2. **Cart and View Cart App (`view_cart.py`)**
+
 - Displays the cart with quantities and total cost, updating in real-time.
-- The grand total is recalculated as items are added or removed.
+- The grand total is recalculated as items are added or removed. -->
 
-### 3. **Sales Module (`sales.py`)**
+### 2. **Sales Module with Live Cart  (`sales.py`)**
+#### Users can add items to a live cart via SKU numbers. This module supports the adding of multiple quantities via the SKU.QTY processing capabilities as seen below. Cart item quantities can be easily edited or removed. The cart always shows real-time status of cart items, quantities, subtotal(s), and total. 
+
+![alt text](image.png)
+- 
 - Tracks sales with a unique sale ID for each transaction.
 - Updates the inventory whenever a sale is made.
 - Handles the generation of receipts for each sale.
+- Overview of Commands
 
-### 4. **Receipt Module (`receipt.py`)**
-- Generates and saves receipts in PDF format.
-- Receipts can be retrieved using the unique sale ID.
+| Command  | Action   |
+| - | - |
+|`SKU`.`QTY`<br/> i.e. 1011.5| Add Item * Quantity<br/> Default is 1 if no quantity specified|
+|`Select item`| Focus Edit Quantity Bar|
+|`d`<br/> `-`<br/>`Delete Item` Button|Remove item from cart|
+|`new quantity` + `Enter`<br/>`Update Qty` Button|Update Quantity|
+|`ctrl` + `z`<br/>`Undo Last` Button|Undo last action|
+|`F12`<br/>`Complete Sale` Button|Check out Cart|
+|`F4` <br/>`Print Receipt` Button|Generates Receipt Screen|
 
-### 5. **Main Application (`main.py`)**
+
+### 3. **Receipt Module (`receipt.py`)**
+#### Integrated as the last step of the sales pipeline, users can quickly view their receipt as plaintext or download a pdf-copy. This module further supports archival searches as past sales transtractions can be retrieved via their unique Sales ID.
+
+- Overview of Commands
+
+| Command  | Action   |
+| - | - |
+|`v`|Download and view PDF|
+|`c`|Close Module|
+
+### 4. **Main Application (`main.py`)**
+
 - The entry point that integrates all features into a unified interface.
 - Initializes inventory, sales, and cart management functionalities.
 
@@ -110,44 +149,53 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 
 ## Shortcuts
 
-| Key     | Action                        |
-|---------|-------------------------------|
-| 1       | Go to Sales                   |
-| 2       | View Inventory                |
-| 3       | Exit App                      |
-| F1      | Help / Legend                 |
-| F3      | Go Back                       |
-| F12     | Complete Sale                 |
-| E       | Edit selected cart item       |
-| X       | Remove selected cart item     |
-| P / D   | Sale Type: Pickup / Delivery  |
+
+| Key   | Action                       |
+| ------- | ------------------------------ |
+| 1     | Go to Sales                  |
+| 2     | View Inventory               |
+| 3     | Exit App                     |
+| F1    | Help / Legend                |
+| F3    | Go Back                      |
+| F5    | Search Receipt
+| F12   | Complete Sale                |
+| E     | Edit selected cart item      |
+| X     | Remove selected cart item    |
+| P / D | Sale Type: Pickup / Delivery |
 
 ---
 
 ## Running the App
 
 ### 1. **Viewing Inventory**
+
 - Displays all available items in the inventory.
 - Users can interact with the inventory by using the keyboard (up/down arrows) or by selecting items with the cursor.
 - Items can be quickly added to the cart using key bindings or buttons.
 
 ### 2. **View Cart**
+
 - Displays the contents of the shopping cart, including item names, quantities, and total cost.
 - The total cost updates automatically as items are added or removed.
 
 ### 3. **Making a Sale**
+
 - When a sale is made, a unique sale ID is generated.
 - The inventory is updated accordingly, and a receipt is generated for the sale.
 
 ### 4. **Generating and Retrieving Receipts**
+
 - After a sale is completed, a receipt is displayed in the console.
 - The receipt is saved as a PDF and can be retrieved using the unique sale ID.
 
 ### 5. **Search Sales by ID**
+
 - Receipts can be searched by sale ID, allowing you to retrieve information about past transactions.
 
 ### 6. **Running the App**
+
 To start the app, use the following command:
 
 ```bash
 python src/main.py
+```
