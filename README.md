@@ -90,7 +90,7 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 ### 1. **Inventory Module (`inventory.py`)**
 #### Users can easily view the current/incoming inventory through the inventory module. This module supports rapid navigation with keybindings, filter searches whilst allowing users to use their cursor for an organic and dynamic experience. Users can filter search by name, ID, and category. The module also supports a quick-add function where they can add items to their live cart directly from the inventory module.
 
-  ![alt text](image-1.png)
+  ![alt text](/pics/image-1.png)
 - Overview of Commands
 
 | Command  | Action   |
@@ -112,7 +112,7 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 ### 2. **Sales Module with Live Cart  (`sales.py`)**
 #### Users can add items to a live cart via SKU numbers. This module supports the adding of multiple quantities via the SKU.QTY processing capabilities as seen below. Cart item quantities can be easily edited or removed. The cart always shows real-time status of cart items, quantities, subtotal(s), and total. 
 
-![alt text](image.png)
+![alt text](/pics/image.png)
 - 
 - Tracks sales with a unique sale ID for each transaction.
 - Updates the inventory whenever a sale is made.
@@ -132,6 +132,8 @@ A fast, keyboard-driven terminal POS system built with [Textual](https://github.
 
 ### 3. **Receipt Module (`receipt.py`)**
 #### Integrated as the last step of the sales pipeline, users can quickly view their receipt as plaintext or download a pdf-copy. This module further supports archival searches as past sales transtractions can be retrieved via their unique Sales ID.
+
+![alt text](/pics/image-3.png)
 
 - Overview of Commands
 
