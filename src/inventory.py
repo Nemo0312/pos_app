@@ -108,6 +108,7 @@ class InventoryScreen(Screen):
         border: heavy #6e4e2e;
         margin: 1;
     }
+    
     """
 
     def compose(self) -> ComposeResult:
@@ -119,6 +120,19 @@ class InventoryScreen(Screen):
         self.search_input = Input(placeholder="Search by ID, name, or category (Enter to search)", id="search")
         self.add_to_cart_btn = Button("Add to Cart (A)", id="add-to-cart", disabled=True)
         self.update_table()
+        self.operations_help = Static(
+            """[b]Operations Help[/b]
+─────────────────────────────
+ [b]Ctrl+D[/b]: Focus Search Bar       
+ [b]Select Items[/b]: Up/Down Arrow Keys 
+ [b]Full Inventory View[/b]: Toggle with "2" 
+ [b]Add to Cart[/b]: "A" after selecting an item               
+ [b]Search by Page[/b]: "P", page number and Enter
+ [b]Back to Main Menu[/b]: F3 
+─────────────────────────────""",
+            classes="operations-help"
+        )
+        self.operations_help.display = False  # Initially hidden
 
         yield Vertical(
             Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
@@ -132,7 +146,9 @@ class InventoryScreen(Screen):
                 Button("Next", id="next", disabled=False),
                 Button("Full View (2)", id="full"),
                 id="controls"
-            )
+            ),
+            Button("F1 Help", id="help"),
+            self.operations_help
         )
 
     def update_table(self, inventory=None, filtered=False):
@@ -342,5 +358,6 @@ class InventoryScreen(Screen):
         """Focus the data table and ensure it's scrollable."""
         if not self.table.has_focus:
             self.table.focus()
-
-    
+    @on(Button.Pressed, "#help")
+    def action_help(self)-> None:
+        self.operations_help.display = not self.operations_help.display

@@ -123,8 +123,7 @@ class ReceiptScreen(Screen):
         Binding('c', 'close', 'Close'),
     ]
     
-    def action_close(self) -> None:
-        self.app.pop_screen()
+
         
     def action_app_pop_screen(self) -> None:
         """Close the current screen."""
@@ -132,6 +131,9 @@ class ReceiptScreen(Screen):
         
     def action_view_pdf(self) -> None:
         ReceiptGenerator.view_pdf(self.pdf_path)
+        
+    def action_close(self) -> None:
+        self.app.pop_screen()
         
     
         
@@ -164,7 +166,14 @@ class ReceiptScreen(Screen):
 class ReceiptSearchScreen(Screen):
     BINDINGS =[
         Binding("f3", "app.pop_screen", "Back"),
+        Binding('v', 'view_pdf', 'View PDF'),
+        Binding('c', 'close', 'Close'),
     ]
+    def action_view_pdf(self) -> None:
+        ReceiptGenerator.view_pdf(self.pdf_path)
+        
+    def action_close(self) -> None:
+        self.app.pop_screen()
     
     def __init__ (self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -223,14 +232,17 @@ class ReceiptSearchScreen(Screen):
                 receipt_display.update(f"Receipt {receipt_id} not found")
                 receipt_display.styles.color = "red"
                 self.query_one("#view_pdf").disabled = True
+                self.search_input.value = ""
+                self.search_input.focus()#refocus are error
             
 
         except ValueError:
             receipt_display.update(f"Invalid ID {search_value} not recognized.")
             receipt_display.styles.color = "yellow"
             
-        self.search_input.value = ""
-        self.search_input.focus()
+        self.search_input.value = "" 
+        self.query_one("#view_pdf").focus()#focus on view pdf button if success
+        
 
 
     @on(Button.Pressed, "#view_pdf")

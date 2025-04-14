@@ -94,17 +94,21 @@ class SalesScreen(Screen):
         self.message = Static("", id="message")
         
                 # Add operations help box
-        operations_help = Static(
+        self.operations_help = Static(
             """[b]Operations Help[/b]
 ─────────────────────────────
  [b]Add Item[/b]: SKU.QUANTITY       
  [b]Edit Qty[/b]: Select + New Value 
  [b]Delete[/b]: Select + "-" or "d"  
- [b]Undo[/b]: Ctrl+Z/-               
- [b]Complete Sale[/b]: Finish Button 
+ [b]Undo[/b]: Ctrl+Z               
+ [b]Complete Sale[/b]: F12
+ [b]Back to Main Menu[/b]: F3 
+ [b]Print Receipt[/b]: F4 
+ [b]Receipt Search[/b]: F5 
 ─────────────────────────────""",
             classes="operations-help"
         )
+        self.operations_help.display = False  # Initially hidden
         
         
         yield Container(
@@ -126,8 +130,14 @@ class SalesScreen(Screen):
                             Button("Print Receipt", id="print", variant="primary", disabled=True), 
                             classes="button-group"
                         ),
-                        operations_help,
+                        Horizontal(
+                            
+                            Button("F1 Help", id="help"),
+                            self.operations_help,
+                        ),
+                        
                         classes="input-panel"
+                        
                         
                     ),
                     Vertical(
@@ -479,6 +489,11 @@ class SalesScreen(Screen):
         except Exception as e:
             self.message.update(f"Error generating receipt: {e}")
             return
+    @on (Button.Pressed, "#help")    
+    def action_help(self) -> None:
+        """Action triggered by F1"""
+        self.operations_help.display = not self.operations_help.display
+    
         
     
     # Add this CSS to your app
