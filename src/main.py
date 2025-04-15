@@ -9,10 +9,12 @@ from pathlib import Path
 import json
 from datetime import datetime
 import pyfiglet
-from inventory import * #inventory viewing logic is in inventory.py
+from inventory import *  # inventory viewing logic is in inventory.py
 from rich.text import Text
 from textual import on
-from sales import * #sales logic is in sales.py
+from sales import *  # sales logic is in sales.py
+from returns import *  # returns logic is in returns.py
+from returns import ReturnsScreen
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 PRODUCTS_FILE = DATA_PATH / "products.json"
@@ -36,7 +38,7 @@ def save_sale(items, total):
 
 class IntroScreen(Screen):
     BINDINGS = [Binding("f3", "app.pop_screen", "Back"),
-                Binding("f1", "help", "Help")]
+                Binding("f1", "help", "Help"),]
 
     def compose(self) -> ComposeResult:
         banner = pyfiglet.figlet_format("NewOldPOS")
@@ -60,24 +62,28 @@ class IntroScreen(Screen):
     def action_help(self):
         self.app.push_screen(HelpScreen())
 
+    def action_goto_returns(self):
+        self.app.push_screen(ReturnsScreen())  # Transition to ReturnsScreen
+
+
 class Menu(Screen):
     BINDINGS = [
         Binding("1", "goto_sales", "Go to Sales"),
         Binding("2", "goto_inventory", "View Inventory"),
-        Binding("3", "quit", "Exit"),
+        Binding("3", "goto_returns", "Go to Returns"),
+        Binding("4", "quit", "Exit"),
         Binding("f1", "help", "Help"),
-        Binding("f3", "back", "Back"),
-        Binding("f5", "receipt_search", "Receipt Search")
+        Binding("f3", "back", "Back")
     ]
 
     def compose(self) -> ComposeResult:
         yield Center(
             Container(
                 Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
-                Button("F5. Search Receipt", id="receipt_search"),
                 Button("1. Process Sale", id="sale"),
                 Button("2. View Inventory", id="inventory"),
-                Button("3. Exit", id="exit"),
+                Button("3. Returns", id="returns"),
+                Button("4. Exit", id="exit"),
                 id="menu"
             )
         )
@@ -88,19 +94,18 @@ class Menu(Screen):
             self.app.push_screen(SalesScreen())
         elif btn_id == "inventory":
             self.app.push_screen(InventoryScreen())
+        elif btn_id == "returns":
+            self.app.push_screen(ReturnsScreen())  # Transition to ReturnsScreen
+
         elif btn_id == "exit":
             self.app.exit()
-        elif btn_id == "receipt_search":
-            self.app.push_screen(ReceiptSearchScreen())
-
+        
     def action_goto_sales(self): self.app.push_screen(SalesScreen())
     def action_goto_inventory(self): self.app.push_screen(InventoryScreen())
-    def action_receipt_search(self): self.app.push_screen(ReceiptSearchScreen())
+    def action_goto_returns(self): self.app.push_screen(ReturnsScreen())  # Handle ReturnsScreen transition
     def action_quit(self): self.app.exit()
     def action_help(self): self.app.push_screen(HelpScreen())
     def action_back(self): self.app.pop_screen()
-
-
 
 
 class HelpScreen(Screen):
@@ -109,7 +114,8 @@ class HelpScreen(Screen):
             "\n[bold cyan]Hotkeys:[/bold cyan]\n"
             "  [green]1[/green] - Go to Sales\n"
             "  [green]2[/green] - View Inventory\n"
-            "  [green]3[/green] - Exit App\n"
+            "  [green]3[/green] - Go to Returns\n"
+            "  [green]4[/green] - Exit App\n"
             "  [green]F1[/green] - Help Menu (Anywhere)\n"
             "  [green]F3[/green] - Go Back (Universal)\n"
         )
@@ -122,6 +128,7 @@ class HelpScreen(Screen):
 
     def on_key(self, event: events.Key):
         self.app.pop_screen()
+
 
 class POSApp(App):
     TITLE = "NewOldPOS"
@@ -165,6 +172,8 @@ class POSApp(App):
         # Pre-install all screens
         from inventory import InventoryScreen
         from sales import SalesScreen
+        from returns import ReturnsScreen  # Import ReturnsScreen
+
         self.install_screen(InventoryScreen(), "InventoryScreen")
         
         # PLEASE DONT REMOVE THESE LINES
