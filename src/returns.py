@@ -1,11 +1,11 @@
-# returns.py
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Label, Input, Button, Static
+from textual.events import Key
 from textual.binding import Binding
 from pathlib import Path
+from datetime import datetime
 import json
-import datetime
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 PRODUCTS_FILE = DATA_PATH / "products.json"
@@ -14,198 +14,200 @@ RETURNS_FILE = DATA_PATH / "returns.json"
 
 class ReturnsScreen(Screen):
     BINDINGS = [
-        Binding("f7", "show_return_summary", "Show Return Summary"),
-        Binding("f8", "complete_transaction", "Complete Transaction"),
         Binding("f3", "back", "Back to Menu"),
+        Binding("f6", "show_summary", "Add Item + Show Summary"),
+        Binding("f7", "undo_return_item", "Undo Last Item"),
+        Binding("f8", "finalize_return", "Complete Transaction"),
     ]
 
     def compose(self) -> ComposeResult:
-        self.receipt_id_input = Input(placeholder="Enter Receipt ID", id="receipt_input")
-        self.receipt_button = Button("Load Receipt", id="load_receipt_btn")
+        self.receipt_id_input = Input(placeholder="Enter Receipt ID")
+        self.load_button = Button("Load Receipt", id="load_receipt")
 
-        self.item_id_input = Input(placeholder="Enter Item ID/Name", id="item_input")
-        self.quantity_input = Input(placeholder="Enter Quantity", id="qty_input")
+        self.receipt_area = Static("")
+        self.item_id_input = Input(placeholder="Item ID/Name")
+        self.quantity_input = Input(placeholder="Quantity")
 
-        # Undo input fields
-        self.undo_item_id_input = Input(placeholder="Undo Item ID/Name", id="undo_item_input")
-        self.undo_quantity_input = Input(placeholder="Undo Quantity", id="undo_qty_input")
+        self.undo_info = Static("To undo an addition, type the item and quantity below")
+        self.undo_item_id_input = Input(placeholder="Undo Item ID/Name")
+        self.undo_quantity_input = Input(placeholder="Undo Quantity")
 
-        yield Static("Receipt ID:")
+        self.return_summary_area = Static("Items being returned:")
+
+        yield Label("Receipt ID:")
         yield self.receipt_id_input
-        yield self.receipt_button
-
-        self.receipt_details_area = Static("")
-        yield self.receipt_details_area
-
-        yield Static("Item ID/Name:")
+        yield self.load_button
+        yield self.receipt_area
+        yield Label("Item ID/Name:")
         yield self.item_id_input
-
-        yield Static("Quantity:")
+        yield Label("Quantity:")
         yield self.quantity_input
-
-        yield Button("F7: Show Return Summary", id="show_summary")
-        yield Button("F8: Complete Transaction", id="complete_transaction")
-
-        # Undo section
-        yield Static("To undo an addition, type the item and quantity below:")
-        yield Static("Undo Item ID/Name:")
+        yield self.undo_info
         yield self.undo_item_id_input
-        yield Static("Undo Quantity:")
         yield self.undo_quantity_input
-
-        self.returned_items = []  # List to store items being returned
-        self.return_summary_area = Static("")
         yield self.return_summary_area
+        yield Static("Press F6 to add item and show summary.\nPress F7 to undo an item.\nPress F8 to complete transaction.\nPress F3 to return to the main screen.")
 
-        self.message_area = Static("")
-        yield self.message_area
+        self.returned_items = []
+        self.sale = None
 
-    async def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "load_receipt_btn":
-            await self.load_receipt()
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "load_receipt":
+            self.load_receipt()
 
-    async def load_receipt(self):
+    def load_receipt(self) -> None:
         receipt_id = self.receipt_id_input.value.strip()
         if not receipt_id:
-            return self.display_message("Receipt ID cannot be empty.", error=True)
+            self.receipt_area.update("[red]Receipt ID cannot be empty.[/red]")
+            return
 
         try:
             with open(SALES_FILE) as f:
                 sales = json.load(f)
+        except Exception as e:
+            self.receipt_area.update(f"[red]Error loading sales: {e}[/red]")
+            return
+
+        self.sale = next((s for s in sales if str(s["id"]) == receipt_id), None)
+        if not self.sale:
+            self.receipt_area.update(f"[red]Sale with ID {receipt_id} not found.[/red]")
+            return
+
+        receipt_text = "[b]Receipt Details:[/b]\n"
+        for item in self.sale["items"]:
+            receipt_text += f"- {item['name']} (SKU: {item['sku']}), Quantity: {item['quantity']}, Price: ${item['price']:.2f}\n"
+        receipt_text += f"\n[b]Total:[/b] ${self.sale['total']:.2f}"
+        self.receipt_area.update(receipt_text)
+
+    def add_return_item(self) -> None:
+        if not self.sale:
+            self.return_summary_area.update("[red]Please load a receipt first.[/red]")
+            return
+
+        item_input = self.item_id_input.value.strip().lower()
+        qty_input = self.quantity_input.value.strip()
+
+        if not item_input or not qty_input.isdigit():
+            self.return_summary_area.update("[red]Invalid item name/ID or quantity.[/red]")
+            return
+
+        quantity = int(qty_input)
+        matched = None
+        for item in self.sale["items"]:
+            if item_input == str(item["sku"]).lower() or item_input == item["name"].lower():
+                matched = item
+                break
+
+        if not matched:
+            self.return_summary_area.update("[red]Item not found in the loaded receipt.[/red]")
+            return
+
+        if quantity > matched["quantity"]:
+            self.return_summary_area.update("[red]Return quantity exceeds purchased amount.[/red]")
+            return
+
+        existing = next((i for i in self.returned_items if i["sku"] == matched["sku"]), None)
+        if existing:
+            existing["quantity"] += quantity
+        else:
+            self.returned_items.append({
+                "sku": matched["sku"],
+                "name": matched["name"],
+                "quantity": quantity,
+                "charge": matched["price"],
+                "id": str(matched["sku"])  # matches products.json key
+            })
+
+        self.item_id_input.value = ""
+        self.quantity_input.value = ""
+
+    def action_show_summary(self) -> None:
+        # If user filled both item and quantity, add it first
+        if self.item_id_input.value.strip() and self.quantity_input.value.strip():
+            self.add_return_item()
+
+        # Then always show the updated summary
+        self.update_return_summary()
+
+    def update_return_summary(self) -> None:
+        if not self.returned_items:
+            self.return_summary_area.update("Items being returned:\n[dim](None yet)[/dim]")
+            return
+
+        summary = "Items being returned:\n"
+        for item in self.returned_items:
+            charge = item["charge"] * item["quantity"]
+            summary += f"- {item['name']} (SKU: {item['sku']}), Qty: {item['quantity']}, Refund: ${charge:.2f}\n"
+        self.return_summary_area.update(summary)
+
+    def action_undo_return_item(self) -> None:
+        item_input = self.undo_item_id_input.value.strip().lower()
+        qty_input = self.undo_quantity_input.value.strip()
+
+        if not item_input or not qty_input.isdigit():
+            self.return_summary_area.update("[red]Invalid undo entry.[/red]")
+            return
+
+        quantity = int(qty_input)
+        for item in self.returned_items:
+            if item_input == str(item["sku"]).lower() or item_input == item["name"].lower():
+                item["quantity"] -= quantity
+                if item["quantity"] <= 0:
+                    self.returned_items.remove(item)
+                break
+
+        self.undo_item_id_input.value = ""
+        self.undo_quantity_input.value = ""
+        self.update_return_summary()
+
+    def action_finalize_return(self) -> None:
+        if not self.returned_items:
+            self.return_summary_area.update("[red]No items to return.[/red]")
+            return
+
+        total_refund = 0
+        summary = "[bold green]Transaction completed:[/bold green]\n"
+        for item in self.returned_items:
+            charge = item["charge"] * item["quantity"]
+            total_refund += charge
+            summary += f"- {item['name']} (SKU: {item['sku']}) x {item['quantity']} → Refund: ${charge:.2f}\n"
+            self.update_inventory(item)
+
+        summary += f"\n[bold]Total Refunded:[/bold] ${total_refund:.2f}"
+        self.return_summary_area.update(summary)
+        self.save_return_transaction(total_refund)
+
+    def update_inventory(self, item) -> None:
+        try:
+            with open(PRODUCTS_FILE, "r") as f:
+                products = json.load(f)
         except Exception:
-            return self.display_message("Failed to load sales data.", error=True)
+            return
 
-        sale = next((s for s in sales if str(s['id']) == receipt_id), None)
-        if not sale:
-            return self.display_message(f"Sale with ID {receipt_id} not found.", error=True)
+        if item["id"] in products:
+            products[item["id"]]["stock"] += item["quantity"]
 
-        self.sale = sale
-        self.display_receipt(sale)
+        with open(PRODUCTS_FILE, "w") as f:
+            json.dump(products, f, indent=2)
 
-    def display_receipt(self, sale):
-        receipt_info = f"[bold]Receipt ID:[/bold] {sale['id']}\n"
-        receipt_info += f"[bold]Date:[/bold] {sale['date']}\n\n"
-
-        receipt_info += "[bold]Items:[/bold]\n"
-        for item in sale['items']:
-            receipt_info += f"- SKU: {item['sku']} - {item['name']} (x{item['quantity']}) - ${item['price'] * item['quantity']:.2f}\n"
-
-        receipt_info += f"\n[bold]Total:[/bold] ${sale['total']:.2f}"
-
-        self.receipt_details_area.update(receipt_info)
-
-    def display_message(self, message, error=False):
-        self.message_area.update(f"[{'bold red' if error else 'green'}]{message}[/{'bold red' if error else 'green'}]")
-
-    def action_show_return_summary(self):
-        # Build return summary based on returned items
-        return_summary = "Items being returned:\n"
-        total_refund = 0
-        for item in self.returned_items:
-            charge = item['charge'] * item['quantity']
-            return_summary += f"- {item['name']} (SKU: {item['sku']}) x {item['quantity']} → Charge: ${charge:.2f}\n"
-            total_refund += charge
-
-        return_summary += f"\n[bold]Total Refund:[/bold] ${total_refund:.2f}"
-        self.return_summary_area.update(return_summary)
-
-    async def on_input_changed(self, event: Input.Changed) -> None:
-        # Check if we need to update the return summary when item ID and quantity are entered
-        if event.input.id == "item_input" or event.input.id == "qty_input":
-            item_id = self.item_id_input.value.strip()
-            quantity = self.quantity_input.value.strip()
-
-            if item_id and quantity.isdigit():
-                quantity = int(quantity)
-
-                # Find the item in the sale receipt
-                item = next((i for i in self.sale['items'] if str(i['sku']) == item_id or i['name'].lower() == item_id.lower()), None)
-                if item:
-                    # Add to returned items
-                    charge = item['price']
-                    self.returned_items.append({
-                        'sku': item['sku'],
-                        'name': item['name'],
-                        'quantity': quantity,
-                        'charge': charge
-                    })
-
-                    # Show the return summary again
-                    self.action_show_return_summary()
-                else:
-                    self.display_message("Item not found in the receipt.", error=True)
-            else:
-                self.display_message("Please enter a valid item and quantity.", error=True)
-
-        elif event.input.id == "undo_item_input" or event.input.id == "undo_qty_input":
-            # Check for undo request
-            undo_item_id = self.undo_item_id_input.value.strip()
-            undo_qty = self.undo_quantity_input.value.strip()
-
-            if undo_item_id and undo_qty.isdigit():
-                undo_qty = int(undo_qty)
-
-                # Try to find the item to undo
-                item_to_remove = next((item for item in self.returned_items if item['name'].lower() == undo_item_id.lower() or str(item['sku']) == undo_item_id), None)
-                if item_to_remove:
-                    # Remove the item from the returned items list
-                    self.returned_items.remove(item_to_remove)
-
-                    # Show the updated return summary
-                    self.action_show_return_summary()
-                    self.display_message(f"Undone return of {undo_item_id} (x{undo_qty}).", error=False)
-                else:
-                    self.display_message("Item not found in the return list.", error=True)
-            else:
-                self.display_message("Please enter a valid item and quantity to undo.", error=True)
-
-    def action_complete_transaction(self):
-        # Complete the return transaction and update inventory
-        total_refund = 0
-        return_details = "Items officially returned:\n"
-        for item in self.returned_items:
-            charge = item['charge'] * item['quantity']
-            return_details += f"- {item['name']} (SKU: {item['sku']}) x {item['quantity']} → Refund: ${charge:.2f}\n"
-            total_refund += charge
-
-        return_details += f"\n[bold]Total Refund:[/bold] ${total_refund:.2f}"
-        self.display_message(return_details)
-
-        # Generate a new receipt for the return and save it in returns.json
-        return_receipt = {
-            "id": str(int(datetime.datetime.now().timestamp())),  # Generate a unique return receipt ID based on the timestamp
-            "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    def save_return_transaction(self, total_refund: float) -> None:
+        return_data = {
+            "id": int(datetime.now().timestamp()),
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "items": self.returned_items,
-            "total": total_refund
+            "total_refund": round(total_refund, 2)
         }
 
-        try:
-            # Save to returns.json
-            try:
-                with open(RETURNS_FILE, 'r') as f:
-                    returns_data = json.load(f)
-            except FileNotFoundError:
-                returns_data = []
+        if RETURNS_FILE.exists():
+            with open(RETURNS_FILE, "r") as f:
+                returns = json.load(f)
+        else:
+            returns = []
 
-            returns_data.append(return_receipt)
-            with open(RETURNS_FILE, 'w') as f:
-                json.dump(returns_data, f, indent=2)
+        returns.append(return_data)
 
-            # Update inventory based on returned items
-            with open(PRODUCTS_FILE) as f:
-                products = json.load(f)
+        with open(RETURNS_FILE, "w") as f:
+            json.dump(returns, f, indent=2)
 
-            for item in self.returned_items:
-                product = next((p for p in products if p['sku'] == item['sku']), None)
-                if product:
-                    product['stock'] += item['quantity']
-
-            with open(PRODUCTS_FILE, "w") as f:
-                json.dump(products, f, indent=2)
-
-            # Complete transaction and go back to the main screen
-            self.display_message(f"[green]Transaction completed. Total Refund: ${total_refund:.2f}[/green]")
-            self.app.pop_screen()  # Go back to the main screen after completing the transaction
-
-        except Exception as e:
-            self.display_message(f"Error completing transaction: {e}", error=True)
+    def action_back(self) -> None:
+        self.app.pop_screen()
