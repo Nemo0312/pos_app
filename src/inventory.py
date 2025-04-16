@@ -57,6 +57,7 @@ class InventoryScreen(Screen):
             self.status.update(message)
             # Clear message after 2 seconds
             self.set_timer(2, self.clear_temp_message)
+            
     def clear_temp_message(self) -> None:
         """Clear the temporary message and show current view info."""
         self.temp_message = ""
@@ -77,6 +78,7 @@ class InventoryScreen(Screen):
                 f"[yellow]Showing items {start_index + 1}-{end_index} of {item_count} "
                 f"(Page {self.page}/{page_count})[/yellow]"
             )
+            
     CSS = """
     Screen {
         layout: vertical;
@@ -232,9 +234,6 @@ class InventoryScreen(Screen):
             )
         ))
         
-        
-    
-
     def update_table(self, inventory=None, filtered=False):
         """Update the table with inventory data, either paginated or filtered."""
         inventory = inventory or get_inventory()
@@ -251,7 +250,6 @@ class InventoryScreen(Screen):
                     str(ii["stock"]), ii.get("next_ship", "N/A"), str(ii.get("next_ship_qty", 0)),
                     key=i # Use the item ID as the key for the row
                 )
-                
             self.query_one("#prev", Button).disabled = True
             self.query_one("#next", Button).disabled = True
             self.status.update(f"[yellow]Showing {len(inventory)} items (Full View)[/yellow]")
