@@ -75,7 +75,7 @@
     "category": "Electrical",
     "name": "Solar Panel Connector",
     "price": 15.5,
-    "stock": 60,
+    "stock": 61,
     "next_ship": "2025-07-01",
     "next_ship_qty": 100
   },
@@ -107,7 +107,7 @@
     "category": "Electrical",
     "name": "Grounding Rod (v3)",
     "price": 31.28,
-    "stock": 264,
+    "stock": 263,
     "next_ship": "2025-05-06",
     "next_ship_qty": 175
   },
@@ -147,7 +147,7 @@
     "category": "Electrical",
     "name": "Grounding Rod (v4)",
     "price": 28.49,
-    "stock": 187,
+    "stock": 186,
     "next_ship": "2025-09-04",
     "next_ship_qty": 412
   },
@@ -179,7 +179,7 @@
     "category": "Electrical",
     "name": "Fuse (20A) (v2)",
     "price": 23.66,
-    "stock": 106,
+    "stock": 105,
     "next_ship": "2025-05-05",
     "next_ship_qty": 497
   },
@@ -3387,7 +3387,7 @@
     "category": "Automotive",
     "name": "Alternator Belt",
     "price": 14.75,
-    "stock": 90,
+    "stock": 85,
     "next_ship": "2025-05-15",
     "next_ship_qty": 200
   },

@@ -131,5 +131,47 @@
       }
     ],
     "total": 810.21
+  },
+  {
+    "id": 8,
+    "date": "2025-04-17 12:32:16",
+    "items": [
+      {
+        "sku": "1020",
+        "name": "Solar Panel Connector",
+        "quantity": 1,
+        "price": 15.5,
+        "total": 15.5
+      },
+      {
+        "sku": "1024",
+        "name": "Grounding Rod (v3)",
+        "quantity": 1,
+        "price": 31.28,
+        "total": 31.28
+      },
+      {
+        "sku": "1029",
+        "name": "Grounding Rod (v4)",
+        "quantity": 1,
+        "price": 28.49,
+        "total": 28.49
+      },
+      {
+        "sku": "1033",
+        "name": "Fuse (20A) (v2)",
+        "quantity": 1,
+        "price": 23.66,
+        "total": 23.66
+      },
+      {
+        "sku": "7011",
+        "name": "Alternator Belt",
+        "quantity": 5,
+        "price": 14.75,
+        "total": 73.75
+      }
+    ],
+    "total": 172.68
   }
 ]
