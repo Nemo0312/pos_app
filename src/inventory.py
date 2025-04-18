@@ -1,4 +1,5 @@
 # inventory.py
+from textual.containers import Container, Center
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import DataTable, Static, Input, Button
@@ -40,12 +41,15 @@ class InventoryScreen(Screen):
     ]
 
     page = reactive(1)
-    page_size = 10
+    page_size = 35  # Number of items per page
     is_full_view = reactive(False)  # New reactive variable to track full view state
     current_inventory = reactive({})  # Track currently displayed inventory
     selected_item_id = reactive(None)  # Track selected item ID
     
     temp_message = reactive("", init=False)  # Temporary message for status updates
+    
+    def on_mount(self)-> None:
+        self.update_table()
     
     def watch_temp_message(self, message: str) -> None:
         """Handle temporary message updates."""
@@ -53,6 +57,7 @@ class InventoryScreen(Screen):
             self.status.update(message)
             # Clear message after 2 seconds
             self.set_timer(2, self.clear_temp_message)
+            
     def clear_temp_message(self) -> None:
         """Clear the temporary message and show current view info."""
         self.temp_message = ""
@@ -73,42 +78,98 @@ class InventoryScreen(Screen):
                 f"[yellow]Showing items {start_index + 1}-{end_index} of {item_count} "
                 f"(Page {self.page}/{page_count})[/yellow]"
             )
+            
     CSS = """
-    DataTable {
-        height: 1fr;
+    Screen {
+        layout: vertical;
+    }
+    
+    /* Left panel - controls */
+    .left-panel {
         width: 1fr;
+        height: 1fr;
+        
+        padding: 1;
+        padding-top: 0;
+    }
+    
+    /* Right panel - table */
+    .right-panel {
+        width: 2fr;
+        height: 1fr;
+        padding: 1;
+    }
+    
+    /* Table styling */
+    DataTable {
+        width: 1fr;
+        height: 1fr;
         border: round yellow;
     }
-    DataTable > .datatable--hover {
-        background: $accent;
-        color: $text;
-    }
-    DataTable > .datatable--highlight {
-        background: $accent 50%;
-        color: $text;
-    }
-    Static.title {
-        text-align: center;
-        color: orange;
-        margin-bottom: 1;
-    }
-    .status {
-        margin-top: 1;
-        text-align: center;
-    }
-    #controls {
-        margin-top: 1;
-    }
-    Input {
-        border: round #e8c28c;
-        padding: 0 1;
-    }
+    
     Button {
+        width: 1fr;  /* Buttons now use fractional width */
+        min-width: 8;  /* Minimum button width */
+        height: 4;
         background: #3d2f1e;
         color: lightgoldenrodyellow;
         border: heavy #6e4e2e;
         margin: 1;
+        text-align: center;
+        content-align: center top;
     }
+    
+    /* Input field */
+    #search {
+        width: 1fr;  /* Fills left panel width */
+        margin-bottom: 1;
+    }
+    
+    /* Status message */
+    .status {
+        height: 3;
+        content-align: center middle;
+        text-style: bold;
+        margin: 1 0;
+    }
+    
+    /* Title styling */
+    .title {
+        text-align: center;
+        color: orange;
+        margin-bottom: 1;
+    }
+    
+    .operations-help {
+        dock: bottom;
+        width: 40;
+        margin: 1 0 0 0;
+        padding: 1;
+        background: $panel;
+        border: round $primary;
+        color: $text;
+    }
+
+    .operations-help Static {
+        width: 100%;
+    }
+    
+.button-group {
+    padding: 1;
+    margin: 0;
+    
+}
+
+.button-group > Horizontal {
+    margin: 0;
+    padding: 1;
+    height: auto;
+}
+
+.button-group Button {
+    margin: 0;
+}
+    
     
     """
 
@@ -119,8 +180,8 @@ class InventoryScreen(Screen):
         self.table.cursor_type = "row"
         self.status = Static("", classes="status")
         self.search_input = Input(placeholder="Search by ID, name, or category (Enter to search)", id="search")
-        self.add_to_cart_btn = Button("Add to Cart (A)", id="add-to-cart", disabled=True)
-        self.update_table()
+        self.add_to_cart_btn = Button("Add to Cart\n(A)", id="add-to-cart", disabled=True)
+        
         self.operations_help = Static(
             """[b]Operations Help[/b]
 ─────────────────────────────
@@ -135,28 +196,53 @@ class InventoryScreen(Screen):
         )
         self.operations_help.display = False  # Initially hidden
 
-        yield Vertical(
-            Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
-            Static("[bold green]Inventory View[/bold green]", classes="title"),
-            self.table,
-            self.status,
-            self.search_input,
+        yield Container(
+            Vertical(
+                Static(" [bold cyan]NewOldPOS Terminal[/bold cyan]", classes="title"),
+                Static("[bold green]Inventory View[/bold green]", classes="title"),
+            
             Horizontal(
-                self.add_to_cart_btn,
-                Button("Previous", id="prev", disabled=True),
-                Button("Next", id="next", disabled=False),
-                Button("Full View (2)", id="full"),
-                id="controls"
-            ),
-            Button("F1 Help", id="help"),
-            self.operations_help
-        )
-
+                #left panel
+                Vertical(      
+                    self.search_input,
+                    Vertical(      
+                        Horizontal(
+                            Button("Previous\n(-/← )", id="prev", disabled=True),
+                            Button("Next\n(+/→ )", id="next", disabled=False),
+                        ),
+                        Horizontal(
+                            self.add_to_cart_btn,
+                            Button("Full View\n(2)", id="full"),
+                        ),
+                        Horizontal(
+                            Button("Help\n(F1)", id="help"),       
+                        ),
+                        
+                        classes = "button-group",
+                    ),
+                    self.operations_help,
+                    classes="left-panel"
+                ),
+                #right panel
+                Vertical(
+                    # Static("INVENTORY", classes="header"),
+                    self.table,
+                    self.status,
+                    classes="right-panel"    
+                ),
+            classes="main-container"
+            )
+        ))
+        
     def update_table(self, inventory=None, filtered=False):
         """Update the table with inventory data, either paginated or filtered."""
         inventory = inventory or get_inventory()
         self.current_inventory = inventory
+        
+        #clear existing rows
         self.table.clear()
+        
+        
         if filtered or self.is_full_view:
             for i, ii in inventory.items():
                 self.table.add_row(
@@ -164,6 +250,8 @@ class InventoryScreen(Screen):
                     str(ii["stock"]), ii.get("next_ship", "N/A"), str(ii.get("next_ship_qty", 0)),
                     key=i # Use the item ID as the key for the row
                 )
+            self.query_one("#prev", Button).disabled = True
+            self.query_one("#next", Button).disabled = True
             self.status.update(f"[yellow]Showing {len(inventory)} items (Full View)[/yellow]")
         else:
             items = list(inventory.items())
@@ -178,8 +266,19 @@ class InventoryScreen(Screen):
                         str(item["stock"]), item.get("next_ship", "N/A"), str(item.get("next_ship_qty", 0)), key=item_id
                     )
                 self.status.update(f"[yellow]Showing items {start_index + 1}-{end_index} of {item_count} (Page {self.page}/{page_count})[/yellow]")
+                
+                if self.page == 1:# Disable previous button on first page
+                    self.query_one("#prev", Button).disabled = True
+                else:
+                    self.query_one("#prev", Button).disabled = False
+                if self.page == page_count: # Disable next button on last page
+                    self.query_one("#next", Button).disabled = True
+                else:
+                    self.query_one("#next", Button).disabled = False
             else:
                 self.status.update(f"[red]Page {self.page} out of range 1-{page_count}[/red]")
+                
+                
     @on(DataTable.RowSelected)
     def handle_row_selected(self, event: DataTable.RowSelected) -> None:
         """Handle row selection in the data table."""
@@ -254,9 +353,14 @@ class InventoryScreen(Screen):
         page_count = (item_count + self.page_size - 1) // self.page_size
         if event.button.id == "prev" and self.page > 1 and not self.is_full_view:
             self.page -= 1
+            if self.page == 1:
+                self.query_one("#prev", Button).disabled = True
             self.update_table()
         elif event.button.id == "next" and self.page < page_count and not self.is_full_view:
             self.page += 1
+            self.query_one("#prev", Button).disabled = False
+            if self.page == page_count:
+                self.query_one("#next", Button).disabled = True
             self.update_table()
         elif event.button.id == "full":
             self.is_full_view = not self.is_full_view
@@ -273,6 +377,7 @@ class InventoryScreen(Screen):
             
             if search_term == "p":
                 self.action_page_mode()
+                
                 return
         
             inventory = get_inventory()

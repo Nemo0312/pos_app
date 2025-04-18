@@ -83,7 +83,7 @@
     "category": "Electrical",
     "name": "Wire Nuts (Pack of 50) (v2)",
     "price": 46.91,
-    "stock": 254,
+    "stock": 239,
     "next_ship": "2025-08-28",
     "next_ship_qty": 146
   },
@@ -875,7 +875,7 @@
     "category": "Woodworking",
     "name": "Clamping Square (v7)",
     "price": 39.36,
-    "stock": 202,
+    "stock": 201,
     "next_ship": "2025-06-28",
     "next_ship_qty": 225
   },
@@ -2251,7 +2251,7 @@
     "category": "Plumbing",
     "name": "Drain Snake",
     "price": 15.75,
-    "stock": 60,
+    "stock": 57,
     "next_ship": "2025-07-10",
     "next_ship_qty": 100
   },

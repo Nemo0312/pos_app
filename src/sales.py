@@ -124,17 +124,23 @@ class SalesScreen(Screen):
                         self.input_sku,
                         self.input_qty,
                         self.message,
+                        Vertical(
                         Horizontal(
                             Button("Update Qty", id="update", variant="primary", disabled=True),
-                            Button("Delete Item", id="delete", variant="error", disabled=True),
-                            Button("Undo Last", id="undo", variant="warning"),
-                            Button("Complete Sale", id="finish", variant="success"),
-                            Button("Print Receipt", id="print", variant="primary", disabled=True), 
-                            classes="button-group"
+                            Button("Delete Item\n(-/D)", id="delete", variant="error", disabled=True),
+                            Button("Undo Last\n(Ctrl+Z)", id="undo", variant="warning"),
+                            classes="button-row"
+                        ),
+                        Horizontal(
+                            Button("Complete\nSale\n(F12)", id="finish", variant="success"),
+                            Button("Print Receipt\n(F4)", id="print", variant="primary", disabled=True),  
+                            classes="button-row"   
+                        ),classes = "button-group"
+                        
                         ),
                         Horizontal(
                             
-                            Button("F1 Help", id="help"),
+                            Button("Help\n(F1)", id="help"),
                             self.operations_help,
                         ),
                         
@@ -518,4 +524,52 @@ class SalesScreen(Screen):
     .operations-help Static {
         width: 100%;
     }
+
+    
+    .input-panel {
+        width: 1fr;
+        min-width: 24;  /* Minimum width for the left panel */
+    }
+    
+    .cart-panel {
+        width: 2fr;
+        min-width: 30;  /* Minimum width for cart */
+    }
+
+    /* Responsive button styling */
+    Button {
+        width: 1fr;  /* Buttons now use fractional width */
+        min-width: 8;  /* Minimum button width */
+        height: 5;
+        background: #3d2f1e;
+        color: lightgoldenrodyellow;
+        border: heavy #6e4e2e;
+        margin: 1;
+        text-align: center;
+        content-align: center top;
+    }
+
+    /* Input fields - responsive sizing */
+    #sku-input, #qty-input {
+        width: 1fr;
+        min-width: 8;
+    }
+
+    /* Button group layout */
+    .button-group {
+        height: auto;
+        layout: vertical;
+    }
+
+    .button-row {
+        width: 1fr;
+        height: auto;
+        layout: horizontal;
+    }
+
+    /* Ensure buttons in rows share space equally */
+    .button-row > Button {
+        width: 1fr;
+    }
+    
     """

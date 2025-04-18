@@ -71,7 +71,9 @@ class Menu(Screen):
         Binding("1", "goto_sales", "Go to Sales"),
         Binding("2", "goto_inventory", "View Inventory"),
         Binding("3", "goto_returns", "Go to Returns"),
-        Binding("4", "quit", "Exit"),
+        Binding("4", "receipt_search", "Search Receipt"),
+        
+        Binding("5", "quit", "Exit"),
         Binding("f1", "help", "Help"),
         Binding("f3", "back", "Back")
     ]
@@ -83,7 +85,8 @@ class Menu(Screen):
                 Button("1. Process Sale", id="sale"),
                 Button("2. View Inventory", id="inventory"),
                 Button("3. Returns", id="returns"),
-                Button("4. Exit", id="exit"),
+                Button("4. Search Receipt", id="receipt"),
+                Button("5. Exit", id="exit"),
                 id="menu"
             )
         )
@@ -96,7 +99,8 @@ class Menu(Screen):
             self.app.push_screen(InventoryScreen())
         elif btn_id == "returns":
             self.app.push_screen(ReturnsScreen())  # Transition to ReturnsScreen
-
+        elif btn_id == "receipt":
+            self.app.push_screen(ReceiptSearchScreen())
         elif btn_id == "exit":
             self.app.exit()
         
@@ -106,6 +110,7 @@ class Menu(Screen):
     def action_quit(self): self.app.exit()
     def action_help(self): self.app.push_screen(HelpScreen())
     def action_back(self): self.app.pop_screen()
+    def action_receipt_search(self): self.app.push_screen(ReceiptSearchScreen())
 
 
 class HelpScreen(Screen):
@@ -154,11 +159,20 @@ class POSApp(App):
         padding: 1 2;
     }
     Button {
+        width: 24; /*consistent button width*/
         background: #3d2f1e;
         color: lightgoldenrodyellow;
         border: heavy #6e4e2e;
         margin: 1;
+        text-align: left; /*text flush left*/
     }
+    /* Hover state */
+    Button:hover {
+    background: #5d4b32;  /* Rich brown with better contrast */
+    border: heavy #8a6d46; /* Slightly lighter border */
+    }
+    
+
     Input {
         border: round #e8c28c;
         padding: 0 1;
@@ -181,7 +195,7 @@ class POSApp(App):
         self.install_screen(sales, "SalesScreen")
         self.push_screen(sales)
         self.pop_screen()
-        # I NEED IT FOR A FUNCTION
+        # sales Screen called and popped to initalize for inventory quick-add to function
         
         self.push_screen(IntroScreen())
 

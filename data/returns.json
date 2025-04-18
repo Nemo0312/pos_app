@@ -11,5 +11,19 @@
       }
     ],
     "total": 19.95
+  },
+  {
+    "id": 1744835076,
+    "date": "2025-04-16 15:24:36",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "charge": 19.95,
+        "id": "1011"
+      }
+    ],
+    "total_refund": 19.95
   }
 ]

@@ -96,5 +96,40 @@
       }
     ],
     "total": 203.84
+  },
+  {
+    "id": 7,
+    "date": "2025-04-14 19:47:41",
+    "items": [
+      {
+        "sku": "1011",
+        "name": "Surge Protector",
+        "quantity": 1,
+        "price": 19.95,
+        "total": 19.95
+      },
+      {
+        "sku": "1021",
+        "name": "Wire Nuts (Pack of 50) (v2)",
+        "quantity": 15,
+        "price": 46.91,
+        "total": 703.65
+      },
+      {
+        "sku": "5012",
+        "name": "Drain Snake",
+        "quantity": 3,
+        "price": 15.75,
+        "total": 47.25
+      },
+      {
+        "sku": "2062",
+        "name": "Clamping Square (v7)",
+        "quantity": 1,
+        "price": 39.36,
+        "total": 39.36
+      }
+    ],
+    "total": 810.21
   }
 ]
