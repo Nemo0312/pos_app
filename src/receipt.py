@@ -217,18 +217,18 @@ class ReceiptSearchScreen(Screen):
             self.query_one("#view_pdf").disabled = True
             return
         
-        try:
+        try: #search by ID
             receipt_id = int(search_value)
             receipt = self.find_receipt_by_id(receipt_id)
             
-            
-            if receipt:
+            if receipt: # Receipt found
                 text_receipt = ReceiptGenerator.generate_receipt(receipt)
                 receipt_display.update(text_receipt)
                 receipt_display.styles.color = "yellow"
                 self.pdf_path = ReceiptGenerator.generate_pdf_receipt(receipt)
+                #enable view pdf button
                 self.query_one("#view_pdf").disabled = False
-            else:
+            else: # Receipt not found
                 receipt_display.update(f"Receipt {receipt_id} not found")
                 receipt_display.styles.color = "red"
                 self.query_one("#view_pdf").disabled = True
@@ -236,7 +236,7 @@ class ReceiptSearchScreen(Screen):
                 self.search_input.focus()#refocus are error
             
 
-        except ValueError:
+        except ValueError: #User input NaN
             receipt_display.update(f"Invalid ID {search_value} not recognized.")
             receipt_display.styles.color = "yellow"
             

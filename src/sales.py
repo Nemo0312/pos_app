@@ -40,7 +40,8 @@ def save_sale(cart: list, total: float):
         new_id = last_id +1
     else:
         new_id = 1
-        
+    
+    #json sales entry    
     sale = {
         "id": new_id,
         "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -49,6 +50,7 @@ def save_sale(cart: list, total: float):
     }
     sales.append(sale)
     
+    #update inventory
     inventory = load_inventory()
     for item in cart:
         sku = str(item["sku"])
@@ -56,10 +58,6 @@ def save_sale(cart: list, total: float):
         if sku in inventory:
             inventory[sku]['stock']=max(inventory[sku]['stock']-qty_sold,0)
             
-            # if inventory[sku]['stock']<5:
-            #     print(f"Warning: Low inventory for {inventory[sku]['name']} (SKU: {sku})")
-        # else:
-        #     print(f"Warning: SKU {sku} not found in inventory")
     with open("data/products.json", "w") as f:
         json.dump(inventory, f, indent=2)
     with open("data/sales.json", "w") as f:
@@ -158,8 +156,9 @@ class SalesScreen(Screen):
         
 
     def on_mount(self) -> None:
+        #focus sku input bar 
         self.input_sku.focus()
-        # self.cart_table.focus()  # Ensure the table can receive focus
+
         
     def add_to_history(self, action_type: str, data: dict):
         """Record an action in history"""
@@ -170,7 +169,6 @@ class SalesScreen(Screen):
         })
 
     def watch_selected_item(self, selected_item: dict | None) -> None:
- 
         # Remove disabling of the quantity input field so it is always enabled.
         self.input_qty.disabled = selected_item is None
         self.query_one("#update").disabled = selected_item is None
@@ -187,7 +185,6 @@ class SalesScreen(Screen):
             self.input_qty.value = ""
             self.input_sku.focus()
             
-
 
     @on(DataTable.RowSelected, "#cart-table")
     def handle_row_selected(self, event: DataTable.RowSelected) -> None:
@@ -215,6 +212,7 @@ class SalesScreen(Screen):
             "sku": sku,
             "item": self.selected_item.copy()
         })
+        
         # Remove item from cart
         self.cart = [item for item in self.cart if item["sku"] != sku]
         self.cart = self.cart.copy()  # Force UI update
@@ -230,7 +228,7 @@ class SalesScreen(Screen):
     
     @on(Button.Pressed, "#undo")
     def undo_last_entry(self) -> None:
-        """Undo the last added item"""
+        """Undo the last action"""
         if not self.action_history:
             self.message.update("Nothing to undo")
             return
@@ -247,6 +245,7 @@ class SalesScreen(Screen):
             sku = last_action["data"]["sku"]
             old_qty = last_action["data"]["old_qty"]
             
+            #reconstruct cart with old quantity
             new_cart = []
             for item in self.cart:
                 if item["sku"] == sku:
@@ -277,7 +276,6 @@ class SalesScreen(Screen):
             
         # Force UI update
         self.watch_cart()
-        # self.message.update("Last item removed")
         self.input_sku.focus()
 
     @on(Button.Pressed, "#update")
@@ -308,7 +306,6 @@ class SalesScreen(Screen):
             self.input_sku.focus()
             self.selected_item = None
             return
-
         
         try:
             new_qty = int(self.input_qty.value)
@@ -350,7 +347,7 @@ class SalesScreen(Screen):
             self.input_qty.placeholder = "Enter new quantity"
             self.input_sku.focus()
             self.selected_item = None  # Clear selection after update
-        except ValueError:
+        except ValueError: #error message when NaN
             self.message.update("Please enter a valid number")
 
     @on(Input.Submitted, "#sku-input")
@@ -377,7 +374,7 @@ class SalesScreen(Screen):
             quantity = 1
             
         inventory = load_inventory()
-        if sku not in inventory:
+        if sku not in inventory: #SKU DNE
             self.message.update(f"SKU {sku} not found")
             self.input_sku.value = ""
             self.input_sku.focus()
@@ -492,6 +489,8 @@ class SalesScreen(Screen):
                 return
             
             last_sale = sales[-1]
+            
+            # Generate receipt text and PDF
             text_receipt = ReceiptGenerator.generate_receipt(last_sale)
             pdf_path = ReceiptGenerator.generate_pdf_receipt(last_sale)
             

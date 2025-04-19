@@ -49,6 +49,7 @@ class InventoryScreen(Screen):
     temp_message = reactive("", init=False)  # Temporary message for status updates
     
     def on_mount(self)-> None:
+        """Initialize the screen and set up the inventory table."""
         self.update_table()
     
     def watch_temp_message(self, message: str) -> None:
@@ -153,22 +154,22 @@ class InventoryScreen(Screen):
     .operations-help Static {
         width: 100%;
     }
-    
-.button-group {
-    padding: 1;
-    margin: 0;
-    
-}
+        
+    .button-group {
+        padding: 1;
+        margin: 0;
+        
+    }
 
-.button-group > Horizontal {
-    margin: 0;
-    padding: 1;
-    height: auto;
-}
+    .button-group > Horizontal {
+        margin: 0;
+        padding: 1;
+        height: auto;
+    }
 
-.button-group Button {
-    margin: 0;
-}
+    .button-group Button {
+        margin: 0;
+    }
     
     
     """
@@ -242,7 +243,7 @@ class InventoryScreen(Screen):
         #clear existing rows
         self.table.clear()
         
-        
+        # Add columns to the table
         if filtered or self.is_full_view:
             for i, ii in inventory.items():
                 self.table.add_row(
@@ -250,15 +251,19 @@ class InventoryScreen(Screen):
                     str(ii["stock"]), ii.get("next_ship", "N/A"), str(ii.get("next_ship_qty", 0)),
                     key=i # Use the item ID as the key for the row
                 )
+            #disable next and previous page buttons when in full view/ filtered search
             self.query_one("#prev", Button).disabled = True
             self.query_one("#next", Button).disabled = True
             self.status.update(f"[yellow]Showing {len(inventory)} items (Full View)[/yellow]")
         else:
+            # page/item indexing calculations
             items = list(inventory.items())
             item_count = len(items)
             page_count = (item_count + self.page_size - 1) // self.page_size
             start_index = (self.page - 1) * self.page_size
             end_index = min(start_index + self.page_size, item_count)
+            
+            # Add rows to the table for the current page
             if start_index < item_count and self.page > 0:
                 for item_id, item in items[start_index:end_index]:
                     self.table.add_row(
@@ -276,6 +281,7 @@ class InventoryScreen(Screen):
                 else:
                     self.query_one("#next", Button).disabled = False
             else:
+                # Error message if user tries to access a page out of range
                 self.status.update(f"[red]Page {self.page} out of range 1-{page_count}[/red]")
                 
                 
@@ -288,7 +294,11 @@ class InventoryScreen(Screen):
             return
             
         self.selected_item_id = str(event.row_key.value)
+        
+        #disable add to cart button if no item is selected
         self.add_to_cart_btn.disabled = False
+        
+        #display selected item name as confirmation
         item_name = self.current_inventory[self.selected_item_id]["name"]
         self.temp_message = f"Selected: {item_name}"
         
@@ -304,14 +314,8 @@ class InventoryScreen(Screen):
             return
         
         try:
-            # # Get the SalesScreen class (not instance)
+            # Avoid circular import
             from sales import SalesScreen
-            
-            # # Create a new instance if needed
-            if not self.app.is_screen_installed("SalesScreen"):
-                self.app.install_screen(SalesScreen(), "SalesScreen")
-            
-            # Get the screen instance
             sales_screen = self.app.get_screen("SalesScreen")
             
             # Verify we can access the screen's widgets
@@ -326,14 +330,15 @@ class InventoryScreen(Screen):
                     break
                 self.app.process_events()  # Allow the screen to process events
             
+            #debug
             if not input_sku:
                 raise AttributeError("Could not find SKU input field in SalesScreen")
             
-            # Verify add_item method exists
+            # debug
             if not hasattr(sales_screen, 'add_item'):
                 raise AttributeError("SalesScreen missing add_item method")
             
-            # Prepare the input
+            # Prepare input
             selected_item = self.current_inventory[self.selected_item_id]
             sku_input = f"{self.selected_item_id}.1"  # Default quantity of 1
             
@@ -353,16 +358,16 @@ class InventoryScreen(Screen):
         page_count = (item_count + self.page_size - 1) // self.page_size
         if event.button.id == "prev" and self.page > 1 and not self.is_full_view:
             self.page -= 1
-            if self.page == 1:
+            if self.page == 1: # Disable previous button on first page
                 self.query_one("#prev", Button).disabled = True
             self.update_table()
         elif event.button.id == "next" and self.page < page_count and not self.is_full_view:
             self.page += 1
             self.query_one("#prev", Button).disabled = False
-            if self.page == page_count:
+            if self.page == page_count: # Disable next button on last page
                 self.query_one("#next", Button).disabled = True
             self.update_table()
-        elif event.button.id == "full":
+        elif event.button.id == "full": # Toggle full view
             self.is_full_view = not self.is_full_view
             self.update_table()
         elif event.button.id == "add-to-cart":
@@ -375,15 +380,14 @@ class InventoryScreen(Screen):
         if event.input.id == "search":
             search_term = event.value.strip().lower()
             
-            if search_term == "p":
+            if search_term == "p": #launch page mode
                 self.action_page_mode()
-                
                 return
         
             inventory = get_inventory()
-            if not search_term:
+            if not search_term: 
                 self.update_table()
-            elif search_term == "2":
+            elif search_term == "2": # Toggle full view
                 self.is_full_view = not self.is_full_view
                 self.update_table()
             elif "page number" in self.search_input.placeholder:
@@ -394,13 +398,13 @@ class InventoryScreen(Screen):
                         self.page = new_page
                         self.is_full_view = False  # Reset to paginated view
                         self.update_table()
-                    else:
+                    else: #error message when user enter out of bounds
                         self.status.update(f"[red]Page must be 1-{page_count}[/red]")
-                except ValueError:
+                except ValueError: #error message when not a number
                     self.status.update("[red]Invalid page number![/red]")
                 self.search_input.placeholder = "Search by ID, name, or category (Enter to search)"
             else:
-                try:
+                try: 
                     sku = int(search_term)
                     filtered = {k: v for k, v in inventory.items() if int(k) == sku}
                 except ValueError:
@@ -408,11 +412,12 @@ class InventoryScreen(Screen):
                         k: v for k, v in inventory.items()
                         if search_term in v["name"].lower() or search_term in v["category"].lower()
                     }
-                if filtered:
+                if filtered: #update if filtered is found
                     self.update_table(filtered, filtered=True)
                 else:
                     self.status.update("[red]No items found![/red]")
             
+            #reset and refocus search bar after input submission
             self.search_input.value = ""
             self.search_input.focus()
 
@@ -426,7 +431,7 @@ class InventoryScreen(Screen):
         """Go to previous page."""
         if self.page > 1 and not self.is_full_view:
             self.page -= 1
-            if self.page == 1:
+            if self.page == 1: # Disable previous button on first page
                 self.query_one("#prev", Button).disabled = True
             self.update_table()
         
@@ -438,7 +443,7 @@ class InventoryScreen(Screen):
         if self.page < page_count and not self.is_full_view:
             self.page += 1
             self.query_one("#prev", Button).disabled = False
-            if self.page == page_count:
+            if self.page == page_count: # Disable next button on last page
                 self.query_one("#next", Button).disabled = True
             self.update_table()
 
@@ -463,5 +468,5 @@ class InventoryScreen(Screen):
             self.table.focus()
             
     @on(Button.Pressed, "#help")
-    def action_help(self)-> None:
+    def action_help(self)-> None:  # toggle help display
         self.operations_help.display = not self.operations_help.display
